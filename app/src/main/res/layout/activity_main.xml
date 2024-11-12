@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context="com.example.app.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="249dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Создайте аккаунт"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/user_login"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="text"
+        android:textColorHint="#6a6a6a"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Введите логин"/>
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#6a6a6a"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Введите паролль"/>
+
+    <EditText
+        android:id="@+id/user_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="textPassword"
+        android:textColorHint="#6a6a6a"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="Введите email"/>
+
+    <Button
+        android:id="@+id/button_reg"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="Создать аккаунт" />
+</LinearLayout>
