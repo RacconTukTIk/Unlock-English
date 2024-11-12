@@ -10,7 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.english.R
+import  com.example.application.R
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
