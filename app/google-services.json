@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "118514022314",
+    "project_id": "unlock-english-22c67",
+    "storage_bucket": "unlock-english-22c67.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118514022314:android:120fd1320d8bf861ebddd3",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOU9fU2TxhU96jct-C1RZWvbGZO3cQf7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118514022314:android:c3808c621222bd12ebddd3",
+        "android_client_info": {
+          "package_name": "com.example.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOU9fU2TxhU96jct-C1RZWvbGZO3cQf7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
