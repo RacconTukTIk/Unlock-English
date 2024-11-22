@@ -1,6 +1,7 @@
 package com.example.app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.application.LogInActivity
 import  com.example.application.R
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        val linkToLogin: TextView = findViewById(R.id.link_to_login)
+
+        linkToLogin.setOnClickListener {
+            val intent = Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+        }
 
         val userLogin:EditText=findViewById(R.id.user_login)
         val userEmail:EditText=findViewById(R.id.user_email)
