@@ -24,40 +24,38 @@
     <Button
         android:id="@+id/enter_to_account"
         android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="264dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="292dp"
         android:text="Войти"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_exist_password"
         tools:singleLine="true" />
 
     <EditText
         android:id="@+id/user_exist_login"
         android:layout_width="300dp"
-        android:layout_height="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="22dp"
-        android:layout_marginBottom="233dp"
         android:ems="10"
         android:inputType="text"
         android:text="Введите логин"
         android:textColor="#6A6A6A"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/link_to_reg"
+        app:layout_constraintBottom_toTopOf="@+id/user_exist_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:textColorHint="#6A6A6A" />
 
     <EditText
         android:id="@+id/user_exist_password"
         android:layout_width="300dp"
-        android:layout_height="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="61dp"
@@ -71,18 +69,15 @@
         app:layout_constraintTop_toBottomOf="@+id/user_exist_login"
         tools:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/link_to_reg"
-        android:layout_width="130dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="197dp"
-        android:text="Создать аккаунт"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/button_to_reg"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Регистрация"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_exist_login" />
+        app:layout_constraintTop_toBottomOf="@+id/enter_to_account" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
