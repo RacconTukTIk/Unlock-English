@@ -62,9 +62,12 @@
         android:layout_marginTop="30dp"
         android:text="Создать аккаунт" />
 
-    <TextView
-        android:id="@+id/link_to_login"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:text="войти" />
+    <Button
+        android:id="@+id/button_to_login"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Войти"
+        app:toggleCheckedStateOnClick="true" />
+
 </LinearLayout>

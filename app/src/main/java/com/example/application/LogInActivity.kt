@@ -16,10 +16,11 @@ class LogInActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.log_in_activity)
 
-        val linkToReg: TextView = findViewById(R.id.link_to_reg)
+        //intent.javaClass
+        val buttonToReg: Button = findViewById(R.id.button_to_reg)
 
-        linkToReg.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+        buttonToReg.setOnClickListener {
+            val intent = Intent(this@LogInActivity, MainActivity::class.java)
             startActivity(intent)
         }
 
