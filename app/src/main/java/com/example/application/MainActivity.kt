@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             if (login==""||email==""||password=="")
                 Toast.makeText(this,"Не все поля заполнены",Toast.LENGTH_LONG).show()
             else{
+                val intent = Intent(this, LogInActivity::class.java)
+                startActivity(intent)
             }
         }
         buttonToLogin.setOnClickListener {
