@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MenuActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Главная"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/rectangle"
+        android:layout_width="312dp"
+        android:layout_height="212dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:background="#D9D9D9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вопросы"
+        android:layout_marginLeft="95sp"
+        android:layout_marginTop="16dp"
+        android:translationY="-60dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270sp"
+        android:layout_marginTop="8dp"
+        android:text="Темы"
+        android:translationY="-87dp"/>
+
+    <Button
+        android:id="@+id/button_exam"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:backgroundTint="#FF0000"
+        android:text="Экзамен"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_themes"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:backgroundTint="#A6C8EB"
+        android:text="Темы"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/button_mistakes"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="213sp"
+        android:backgroundTint="#A6C8EB"
+        android:text="Ошибки"
+        android:textColor="#000000"
+        android:translationY="-48dp" />
+
+    <Button
+        android:id="@+id/button_favorite"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:textColor="#000000"
+        android:backgroundTint="#A6C8EB"
+        android:text="Избранное"
+        android:translationY="-48dp"/>
+
+    <Button
+        android:id="@+id/button_marathon"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="213sp"
+        android:backgroundTint="#A6C8EB"
+        android:text="Марафон"
+        android:textColor="#000000"
+        android:translationY="-96dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="215dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-520dp"
+        app:srcCompat="@drawable/trollface" />
+
+
+</LinearLayout>
