@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Главная"
+       android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"/>
+    <item android:title="Календарь"
+        android:id="@+id/calendar"
+        android:icon="@drawable/baseline_calendar_month_24"/>
+    <item android:title="Словарный запас"
+        android:id="@+id/vocabulaty"
+        android:icon="@drawable/baseline_article_24"/>
+    <item android:title="Словарь"
+        android:id="@+id/dictionary"
+        android:icon="@drawable/baseline_auto_stories_24"/>
+    <item android:title="Профиль"
+        android:id="@+id/account"
+        android:icon="@drawable/baseline_account_circle_24"/>
+</menu>
