@@ -93,11 +93,12 @@
         android:translationY="-96dp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView"
         android:layout_width="215dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="-520dp"
-        app:srcCompat="@drawable/trollface"/>
+        app:srcCompat="@drawable/trollface" />
+
 
 </LinearLayout>
