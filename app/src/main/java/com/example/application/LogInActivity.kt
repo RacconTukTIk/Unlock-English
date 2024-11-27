@@ -10,12 +10,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app.MainActivity
 import com.example.application.MenuActivity
+import com.example.application.databinding.LogInActivityBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import javax.annotation.Nonnull
+
 
 class LogInActivity : AppCompatActivity() {
+    private lateinit var binding:LogInActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.log_in_activity)
+        setContentView(R.layout.log_in_activity)//mb delete
+        binding=LogInActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //intent.javaClass
         val buttonToReg: Button = findViewById(R.id.button_to_reg)
@@ -29,17 +38,27 @@ class LogInActivity : AppCompatActivity() {
         val userExistPassword: EditText = findViewById(R.id.user_exist_password)
         val enterToAccButton: Button = findViewById(R.id.enter_to_account)
 
-        enterToAccButton.setOnClickListener {
-            val login = userExistLogin.text.toString().trim()
-            val password = userExistPassword.text.toString().trim()
+
+        binding.enterToAccount.setOnClickListener{
+            //val login = userExistLogin.text.toString().trim()
+            //val password = userExistPassword.text.toString().trim()
 
 
-            if (login == "" || password == "")
-                Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_LONG).show()
+            if (binding.userExistLogin.text.toString().isEmpty()|| binding.userExistPassword.text.toString().isEmpty())
+                Toast.makeText(applicationContext, "Не все поля заполнены", Toast.LENGTH_SHORT).show()
             else {
-                val enter = Intent(this,MenuActivity::class.java)
-                startActivity(enter)
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.userExistLogin.text.toString(),binding.userExistPassword.text.toString())
+                    .addOnCompleteListener(this){ task->
+                        if(task.isSuccessful)
+                        {
+                            startActivity(Intent(this,MenuActivity::class.java))
+                        }
+
+                    }
+                //val enter = Intent(this,MenuActivity::class.java)
+                //startActivity(enter)
             }
         }
     }
+
 }
