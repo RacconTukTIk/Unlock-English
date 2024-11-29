@@ -31,18 +31,6 @@
         android:textColorHint="#6a6a6a" />
 
     <EditText
-        android:id="@+id/user_password"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Введите пароль"
-        android:inputType="textEmailAddress"
-        android:textColorHint="#6a6a6a" />
-
-    <EditText
         android:id="@+id/user_email"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -51,6 +39,18 @@
         android:ems="10"
         android:fontFamily="sans-serif"
         android:hint="Введите email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#6a6a6a" />
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Введите пароль"
         android:inputType="textPassword"
         android:textColorHint="#6a6a6a" />
 

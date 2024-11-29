@@ -37,7 +37,7 @@ class LogInActivity : AppCompatActivity() {
             if (login == "" || password == "")
                 Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_LONG).show()
             else {
-                val enter = Intent(this,MenuActivity::class.java)
+                val enter = Intent(this,BottomNavigationActivity::class.java)
                 startActivity(enter)
             }
         }
