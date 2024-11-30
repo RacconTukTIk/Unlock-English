@@ -1,18 +1,26 @@
 package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.application.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
+
+        val currentUser: FirebaseUser?= FirebaseAuth.getInstance().currentUser
+        if(currentUser==null)
+        {
+            startActivity(Intent(this,LogInActivity::class.java))
+        }
 
         val ButtonExam: Button = findViewById(R.id.button_exam)
         val ButtonThemes: Button = findViewById(R.id.button_themes)
