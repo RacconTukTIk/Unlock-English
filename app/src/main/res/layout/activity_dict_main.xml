@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.072" />
 
     <Button
         android:id="@+id/ChildButton"
@@ -27,7 +27,6 @@
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="416dp"
         android:enabled="false"
         android:text="Childhood"
         android:textSize="36sp"
@@ -35,7 +34,9 @@
         app:iconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248" />
 
     <Button
         android:id="@+id/TechButton"
@@ -43,16 +44,15 @@
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="288dp"
         android:text="Technology"
         android:textSize="36sp"
         android:textStyle="bold"
         app:iconSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/MusicButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChildButton"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.469" />
 
     <Button
         android:id="@+id/MusicButton"
@@ -60,7 +60,7 @@
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="100dp"
         android:enabled="false"
         android:text="Music"
         android:textSize="36sp"
@@ -68,9 +68,6 @@
         app:iconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TechButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
