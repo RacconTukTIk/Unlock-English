@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.application.BottomNavigationActivity
 import com.example.application.LogInActivity
 import com.example.application.MenuActivity
 import com.example.application.R
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                             FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
                                 .setValue(userInfo)
-                            startActivity(Intent(this,MenuActivity::class.java))
+                            startActivity(Intent(this,BottomNavigationActivity::class.java))
                         }
 
                     }
