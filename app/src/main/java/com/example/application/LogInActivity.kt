@@ -35,16 +35,11 @@ class LogInActivity : AppCompatActivity() {
         }
 
         val userExistLogin: EditText = findViewById(R.id.user_exist_login)
-        val userExistPassword: EditText = findViewById(R.id.user_exist_password)
+        val userExistPassword: EditText = findViewById<EditText?>(R.id.user_exist_password)
         val enterToAccButton: Button = findViewById(R.id.enter_to_account)
 
-        /*enterToAccButton.setOnClickListener {
-            val login = userExistLogin.text.toString().trim()
-            val password = userExistPassword.text.toString().trim()*/
 
         binding.enterToAccount.setOnClickListener{
-            //val login = userExistLogin.text.toString().trim()
-            //val password = userExistPassword.text.toString().trim()
 
 
             if (binding.userExistLogin.text.toString().isEmpty()|| binding.userExistPassword.text.toString().isEmpty())
@@ -54,12 +49,15 @@ class LogInActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){ task->
                         if(task.isSuccessful)
                         {
-                            startActivity(Intent(this,MenuActivity::class.java))
+                            startActivity(Intent(this,BottomNavigationActivity::class.java))
+
+                        }
+                        else
+                        {
+                            Toast.makeText(applicationContext,"Аккаунта с такими логином или паролем не существует!",Toast.LENGTH_SHORT).show()
                         }
 
                     }
-                //val enter = Intent(this,MenuActivity::class.java)
-                //startActivity(enter)
             }
         }
     }
