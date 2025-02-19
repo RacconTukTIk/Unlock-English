@@ -44,10 +44,14 @@ class MainActivity : AppCompatActivity() {
             val login=userLogin.text.toString().trim()
             val email=userEmail.text.toString().trim()
             val password=userPassword.text.toString().trim()
+            fun isValidEmail(email: String): Boolean {
+                val emailRegex = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+                return emailRegex.matches(email)
+            }
 
 
-            if (binding.userLogin.text.toString().isEmpty()||binding.userEmail.text.toString().isEmpty()||binding.userPassword.text.toString().isEmpty())
-                Toast.makeText(applicationContext,"Не все поля заполнены",Toast.LENGTH_SHORT).show()
+            if (binding.userLogin.text.toString().isEmpty()||binding.userEmail.text.toString().isEmpty()||binding.userPassword.text.toString().isEmpty()||(!isValidEmail(binding.userEmail.text.toString())))
+                Toast.makeText(applicationContext,"Не все поля корректно заполнены",Toast.LENGTH_SHORT).show()
             else{
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.userEmail.text.toString(),binding.userPassword.text.toString())
                     .addOnCompleteListener(this){task->
