@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.application.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.application.BottomNavigationActivity
 import com.example.application.DataDictTech
 import com.example.application.DictAdapterTech
 
@@ -27,23 +28,42 @@ class DictTechActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Пример данных словаря
         val dictionaryEntries = listOf(
-            DataDictTech("Word 1", "[wɜːrd 1]", "Перевод 1"),
-            DataDictTech("Word 2", "[wɜːrd 2]", "Перевод 2"),
-            DataDictTech("Word 3", "[wɜːrd 3]", "Перевод 3")
-            // Добавьте больше слов и определений по мере необходимости
+            DataDictTech("Algorithm", "[ˈælɡəˌrɪðəm]", "Алгоритм"),
+            DataDictTech("Application", "[ˌæplɪˈkeɪʃən]", "Приложение"),
+            DataDictTech("Artificial Intelligence", "[ˌɑːrtɪˈfɪʃl ɪnˈtɛlɪdʒəns]", "Искусственный интеллект"),
+            DataDictTech("Bandwidth", "[ˈbændwɪdθ]", "Полоса пропускания"),
+            DataDictTech("Cloud Computing", "[klaʊd kəmˈpjuːtɪŋ]", "Облачные вычисления"),
+            DataDictTech("Cybersecurity", "[ˌsaɪbərsɪˈkjʊrɪti]", "Кибербезопасность"),
+            DataDictTech("Data Mining", "[ˈdeɪtə ˈmaɪnɪŋ]", "Анализ данных"),
+            DataDictTech("Database", "[ˈdeɪtəbeɪs]", "База данных"),
+            DataDictTech("Encryption", "[ɪnˈkrɪpʃən]", "Шифрование"),
+            DataDictTech("Firmware", "[ˈfɜrmwɛr]", "Прошивка"),
+            DataDictTech("Hardware", "[ˈhɑrdwɛr]", "Аппаратное обеспечение"),
+            DataDictTech("Internet of Things", "[ˈɪntərnɛt əv θɪŋz]", "Интернет вещей"),
+            DataDictTech("Machine Learning", "[məˈʃiːn ˈlɜrnɪŋ]", "Обучение с помощью машин"),
+            DataDictTech("Network", "[ˈnɛtwɜrk]", "Сеть"),
+            DataDictTech("Open Source", "[ˈoʊpən sɔrs]", "Открытый исходный код"),
+            DataDictTech("Programming", "[ˈproʊɡræmɪŋ]", "Программирование"),
+            DataDictTech("Robot", "[ˈroʊbɑt]", "Робот"),
+            DataDictTech("Software", "[ˈsɔftwɛr]", "Программное обеспечение"),
+            DataDictTech("User Interface", "[ˈjuːzər ˈɪntərfeɪs]", "Пользовательский интерфейс"),
+            DataDictTech("Virtual Reality", "[ˈvɜrʧuəl riˈælɪti]", "Виртуальная реальность"),
+            DataDictTech("Web Development", "[wɛb dɪˈvɛləpmənt]", "Веб-разработка"),
+            DataDictTech("Wireless", "[ˈwaɪərləs]", "Беспроводной"),
+            DataDictTech("Blockchain", "[ˈblɔkʧeɪn]", "Блокчейн"),
+            DataDictTech("Cryptocurrency", "[ˌkrɪptoʊˈkʌrənsi]", "Криптовалюта"),
+            DataDictTech("Augmented Reality", "[ɔːɡˈmɛntəd riˈælɪti]", "Дополненная реальность")
         )
-
         adapter = DictAdapterTech(dictionaryEntries)
         recyclerView.adapter = adapter
 
         var button = findViewById<ImageView>(R.id.exitDictTech)
         button.setOnClickListener {
-            startActivity(Intent(this,DictMainActivity::class.java))
+            finish()
         }
 
     }
