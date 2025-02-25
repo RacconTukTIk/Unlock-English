@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DictAdapterTech(private val entries: List<DataDictTech>) :
-    RecyclerView.Adapter<DictAdapterTech.DictionaryViewHolder>() {
+class DictAdapterTech(
+    private val entries: List<DataDictTech>,
+    private val onItemClick: (DataDictTech) -> Unit
+) : RecyclerView.Adapter<DictAdapterTech.DictionaryViewHolder>() {
 
     class DictionaryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val wordTextView: TextView = view.findViewById(R.id.wordTextView)
@@ -25,6 +27,11 @@ class DictAdapterTech(private val entries: List<DataDictTech>) :
         holder.wordTextView.text = entry.word
         holder.transcriptionTextView.text = entry.transcription
         holder.translationTextView.text = entry.translation
+
+
+        holder.itemView.setOnClickListener {
+            onItemClick(entry)
+        }
     }
 
     override fun getItemCount() = entries.size
