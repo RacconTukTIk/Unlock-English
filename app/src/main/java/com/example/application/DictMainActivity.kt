@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.application.DictChildActivity
+import com.example.application.DictMusicActivity
 import com.example.application.R
 
 class DictMainActivity : AppCompatActivity() {
@@ -20,9 +22,17 @@ class DictMainActivity : AppCompatActivity() {
             insets
 
         }
-        var button = findViewById<Button>(R.id.TechButton)
-        button.setOnClickListener {
-            startActivity(Intent(this, DictTechActivity::class.java))
+        var buttonChild = findViewById<Button>(R.id.ChildButton)
+        buttonChild.setOnClickListener {
+            startActivity(Intent(this,DictChildActivity::class.java))
+        }
+        var buttonTech = findViewById<Button>(R.id.TechButton)
+        buttonTech.setOnClickListener {
+            startActivity(Intent(this,  DictTechActivity::class.java))
+        }
+        var buttonMusic = findViewById<Button>(R.id.MusicButton)
+        buttonTech.setOnClickListener {
+            startActivity(Intent(this,  DictMusicActivity::class.java))
         }
     }
 }

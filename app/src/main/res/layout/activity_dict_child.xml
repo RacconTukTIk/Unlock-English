@@ -6,25 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.example.dicti.DictTechActivity">
+    tools:context=".DictChildActivity">
 
     <ImageView
-        android:id="@+id/imageViewDict1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageViewChild"
+        android:layout_width="700dp"
+        android:layout_height="321dp"
+        android:layout_marginBottom="528dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/techno1" />
+        app:srcCompat="@drawable/childhood" />
 
     <TextView
-        android:id="@+id/technology"
+        android:id="@+id/childhood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Technology"
+        android:text="ChildHood"
         android:textSize="40sp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -43,7 +42,7 @@
         android:text="Unlock English"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/technology"
+        app:layout_constraintBottom_toTopOf="@+id/childhood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +63,7 @@
         app:srcCompat="@drawable/unlockenglish" />
 
     <ImageView
-        android:id="@+id/exitDictTech"
+        android:id="@+id/exitDictChild"
         android:layout_width="24dp"
         android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewDict1"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewChild"
         app:layout_constraintVertical_bias="0.0">
 
         <TableLayout
@@ -99,8 +98,7 @@
                     android:gravity="center"
                     android:text="Слово"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -126,10 +124,9 @@
         </TableLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTech"
+            android:id="@+id/recyclerViewChild"
             android:layout_width="match_parent"
             android:layout_height="480dp" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

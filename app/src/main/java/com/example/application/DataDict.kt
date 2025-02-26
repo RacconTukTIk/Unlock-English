@@ -1,3 +1,3 @@
 package com.example.application
 
-data class DataDictTech(val word: String, val transcription: String, val translation: String)
+data class DataDict(val word: String, val transcription: String, val translation: String)

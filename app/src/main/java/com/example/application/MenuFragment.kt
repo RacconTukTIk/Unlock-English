@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import com.example.application.R
-import com.example.dicti.DictTechFragment
 
 class MenuFragment : Fragment() {
     override fun onCreateView(

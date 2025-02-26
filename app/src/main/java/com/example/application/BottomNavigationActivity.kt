@@ -11,7 +11,6 @@ import com.example.application.databinding.ActivityDictMainBinding
 import com.example.application.databinding.ActivityDictTechBinding
 import com.example.dicti.DictMainActivity
 import com.example.dicti.DictMainFragment
-import com.example.dicti.DictTechFragment
 
 
 class BottomNavigationActivity : AppCompatActivity()
