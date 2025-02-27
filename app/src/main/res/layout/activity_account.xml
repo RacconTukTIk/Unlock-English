@@ -41,7 +41,6 @@
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_constraintStart_toStartOf="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="157dp"
             android:text="Обо мне"
