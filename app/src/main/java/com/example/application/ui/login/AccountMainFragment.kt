@@ -16,8 +16,10 @@ class AccountMainFragment : Fragment() {
     ): View? {
         // Inflating layout for this fragment
         val view = inflater.inflate(R.layout.activity_account, container, false)
-
-
         return view
+    }
+    companion object {
+        @JvmStatic
+        fun newInstance() = AccountMainFragment()
     }
 }
