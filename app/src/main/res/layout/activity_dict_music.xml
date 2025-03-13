@@ -6,20 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.example.application.DictMusicActivity">
+    tools:context=".DictMusicActivity">
 
     <ImageView
-        android:id="@+id/imageViewMusic1"
-        android:layout_width="441dp"
-        android:layout_height="249dp"
-        android:layout_marginBottom="536dp"
+        android:id="@+id/imageViewDict1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/music" />
 
     <TextView
-        android:id="@+id/Music"
+        android:id="@+id/music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Music"
@@ -34,31 +36,31 @@
         app:layout_constraintVertical_bias="0.145" />
 
     <TextView
-        android:id="@+id/UnlockEnglishMusicText"
+        android:id="@+id/UnlockEnglishText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:gravity="center"
         android:text="Unlock English"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/Music"
+        app:layout_constraintBottom_toTopOf="@+id/music"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintVertical_bias="0.788" />
 
     <ImageView
-        android:id="@+id/UnlockEnglishDictMusic"
+        android:id="@+id/UnlockEnglishDict"
         android:layout_width="36dp"
         android:layout_height="42dp"
+        android:layout_marginStart="116dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/UnlockEnglishMusicText"
+        app:layout_constraintEnd_toStartOf="@+id/UnlockEnglishText"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081"
+        app:layout_constraintVertical_bias="0.059"
         app:srcCompat="@drawable/unlockenglish" />
 
     <ImageView
@@ -74,17 +76,16 @@
         app:srcCompat="@drawable/icon_right_arrow" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="414dp"
-        android:layout_height="532dp"
+        android:layout_width="411dp"
+        android:layout_height="531dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewMusic1"
-        app:layout_constraintVertical_bias="0.058">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDict1"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -92,6 +93,7 @@
             android:layout_marginBottom="16dp">
 
             <TableRow>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -99,7 +101,10 @@
                     android:gravity="center"
                     android:text="Слово"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
+
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -108,6 +113,8 @@
                     android:text="Транскрипция"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -123,8 +130,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewMusic"
             android:layout_width="match_parent"
-            android:layout_height="480dp" />
+            android:layout_height="480dp"/>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
