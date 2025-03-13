@@ -64,8 +64,8 @@
 
     <ImageView
         android:id="@+id/exitDictChild"
-        android:layout_width="24dp"
-        android:layout_height="23dp"
+        android:layout_width="19dp"
+        android:layout_height="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
