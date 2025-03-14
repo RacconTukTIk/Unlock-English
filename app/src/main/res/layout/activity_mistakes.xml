@@ -94,9 +94,12 @@
         android:layout_width="285dp"
         android:layout_height="107dp"
         android:text="Пройти тесты заново"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="487dp"
-        tools:textSize="24sp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812"
+        tools:ignore="MissingConstraints"
+        tools:textSize="24sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

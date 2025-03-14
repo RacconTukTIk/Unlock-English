@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import com.example.application.R
+import com.example.application.MistakesActivity
+import com.example.dicti.DictTechActivity
+
 
 class MenuFragment : Fragment() {
     override fun onCreateView(
@@ -15,9 +19,15 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflating layout for this fragment
-        return inflater.inflate(R.layout.activity_menu, container, false)
+        val view = inflater.inflate(R.layout.activity_menu, container, false)
+        val buttonError: Button = view.findViewById(R.id.button_mistakes)
+        buttonError.setOnClickListener {
+            val intent = Intent(requireActivity(), MistakesActivity::class.java)
+            startActivity(intent)
+        }
+        return view
     }
+
 
     companion object {
         @JvmStatic

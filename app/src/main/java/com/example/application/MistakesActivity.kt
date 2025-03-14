@@ -35,8 +35,7 @@ class MistakesActivity : AppCompatActivity() {
 
         val button = findViewById<ImageView>(R.id.exitMistakes)
         button.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }
