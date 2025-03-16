@@ -1,6 +1,7 @@
 package com.example.app
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -57,6 +58,10 @@ class MainActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){task->
                         if(task.isSuccessful)
                         {
+                            /*val sharedPreferences=getSharedPreferences("user_data",Context.MODE_PRIVATE)
+                            val editor=sharedPreferences.edit()
+                            editor.putString("username", login)
+                            editor.apply()*/
                             val userInfo=mutableMapOf<String,String>()
                             userInfo["email"]=binding.userEmail.text.toString()
                             userInfo["username"]=binding.userLogin.text.toString()
