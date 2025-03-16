@@ -26,7 +26,7 @@ class LogInActivity : AppCompatActivity() {
         binding=LogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //intent.javaClass
+
         val buttonToReg: Button = findViewById(R.id.button_to_reg)
 
         buttonToReg.setOnClickListener {
