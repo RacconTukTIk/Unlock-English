@@ -1,5 +1,6 @@
 package com.example.application
 
+import VocabularyActivity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +31,7 @@ class BottomNavigationActivity : AppCompatActivity()
                 R.id.dictionary -> replaceFragment(DictMainFragment())
                 R.id.account -> replaceFragment(AccountMainFragment())
                 R.id.calendar -> replaceFragment(CalendarFragment())
-
+                R.id.vocabulaty -> replaceFragment(VocabularyFragment())
                 else -> false
             }
             true
