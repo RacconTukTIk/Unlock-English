@@ -26,13 +26,13 @@
         android:id="@+id/enter_to_account"
         android:layout_width="220dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginBottom="276dp"
         android:text="Войти"
+        android:fontFamily="@font/inter_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:singleLine="true" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/user_exist_login"
@@ -70,15 +70,30 @@
         app:layout_constraintTop_toBottomOf="@+id/user_exist_login"
         tools:textSize="20sp" />
 
-    <Button
+    <TextView
         android:id="@+id/button_to_reg"
-        android:layout_width="220dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Регистрация"
+        android:layout_width="153dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="56dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Зарегестрироваться"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toBottomOf="@+id/enter_to_account"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/register_text"
+        android:layout_width="126dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="64dp"
+        android:text="Еще нет аккаунта?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_to_reg"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_to_account" />
+        app:layout_constraintTop_toBottomOf="@+id/enter_to_account"
+        app:layout_constraintVertical_bias="0.011" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

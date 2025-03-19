@@ -27,7 +27,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val buttonToReg: Button = findViewById(R.id.button_to_reg)
+        val buttonToReg: TextView = findViewById(R.id.button_to_reg)
 
         buttonToReg.setOnClickListener {
             val intent = Intent(this@LogInActivity, MainActivity::class.java)
