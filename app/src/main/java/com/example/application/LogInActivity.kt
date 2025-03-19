@@ -1,7 +1,15 @@
 package com.example.application
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -27,7 +35,38 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val buttonToReg: Button = findViewById(R.id.button_to_reg)
+        val buttonToReg: TextView = findViewById(R.id.button_to_reg)
+
+        val interBoldTypeface = Typeface.create("sans-serif", Typeface.BOLD)
+        // Настройка SpannableString для текста "Еще нет аккаунта?Зарегестрироваться"
+        val text = "Еще нет аккаунта? Зарегестрироваться"
+        val spannableString = SpannableString(text)
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Обработка нажатия на "Войти"
+                val intent = Intent(this@LogInActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.BLACK // Цвет текста "Зарегестрироваться"
+                ds.isUnderlineText = true
+            }
+        }
+
+        // Применение CustomTypefaceSpan для текста "Зарегестрироваться"
+        val typefaceSpan = CustomTypefaceSpan(interBoldTypeface)
+
+        // Установка диапазона для ClickableSpan и CustomTypefaceSpan
+        val startIndex = text.indexOf("Зарегестрироваться")
+        val endIndex = startIndex + "Зарегестрироваться".length
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(typefaceSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        buttonToReg.text = spannableString
+        buttonToReg.movementMethod = LinkMovementMethod.getInstance()
 
         buttonToReg.setOnClickListener {
             val intent = Intent(this@LogInActivity, MainActivity::class.java)
@@ -37,7 +76,6 @@ class LogInActivity : AppCompatActivity() {
         val userExistLogin: EditText = findViewById(R.id.user_exist_login)
         val userExistPassword: EditText = findViewById<EditText?>(R.id.user_exist_password)
         val enterToAccButton: Button = findViewById(R.id.enter_to_account)
-
 
         binding.enterToAccount.setOnClickListener{
 
@@ -62,4 +100,8 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed()
+    {
+        //Блокирую системную кнопку "Назад"
+    }
 }
