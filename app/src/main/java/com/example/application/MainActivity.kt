@@ -1,24 +1,28 @@
 package com.example.app
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-//import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.application.BottomNavigationActivity
+import com.example.application.CustomTypefaceSpan
 import com.example.application.LogInActivity
-import com.example.application.MenuActivity
 import com.example.application.R
 import com.example.application.databinding.ActivityMainBinding
-import com.example.application.databinding.LogInActivityBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
@@ -38,8 +42,39 @@ class MainActivity : AppCompatActivity() {
         val userLogin:EditText=findViewById(R.id.user_login)
         val userEmail:EditText=findViewById(R.id.user_email)
         val userPassword:EditText=findViewById(R.id.user_password)
-        val button:Button=findViewById(R.id.button_reg)
-        val buttonToLogin:Button=findViewById(R.id.button_to_login)
+        val button: Button =findViewById(R.id.button_reg)
+        val buttonToLogin:TextView =findViewById(R.id.button_to_login)
+
+        val interBoldTypeface = Typeface.create("sans-serif", Typeface.BOLD)
+        // Настройка SpannableString для текста "Уже есть аккаунт? Войти"
+        val text = "Уже есть аккаунт? Войти"
+        val spannableString = SpannableString(text)
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Обработка нажатия на "Войти"
+                val intent = Intent(this@MainActivity, LogInActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.BLACK // Цвет текста "Войти"
+                ds.isUnderlineText = true
+            }
+        }
+
+        // Применение CustomTypefaceSpan для текста "Войти"
+        val typefaceSpan = CustomTypefaceSpan(interBoldTypeface)
+
+        // Установка диапазона для ClickableSpan и CustomTypefaceSpan
+        val startIndex = text.indexOf("Войти")
+        val endIndex = startIndex + "Войти".length
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(typefaceSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        buttonToLogin.text = spannableString
+        buttonToLogin.movementMethod = LinkMovementMethod.getInstance()
 
         binding.buttonReg.setOnClickListener {
             val login=userLogin.text.toString().trim()
@@ -77,13 +112,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-        buttonToLogin.setOnClickListener {
-            val intent = Intent(this, LogInActivity::class.java)
-            startActivity(intent)
-        }
-        
 
     }
-
-
+    override fun onBackPressed()
+    {
+        finish()
+    }
 }

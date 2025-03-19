@@ -51,4 +51,9 @@ class BottomNavigationActivity : AppCompatActivity()
             .replace(R.id.frame_layout, fragment)
             .commit()
     }
+
+    override fun onBackPressed() {
+
+    }
+
 }
