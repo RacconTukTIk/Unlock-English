@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
+            android:name=".ThemesActivity"
+            android:exported="false" />
+        <activity
             android:name=".BottomNavigationActivity"
             android:exported="true" />
         <activity
@@ -53,8 +56,7 @@
         <activity
             android:name=".AccountMainActivity"
             android:exported="true"
-            android:label="acc_page"
-            />
+            android:label="acc_page" />
 
         <meta-data
             android:name="preloaded_fonts"

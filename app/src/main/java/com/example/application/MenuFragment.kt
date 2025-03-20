@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +16,16 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflating layout for this fragment
-        return inflater.inflate(R.layout.activity_menu, container, false)
+        val view = inflater.inflate(R.layout.activity_menu, container, false)
+        val buttonThemes: Button = view.findViewById(R.id.button_themes)
+        buttonThemes.setOnClickListener {
+            val intent = Intent(requireActivity(),ThemesActivity::class.java)
+            startActivity(intent)
+        }
+        return view
     }
+
+
 
     companion object {
         @JvmStatic
