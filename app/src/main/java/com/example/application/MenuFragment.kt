@@ -26,9 +26,16 @@ class MenuFragment : Fragment() {
             val intent = Intent(requireActivity(), ThemesActivity::class.java)
             startActivity(intent)
         }
+
         val buttonError: Button = view.findViewById(R.id.button_mistakes)
         buttonError.setOnClickListener {
             val intent = Intent(requireActivity(), MistakesActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonExam: Button = view.findViewById(R.id.button_exam)
+        buttonExam.setOnClickListener {
+            val intent = Intent(requireActivity(), ExamActivity::class.java)
             startActivity(intent)
         }
         return view
