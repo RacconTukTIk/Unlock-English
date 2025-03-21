@@ -7,9 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.application.databinding.ActivityBottomNavigationBinding
-import com.example.application.databinding.ActivityDictMainBinding
-import com.example.application.databinding.ActivityDictTechBinding
-import com.example.dicti.DictMainActivity
+import com.example.application.sampledata.VocabularyFragment
 import com.example.dicti.DictMainFragment
 
 

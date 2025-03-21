@@ -1,6 +1,5 @@
-package com.example.application
+package com.example.application.sampledata
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.application.R
+import com.example.application.data.VocabularyDatabase
+import com.example.application.data.VocabularyRepository
 
 class VocabularyFragment : Fragment() {
 
@@ -59,4 +60,8 @@ class VocabularyFragment : Fragment() {
         @JvmStatic
         fun newInstance() = VocabularyFragment()
     }
-}
+
+
+    val database = VocabularyDatabase.getDatabase(requireContext())
+    val repository = VocabularyRepository(database.learnedWordDao(), database.wordToRepeatDao())
+    }

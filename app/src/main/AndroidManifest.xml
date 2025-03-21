@@ -15,6 +15,18 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
+            android:name=".DataBaseVocabulary"
+            android:exported="false"
+            android:theme="@style/Theme.Application" />
+        <activity
+            android:name=".DataAccessObjectVocabulary"
+            android:exported="false"
+            android:theme="@style/Theme.Application" />
+        <activity
+            android:name=".Entity_Vocabulary"
+            android:exported="false"
+            android:theme="@style/Theme.Application" />
+        <activity
             android:name=".ExamActivity"
             android:exported="false" />
         <activity
