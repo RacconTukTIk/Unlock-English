@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,16 +31,10 @@ class TopicsAdapter(
         private val textTopicTitle: TextView = itemView.findViewById(R.id.textTopicTitle)
 
         fun bind(topic: Topic) {
-            // Устанавливаем номер темы из поля id
+            Log.d("Adapter", "Привязка темы: ${topic.title} (ID: ${topic.id})")
             textTopicNumber.text = topic.id.toString()
-
-            // Устанавливаем заголовок темы
             textTopicTitle.text = topic.title
-
-            // Обработка нажатия на элемент
-            itemView.setOnClickListener {
-                onTopicClick(topic)
-            }
         }
+
     }
 }

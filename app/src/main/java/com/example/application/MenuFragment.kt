@@ -7,20 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import com.example.application.R
 import com.example.application.MistakesActivity
 import com.example.dicti.DictTechActivity
+import androidx.fragment.app.viewModels
 
 
 class MenuFragment : Fragment() {
+    private lateinit var tvProgress: TextView
+    private val viewModel: TopicsViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_menu, container, false)
+        tvProgress = view.findViewById(R.id.tvTopicsProgress)
 
+        viewModel.completedTopicsCount.observe(viewLifecycleOwner) { count ->
+            tvProgress.text = "$count/12"
+        }
         val buttonThemes: Button = view.findViewById(R.id.button_themes)
         buttonThemes.setOnClickListener {
             val intent = Intent(requireActivity(), ThemesActivity::class.java)

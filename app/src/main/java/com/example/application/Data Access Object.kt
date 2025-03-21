@@ -1,5 +1,6 @@
 package com.example.application
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -11,7 +12,16 @@ interface TopicDao {
     suspend fun insert(topic: Topic)
 
     @Query("SELECT * FROM topics")
-    fun getAllTopics(): Flow<List<Topic>> // Используем Flow для наблюдения за изменениями
+    fun getAllTopics(): LiveData<List<Topic>>
+
+    @Query("UPDATE topics SET isCompleted = 1 WHERE id = :topicId")
+    suspend fun markTopicCompleted(topicId: Int)
+
+    @Query("SELECT COUNT(*) FROM topics WHERE isCompleted = 1")
+    fun getCompletedCount(): Flow<Int>
+
+    @Query("SELECT * FROM topics WHERE id = :topicId")
+    fun getTopicById(topicId: Int): Flow<Topic>
 }
 
 @Dao
