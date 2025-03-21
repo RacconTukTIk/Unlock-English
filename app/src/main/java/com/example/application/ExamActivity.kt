@@ -2,6 +2,7 @@ package com.example.application
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -12,6 +13,7 @@ class ExamActivity : AppCompatActivity() {
     private lateinit var btnAnswer3: Button
     private lateinit var btnAnswer4: Button
     private lateinit var examQuestionTextView: TextView
+    private lateinit var btnExit: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,5 +25,13 @@ class ExamActivity : AppCompatActivity() {
         btnAnswer2 = findViewById(R.id.btnAnswer2)
         btnAnswer3 = findViewById(R.id.btnAnswer3)
         btnAnswer4 = findViewById(R.id.btnAnswer4)
+        btnExit = findViewById(R.id.exitExam)
+
+        btnExit.setOnClickListener {
+            finish()
+        }
+    }
+    override fun onBackPressed() {
+
     }
 }

@@ -9,59 +9,127 @@
     android:background="@color/white"
     tools:context="com.example.app.MainActivity">
 
-    <TextView
-        android:layout_width="249dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="Создайте аккаунт"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
 
-    <EditText
-        android:id="@+id/user_login"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Введите логин"
-        android:inputType="text"
-        android:textColorHint="#6a6a6a" />
+        <ImageView
+            android:id="@+id/UnlockEnglishLogo"
+            android:layout_width="36dp"
+            android:layout_height="42dp"
+            android:src="@drawable/unlockenglish"
+            android:layout_marginEnd="8dp" />
 
-    <EditText
-        android:id="@+id/user_email"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Введите email"
-        android:inputType="textEmailAddress"
-        android:textColorHint="#6a6a6a" />
+        <TextView
+            android:id="@+id/UnlockEnglishText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:text="Unlock English"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/user_password"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:fontFamily="sans-serif"
-        android:hint="Введите пароль"
-        android:inputType="textPassword"
-        android:textColorHint="#6a6a6a" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Регистрация"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_login"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Имя"
+            android:inputType="textPersonName"
+            android:background="@drawable/rounded_button"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_email"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_button"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_button"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Повторите пароль"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_button"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_reg"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
+        android:layout_width="301dp"
+        android:layout_height="63dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Зарегестрироваться" />
+        android:backgroundTint="#D9D9D9"
+        android:text="Зарегестрироваться"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/button_to_login"

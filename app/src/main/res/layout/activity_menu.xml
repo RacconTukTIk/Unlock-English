@@ -144,13 +144,26 @@
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="62dp"
         android:layout_height="17dp"
         android:layout_marginTop="240dp"
         android:layout_marginEnd="48dp"
         android:text="Темы"
+        android:gravity="center"
         android:translationY="-87dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle"
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 
+    <TextView
+        android:id="@+id/tvTopicsProgress"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="48dp"
+        android:text="0/12"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle"
+        app:layout_constraintTop_toTopOf="@+id/rectangle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
