@@ -103,4 +103,7 @@ class DictChildActivity : AppCompatActivity(), DictAdapterChild.OnItemClickListe
         }
         super.onDestroy()
     }
+    override fun onBackPressed() {
+
+    }
 }

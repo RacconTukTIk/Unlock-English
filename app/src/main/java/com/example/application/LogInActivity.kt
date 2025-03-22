@@ -10,29 +10,30 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app.MainActivity
-import com.example.application.MenuActivity
 import com.example.application.databinding.LogInActivityBinding
-import com.google.firebase.Firebase
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import javax.annotation.Nonnull
-
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
-    private lateinit var binding:LogInActivityBinding
+
+    private lateinit var binding: LogInActivityBinding
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.log_in_activity)//mb delete
-        binding=LogInActivityBinding.inflate(layoutInflater)
+        binding = LogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
+
 
 
         val buttonToReg: TextView = findViewById(R.id.button_to_reg)
@@ -68,34 +69,56 @@ class LogInActivity : AppCompatActivity() {
         buttonToReg.text = spannableString
         buttonToReg.movementMethod = LinkMovementMethod.getInstance()
 
-        buttonToReg.setOnClickListener {
-            val intent = Intent(this@LogInActivity, MainActivity::class.java)
-            startActivity(intent)
+        setupRegistrationLink()
+        setupLoginButton()
+    }
+
+    private fun setupRegistrationLink() {
+        val text = "Еще нет аккаунта? Зарегистрироваться"
+        val spannableString = SpannableString(text)
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@LogInActivity, MainActivity::class.java))
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.BLACK
+                ds.isUnderlineText = false
+                ds.typeface = Typeface.DEFAULT_BOLD
+            }
         }
 
-        val userExistLogin: EditText = findViewById(R.id.user_exist_login)
-        val userExistPassword: EditText = findViewById<EditText?>(R.id.user_exist_password)
-        val enterToAccButton: Button = findViewById(R.id.enter_to_account)
+        val startIndex = text.indexOf("Зарегистрироваться")
+        val endIndex = startIndex + "Зарегистрироваться".length
+
 
         binding.enterToAccount.setOnClickListener{
+        spannableString.setSpan(
+            clickableSpan,
+            startIndex,
+            endIndex,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
+        binding.buttonToReg.apply {
+            this.text = spannableString
+            movementMethod = LinkMovementMethod.getInstance()
+            highlightColor = Color.TRANSPARENT
+        }
+    }
 
-            if (binding.userExistLogin.text.toString().isEmpty()|| binding.userExistPassword.text.toString().isEmpty())
-                Toast.makeText(applicationContext, "Не все поля заполнены", Toast.LENGTH_SHORT).show()
-            else {
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.userExistLogin.text.toString(),binding.userExistPassword.text.toString())
-                    .addOnCompleteListener(this){ task->
-                        if(task.isSuccessful)
-                        {
-                            startActivity(Intent(this,BottomNavigationActivity::class.java))
+    private fun setupLoginButton() {
+        binding.enterToAccount.setOnClickListener {
+            val email = binding.userExistLogin.text.toString().trim()
+            val password = binding.userExistPassword.text.toString().trim()
 
-                        }
-                        else
-                        {
-                            Toast.makeText(applicationContext,"Аккаунта с такими логином или паролем не существует!",Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
+            when {
+                email.isEmpty() -> showError("Введите email")
+                password.isEmpty() -> showError("Введите пароль")
+                !isValidEmail(email) -> showError("Некорректный формат email")
+                else -> performLogin(email, password)
             }
         }
     }
@@ -103,5 +126,47 @@ class LogInActivity : AppCompatActivity() {
     override fun onBackPressed()
     {
         //Блокирую системную кнопку "Назад"
+    private fun performLogin(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    navigateToMainApp()
+                } else {
+                    handleLoginError(task.exception?.message)
+                }
+            }
+    }
+
+    private fun handleLoginError(errorMessage: String?) {
+        val error = errorMessage ?: "Неизвестная ошибка"
+        val message = when {
+            error.contains("invalid-email", true) -> "Некорректный email"
+            error.contains("user-not-found", true) -> "Пользователь не найден"
+            error.contains("wrong-password", true) -> "Неверный пароль"
+            error.contains("network-error", true) -> "Ошибка сети"
+            else -> "Ошибка входа: ${error.take(30)}..."
+        }
+        showError(message)
+    }
+
+    private fun navigateToMainApp() {
+        val intent = Intent(this, BottomNavigationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        finish()
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\$")
+        return emailPattern.matches(email)
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        
     }
 }
