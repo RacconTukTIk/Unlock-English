@@ -105,8 +105,4 @@ class DictTechActivity : AppCompatActivity(), DictAdapterTech.OnItemClickListene
         }
         super.onDestroy()
     }
-
-    override fun onBackPressed() {
-
-    }
 }

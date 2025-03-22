@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.app.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -28,10 +27,5 @@ class MenuActivity : AppCompatActivity() {
         val ButtonMistakes: Button = findViewById(R.id.button_mistakes)
         val ButtonFavorite: Button = findViewById(R.id.button_favorite)
         val ButtonMarathon: Button = findViewById(R.id.button_marathon)
-
-        ButtonMistakes.setOnClickListener {
-            val intent = Intent(this, MistakesActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

@@ -3,9 +3,4 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#D9D9D9</color>
-    <color name="purple_primary">#917FC7</color>
-    <color name="red_primary">#FF4444</color>
-    <color name="primaryColor">#673AB7</color>
-    <color name="textColorPrimary">#212121</color>
-    <color name="buttonStrokeColor">#673AB7</color>
 </resources>

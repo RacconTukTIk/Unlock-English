@@ -14,19 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
-
-
-        <activity
-            android:name=".DescriptionActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ExamActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ThemesActivity"
-            android:exported="true" />
-
         <activity
             android:name=".BottomNavigationActivity"
             android:exported="true" />
@@ -66,16 +53,8 @@
         <activity
             android:name=".AccountMainActivity"
             android:exported="true"
-
             android:label="acc_page"
             />
-
-            android:label="acc_page" />
-        <activity
-            android:name=".MistakesActivity"
-            android:exported="true"
-            android:label="mistakes" />
-
 
         <meta-data
             android:name="preloaded_fonts"

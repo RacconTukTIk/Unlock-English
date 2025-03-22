@@ -30,8 +30,6 @@ class BottomNavigationActivity : AppCompatActivity()
                 R.id.dictionary -> replaceFragment(DictMainFragment())
                 R.id.account -> replaceFragment(AccountMainFragment())
                 R.id.calendar -> replaceFragment(CalendarFragment())
-                R.id.vocabulaty -> replaceFragment(VocabularyFragment())
-
 
                 else -> false
             }
