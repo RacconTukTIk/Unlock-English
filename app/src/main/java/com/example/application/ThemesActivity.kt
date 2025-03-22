@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -45,14 +46,23 @@ class ThemesActivity : AppCompatActivity() {
             topicDao.getAllTopics().collect { topics ->
                 // Логируем данные
                 Log.d("ThemesActivity", "Loaded topics: ${topics.size}")
-                topics.forEach { topic ->
-                    Log.d("ThemesActivity", "Topic: ${topic.id}, ${topic.title}")
-                }
 
                 // Обновляем адаптер
-                adapter = TopicsAdapter(topics) { topic ->
-                    Toast.makeText(this@ThemesActivity, "Выбрана тема: ${topic.title}", Toast.LENGTH_SHORT).show()
-                }
+                adapter = TopicsAdapter(
+                    topics,
+                    onTopicClick = { topic ->
+                        Toast.makeText(this@ThemesActivity, "Выбрана тема: ${topic.title}", Toast.LENGTH_SHORT).show()
+                    },
+                    onReadClick = { topic ->
+                        // Переход на DescriptionActivity
+                        val intent = Intent(this@ThemesActivity, DescriptionActivity::class.java).apply {
+                            putExtra("TOPIC_ID", topic.id)
+                            putExtra("TOPIC_TITLE", topic.title)
+                            putExtra("TOPIC_DESCRIPTION", topic.description)
+                        }
+                        startActivity(intent)
+                    }
+                )
                 recyclerView.adapter = adapter
             }
         }

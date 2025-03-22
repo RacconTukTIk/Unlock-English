@@ -58,6 +58,7 @@
             android:layout_height="50dp"
             android:hint="Email"
             android:inputType="textPersonName"
+            android:textColor="@color/black"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,6 +78,7 @@
             android:layout_height="50dp"
             android:hint="Пароль"
             android:inputType="textPassword"
+            android:textColor="@color/black"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
 

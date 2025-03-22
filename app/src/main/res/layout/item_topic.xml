@@ -36,9 +36,20 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/textTopicNumber"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRead"
             android:layout_marginStart="16dp" />
 
+        <!-- Кнопка для перехода к описанию -->
+        <Button
+            android:id="@+id/btnRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Читать"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -3,12 +3,14 @@ package com.example.application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class TopicsAdapter(
     private val topics: List<Topic>,
-    private val onTopicClick: (Topic) -> Unit // Обработчик нажатия
+    private val onTopicClick: (Topic) -> Unit, // Обработчик нажатия на элемент
+    private val onReadClick: (Topic) -> Unit  // Обработчик нажатия на кнопку "Читать"
 ) : RecyclerView.Adapter<TopicsAdapter.TopicViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicViewHolder {
@@ -28,6 +30,7 @@ class TopicsAdapter(
     inner class TopicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textTopicNumber: TextView = itemView.findViewById(R.id.textTopicNumber)
         private val textTopicTitle: TextView = itemView.findViewById(R.id.textTopicTitle)
+        private val btnRead: Button = itemView.findViewById(R.id.btnRead)
 
         fun bind(topic: Topic) {
             // Устанавливаем номер темы из поля id
@@ -39,6 +42,11 @@ class TopicsAdapter(
             // Обработка нажатия на элемент
             itemView.setOnClickListener {
                 onTopicClick(topic)
+            }
+
+            // Обработка нажатия на кнопку "Читать"
+            btnRead.setOnClickListener {
+                onReadClick(topic)
             }
         }
     }
