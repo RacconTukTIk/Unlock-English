@@ -3,6 +3,7 @@ package com.example.application
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -12,6 +13,12 @@ interface TopicDao {
 
     @Query("SELECT * FROM topics")
     fun getAllTopics(): Flow<List<Topic>> // Используем Flow для наблюдения за изменениями
+
+    @Update
+    suspend fun update(topic: Topic) // Метод для обновления темы
+
+    @Query("SELECT COUNT(*) FROM topics WHERE isCompleted = 1")
+    fun getCompletedTopicsCount(): Flow<Int>
 }
 
 @Dao
