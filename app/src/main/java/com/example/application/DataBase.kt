@@ -28,9 +28,6 @@ abstract class EnglishDatabase : RoomDatabase() {
                     context.applicationContext,
                     EnglishDatabase::class.java,
                     "english_database"
-
-                ).build()
-
                 ).addCallback(DatabaseCallback(context))
                     .build()
                 INSTANCE = instance
@@ -38,7 +35,6 @@ abstract class EnglishDatabase : RoomDatabase() {
             }
         }
     }
-
 
     private class DatabaseCallback(private val context: Context) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
@@ -53,16 +49,22 @@ abstract class EnglishDatabase : RoomDatabase() {
                     Topic(title = "Present Simple", description = "Basic present tense"),
                     Topic(title = "Past Simple", description = "Basic past tense"),
                     Topic(title = "Future Simple", description = "Basic future tense"),
-                    Topic(title = "Present Continuous", description = "Ongoing actions in the present"),
+                    Topic(
+                        title = "Present Continuous",
+                        description = "Ongoing actions in the present"
+                    ),
                     Topic(title = "Past Continuous", description = "Ongoing actions in the past"),
-                    Topic(title = "Future Continuous", description = "Ongoing actions in the future")
+                    Topic(
+                        title = "Future Continuous",
+                        description = "Ongoing actions in the future"
+                    )
                 )
-
                 topics.forEach { topic ->
                     topicDao.insert(topic)
                 }
             }
         }
     }
-
 }
+
+

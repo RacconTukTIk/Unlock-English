@@ -16,8 +16,6 @@ interface TopicDao {
     @Query("SELECT * FROM topics")
     fun getAllTopics(): Flow<List<Topic>> // Используем Flow для наблюдения за изменениями
 
-
-
     @Update
     suspend fun update(topic: Topic) // Метод для обновления темы
 

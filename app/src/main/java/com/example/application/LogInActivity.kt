@@ -24,50 +24,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
-
     private lateinit var binding: LogInActivityBinding
     private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
-
-
-        val buttonToReg: TextView = findViewById(R.id.button_to_reg)
-
-        val interBoldTypeface = Typeface.create("sans-serif", Typeface.BOLD)
-        // Настройка SpannableString для текста "Еще нет аккаунта?Зарегестрироваться"
-        val text = "Еще нет аккаунта? Зарегестрироваться"
-        val spannableString = SpannableString(text)
-
-        val clickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                // Обработка нажатия на "Войти"
-                val intent = Intent(this@LogInActivity, MainActivity::class.java)
-                startActivity(intent)
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.color = Color.BLACK // Цвет текста "Зарегестрироваться"
-                ds.isUnderlineText = true
-            }
-        }
-
-        // Применение CustomTypefaceSpan для текста "Зарегестрироваться"
-        val typefaceSpan = CustomTypefaceSpan(interBoldTypeface)
-
-        // Установка диапазона для ClickableSpan и CustomTypefaceSpan
-        val startIndex = text.indexOf("Зарегестрироваться")
-        val endIndex = startIndex + "Зарегестрироваться".length
-        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableString.setSpan(typefaceSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        buttonToReg.text = spannableString
-        buttonToReg.movementMethod = LinkMovementMethod.getInstance()
 
         setupRegistrationLink()
         setupLoginButton()
@@ -89,19 +52,14 @@ class LogInActivity : AppCompatActivity() {
                 ds.typeface = Typeface.DEFAULT_BOLD
             }
         }
-
         val startIndex = text.indexOf("Зарегистрироваться")
         val endIndex = startIndex + "Зарегистрироваться".length
-
-
-        binding.enterToAccount.setOnClickListener{
         spannableString.setSpan(
             clickableSpan,
             startIndex,
             endIndex,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
         binding.buttonToReg.apply {
             this.text = spannableString
             movementMethod = LinkMovementMethod.getInstance()
@@ -123,9 +81,6 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed()
-    {
-        //Блокирую системную кнопку "Назад"
     private fun performLogin(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -167,6 +122,6 @@ class LogInActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        
+
     }
 }
