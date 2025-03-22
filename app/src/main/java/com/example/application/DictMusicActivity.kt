@@ -103,4 +103,8 @@ class DictMusicActivity : AppCompatActivity(), DictAdapterMusic.OnItemClickListe
         }
         super.onDestroy()
     }
+
+    override fun onBackPressed() {
+
+    }
 }

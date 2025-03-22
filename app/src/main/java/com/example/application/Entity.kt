@@ -7,6 +7,8 @@ data class Topic(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val description: String
+    val description: String,
+    var isCompleted: Boolean = false
 )
 
 @Entity(tableName = "tests")
