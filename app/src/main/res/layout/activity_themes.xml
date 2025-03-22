@@ -47,8 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/icon_right_arrow"
-        />
+        app:srcCompat="@drawable/icon_right_arrow" />
 
     <TextView
         android:id="@+id/textThemes"
@@ -73,7 +72,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
-        tools:listitem="@layout/item_topic"/>
+        android:layout_margin="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

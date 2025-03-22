@@ -59,7 +59,6 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Имя"
-            android:textColor="@color/black"
             android:inputType="textPersonName"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +78,6 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Email"
-            android:textColor="@color/black"
             android:inputType="textEmailAddress"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -99,7 +97,6 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Пароль"
-            android:textColor="@color/black"
             android:inputType="textPassword"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -119,7 +116,6 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Повторите пароль"
-            android:textColor="@color/black"
             android:inputType="textPassword"
             android:background="@drawable/rounded_button"/>
     </com.google.android.material.textfield.TextInputLayout>
