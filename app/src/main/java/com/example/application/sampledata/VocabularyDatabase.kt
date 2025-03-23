@@ -1,21 +1,19 @@
 package com.example.application.data
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
-import com.example.application.data.com.example.application.sampledata.WordToRepeatDao
-import com.example.application.sampledata.LearnedWordDao
 
 @Database(
-    entities = [LearnedWord::class, WordToRepeat::class],
+    entities = [WordToLearn::class, LearnedWord::class],
     version = 1,
     exportSchema = false
 )
 abstract class VocabularyDatabase : RoomDatabase() {
 
+    abstract fun wordToLearnDao(): WordToLearnDao
     abstract fun learnedWordDao(): LearnedWordDao
-    abstract fun wordToRepeatDao(): WordToRepeatDao
 
     companion object {
         @Volatile

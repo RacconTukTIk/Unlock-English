@@ -1,12 +1,10 @@
-package com.example.application.sampledata
+package com.example.application.data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.application.data.LearnedWord
 import kotlinx.coroutines.flow.Flow
 
-// DAO для выученных слов
 @Dao
 interface LearnedWordDao {
     @Insert

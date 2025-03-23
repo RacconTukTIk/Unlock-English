@@ -1,13 +1,22 @@
 package com.example.application.data
 
-import com.example.application.data.com.example.application.sampledata.WordToRepeatDao
-import com.example.application.sampledata.LearnedWordDao
 import kotlinx.coroutines.flow.Flow
 
 class VocabularyRepository(
-    private val learnedWordDao: LearnedWordDao,
-    private val wordToRepeatDao: WordToRepeatDao
+    private val wordToLearnDao: WordToLearnDao,
+    private val learnedWordDao: LearnedWordDao
 ) {
+
+    // Для слов, которые нужно учить
+    val allWordsToLearn: Flow<List<WordToLearn>> = wordToLearnDao.getAllWords()
+
+    suspend fun insertWordToLearn(word: WordToLearn) {
+        wordToLearnDao.insert(word)
+    }
+
+    suspend fun deleteWordToLearn(wordId: Int) {
+        wordToLearnDao.deleteWord(wordId)
+    }
 
     // Для выученных слов
     val allLearnedWords: Flow<List<LearnedWord>> = learnedWordDao.getAllWords()
@@ -18,16 +27,5 @@ class VocabularyRepository(
 
     suspend fun deleteLearnedWord(wordId: Int) {
         learnedWordDao.deleteWord(wordId)
-    }
-
-    // Для слов, которые нужно повторить
-    val allWordsToRepeat: Flow<List<WordToRepeat>> = wordToRepeatDao.getAllWords()
-
-    suspend fun insertWordToRepeat(word: WordToRepeat) {
-        wordToRepeatDao.insert(word)
-    }
-
-    suspend fun deleteWordToRepeat(wordId: Int) {
-        wordToRepeatDao.deleteWord(wordId)
     }
 }

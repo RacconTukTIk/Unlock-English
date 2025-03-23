@@ -1,67 +1,65 @@
-package com.example.application.sampledata
+package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.application.R
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.application.data.VocabularyDatabase
 import com.example.application.data.VocabularyRepository
+import com.example.application.databinding.FragmentVocabularyBinding
+import com.example.application.ui.VocabularyViewModel
+import com.example.application.ui.VocabularyViewModelFactory
 
 class VocabularyFragment : Fragment() {
+
+    private var _binding: FragmentVocabularyBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewModel: VocabularyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Надуваем макет для фрагмента
-        val view = inflater.inflate(R.layout.fragment_vocabulary, container, false)
-
-        // Находим кнопки в макете
-        val learnedButton: Button = view.findViewById(R.id.button_learned)
-        val needToRepeatButton: Button = view.findViewById(R.id.button_need_to_repeat)
-        val reminderButton: Button = view.findViewById(R.id.button_learnWords)
-
-        // Обработчик клика для кнопки "Выученные"
-        learnedButton.setOnClickListener {
-            // Действие при нажатии на кнопку "Выученные"
-            Toast.makeText(requireContext(), "Выученные", Toast.LENGTH_SHORT).show()
-            // Пример перехода на другую активность или фрагмент
-            // val intent = Intent(requireActivity(), LearnedActivity::class.java)
-            // startActivity(intent)
-        }
-
-        // Обработчик клика для кнопки "Нужно повторить"
-        needToRepeatButton.setOnClickListener {
-            // Действие при нажатии на кнопку "Нужно повторить"
-            Toast.makeText(requireContext(), "Нужно повторить", Toast.LENGTH_SHORT).show()
-            // Пример перехода на другую активность или фрагмент
-            // val intent = Intent(requireActivity(), RepeatActivity::class.java)
-            // startActivity(intent)
-        }
-
-        // Обработчик клика для кнопки "Учить слова"
-        reminderButton.setOnClickListener {
-            // Действие при нажатии на кнопку "Учить слова"
-            Toast.makeText(requireContext(), "Учить слова!", Toast.LENGTH_SHORT).show()
-            // Пример перехода на другую активность или фрагмент
-            // val intent = Intent(requireActivity(), ReminderActivity::class.java)
-            // startActivity(intent)
-        }
-
-        return view
+        _binding = FragmentVocabularyBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Инициализация ViewModel
+        val database = VocabularyDatabase.getDatabase(requireContext())
+        val repository = VocabularyRepository(database.wordToLearnDao(), database.learnedWordDao())
+        viewModel = ViewModelProvider(this, VocabularyViewModelFactory(repository)).get(
+            VocabularyViewModel::class.java)
+
+
+        binding.buttonLearnWords.setOnClickListener {
+            // Переход к фрагменту LearnWordFragment
+            val learnWordFragment = LearnWordFragment()
+            val fragmentManager: FragmentManager = parentFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+            // Заменяем текущий фрагмент на LearnWordFragment
+            fragmentTransaction.replace(R.id.button_learnWords, learnWordFragment)
+            fragmentTransaction.addToBackStack(null) // Добавляем транзакцию в стек возврата
+            fragmentTransaction.commit()
+        }
+
+    }
+
 
     companion object {
         @JvmStatic
         fun newInstance() = VocabularyFragment()
     }
 
-
-    val database = VocabularyDatabase.getDatabase(requireContext())
-    val repository = VocabularyRepository(database.learnedWordDao(), database.wordToRepeatDao())
     }
