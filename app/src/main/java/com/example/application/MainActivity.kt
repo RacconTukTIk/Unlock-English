@@ -23,6 +23,7 @@ import com.example.application.LogInActivity
 import com.example.application.R
 import com.example.application.databinding.ActivityMainBinding
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -78,17 +79,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRegistrationButton() {
-        val email = binding.userEmail.text.toString().trim()
-        val password = binding.userPassword.text.toString().trim()
-        val confirmPassword = binding.etConfirmPassword.text.toString().trim()
-        val username = binding.userLogin.text.toString().trim()
+        binding.buttonReg.setOnClickListener{
+            val email = binding.userEmail.text.toString().trim()
+            val password = binding.userPassword.text.toString().trim()
+            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+            val username = binding.userLogin.text.toString().trim()
 
-        when {
-            username.isEmpty() -> showError("Введите имя пользователя")
-            email.isEmpty() || !isValidEmail(email) -> showError("Некорректный email")
-            password.isEmpty() -> showError("Введите пароль")
-            password != confirmPassword -> showError("Пароли не совпадают")
-            else -> registerUser(username, email, password)
+
+            when {
+                username.isEmpty() -> showError("Введите имя пользователя")
+                email.isEmpty() || !isValidEmail(email) -> showError("Некорректный email")
+                password.isEmpty() -> showError("Введите пароль")
+                password.length<6 ->showError("Пароль должен быть более 6 символов")
+                password != confirmPassword -> showError("Пароли не совпадают")
+                else -> registerUser(username, email, password)
+            }
         }
     }
 
@@ -110,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             "email" to email
         )
 
-        FirebaseDatabase.getInstance().reference
+        FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/").reference
             .child("Users")
             .child(auth.currentUser?.uid ?: "")
             .setValue(userInfo)
@@ -135,3 +140,9 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 }
+
+
+
+
+
+
