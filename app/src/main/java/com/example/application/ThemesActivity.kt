@@ -69,6 +69,6 @@ class ThemesActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        finish()
     }
 }

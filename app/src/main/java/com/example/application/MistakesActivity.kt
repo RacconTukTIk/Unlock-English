@@ -40,6 +40,6 @@ class MistakesActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        finish()
     }
 }

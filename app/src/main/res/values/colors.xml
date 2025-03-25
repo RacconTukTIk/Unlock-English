@@ -8,4 +8,8 @@
     <color name="primaryColor">#673AB7</color>
     <color name="textColorPrimary">#212121</color>
     <color name="buttonStrokeColor">#673AB7</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="gray_700">#616161</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
 </resources>

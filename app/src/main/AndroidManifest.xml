@@ -15,29 +15,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestQuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".DescriptionActivity"
             android:exported="true" />
-
         <activity
             android:name=".ExamActivity"
             android:exported="true" />
         <activity
             android:name=".ThemesActivity"
             android:exported="true" />
-
         <activity
             android:name=".BottomNavigationActivity"
             android:exported="true" />
@@ -77,15 +82,11 @@
         <activity
             android:name=".AccountMainActivity"
             android:exported="true"
-
-            android:label="acc_page"
-            />
-
+            android:label="acc_page" />
         <activity
             android:name=".MistakesActivity"
             android:exported="true"
             android:label="mistakes" />
-
 
         <meta-data
             android:name="preloaded_fonts"

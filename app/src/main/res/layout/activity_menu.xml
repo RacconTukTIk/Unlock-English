@@ -87,12 +87,12 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button_favorite"
+        android:id="@+id/button_test"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:backgroundTint="#A6C8EB"
-        android:text="Избранное"
+        android:text="Тесты"
         android:textColor="#000000"
         android:translationY="-48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -163,7 +163,7 @@
         android:layout_height="18dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="48dp"
-        android:text="0/6"
+        android:text="0/18"
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="16sp"

@@ -32,6 +32,6 @@ class ExamActivity : AppCompatActivity() {
         }
     }
     override fun onBackPressed() {
-
+        finish()
     }
 }

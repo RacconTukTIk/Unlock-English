@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".DescriptionActivity">
+    tools:context=".TestQuestionsActivity">
 
     <!-- Логотип и заголовок -->
     <ImageView
@@ -37,7 +37,7 @@
 
     <!-- Кнопка выхода -->
     <ImageView
-        android:id="@+id/exitTopics"
+        android:id="@+id/exitTests"
         android:layout_width="24dp"
         android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,39 +49,55 @@
         app:srcCompat="@drawable/icon_right_arrow"  />
 
     <!-- Заголовок темы -->
+
+    <!-- Прогресс-бар -->
+
+    <!-- Список элементов -->
+
     <TextView
-        android:id="@+id/sectionTitle"
+        android:id="@+id/tvTopicTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="60dp"
         android:text="Название темы"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Список элементов -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="104dp"
+        android:progressTint="@color/blue_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerQuestions"
+        android:layout_width="385dp"
+        android:layout_height="486dp"
         android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/actionButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
 
     <!-- Кнопка действия -->
     <Button
-        android:id="@+id/actionButton"
+        android:id="@+id/btnSubmit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Тема пройдена"
+        android:text="Завершить тест"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

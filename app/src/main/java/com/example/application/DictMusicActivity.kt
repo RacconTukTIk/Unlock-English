@@ -105,6 +105,6 @@ class DictMusicActivity : AppCompatActivity(), DictAdapterMusic.OnItemClickListe
     }
 
     override fun onBackPressed() {
-
+        finish()
     }
 }

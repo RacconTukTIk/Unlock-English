@@ -22,6 +22,15 @@ interface TopicDao {
     @Query("SELECT COUNT(*) FROM topics WHERE isCompleted = 1")
     fun getCompletedTopicsCount(): Flow<Int>
 
+    @Query("SELECT * FROM topics WHERE id NOT IN (1,5,8,12)") // Исключаем категории
+    fun getTopicsWithTests(): Flow<List<Topic>>
+
+    @Query("SELECT * FROM topics WHERE id = :topicId")
+    suspend fun getTopicById(topicId: Int): Topic?
+
+    @Query("SELECT title FROM topics WHERE id = :topicId")
+    suspend fun getTopicTitle(topicId: Int): String
+
 }
 
 @Dao
@@ -29,6 +38,13 @@ interface TestDao {
     @Insert
     suspend fun insert(test: Test)
 
+    @Insert
+    suspend fun insertAll(tests: List<Test>)
+
     @Query("SELECT * FROM tests WHERE topicId = :topicId")
     fun getTestsByTopicId(topicId: Int): Flow<List<Test>> // Используем Flow для наблюдения за изменениями
+
+    @Query("SELECT COUNT(*) FROM tests WHERE topicId = :topicId")
+    suspend fun getTestCount(topicId: Int): Int
+
 }

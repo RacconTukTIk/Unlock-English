@@ -56,12 +56,18 @@ class MenuFragment : Fragment() {
             val intent = Intent(requireActivity(), ExamActivity::class.java)
             startActivity(intent)
         }
+
+        val buttonTest: Button = view.findViewById(R.id.button_test)
+        buttonTest.setOnClickListener {
+            val intent = Intent(requireActivity(),TestActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
     private fun loadCompletedTopicsCount() {
         lifecycleScope.launch {
             topicDao.getCompletedTopicsCount().collect { count ->
-                tvTopicsProgress.text = "$count/6"
+                tvTopicsProgress.text = "$count/18"
             }
         }
     }

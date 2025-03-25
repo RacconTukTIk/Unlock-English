@@ -26,7 +26,7 @@ class MenuActivity : AppCompatActivity() {
         val ButtonExam: Button = findViewById(R.id.button_exam)
         val ButtonThemes: Button = findViewById(R.id.button_themes)
         val ButtonMistakes: Button = findViewById(R.id.button_mistakes)
-        val ButtonFavorite: Button = findViewById(R.id.button_favorite)
+        val ButtonFavorite: Button = findViewById(R.id.button_test)
         val ButtonMarathon: Button = findViewById(R.id.button_marathon)
 
         ButtonMistakes.setOnClickListener {

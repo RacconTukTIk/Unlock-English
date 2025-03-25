@@ -42,11 +42,10 @@ class DescriptionActivity : AppCompatActivity() {
                     it.isCompleted = true
                     topicDao.update(it)
 
-                    // Делаем кнопку некликабельной
-                    binding.actionButton.isEnabled = false
-
                     // Обновляем счетчик на главном экране
                     updateCompletedTopicsCount()
+
+                    finish()
                 }
             }
         }
@@ -63,6 +62,6 @@ class DescriptionActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        finish()
     }
 }

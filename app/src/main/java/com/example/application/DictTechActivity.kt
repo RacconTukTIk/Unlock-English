@@ -107,6 +107,6 @@ class DictTechActivity : AppCompatActivity(), DictAdapterTech.OnItemClickListene
     }
 
     override fun onBackPressed() {
-
+        finish()
     }
 }
