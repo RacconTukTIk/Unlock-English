@@ -72,8 +72,8 @@ abstract class EnglishDatabase : RoomDatabase() {
             val topicDao = database.topicDao()
             val testDao = database.testDao()
             val topics = listOf(
-                Topic(title = "Категория Simple", description = "Это группа простых времен. К ней относятся действия, которые совершаются / совершались / будут совершаться часто и / или регулярно, а также однократные поступки и события."),
-                Topic(title = "Present Simple", description = "Настоящее время в этой категории образуется от инфинитива глагола без частицы to. При этом если подлежащее стоит в 3 лице (he/she/it), то к сказуемому прибавляется окончание –s. Вопросительная и отрицательная формы строятся при помощи вспомогательного глагола do (в 3 лице — does).\n" +
+                Topic(id = 1, title = "Категория Simple", description = "Это группа простых времен. К ней относятся действия, которые совершаются / совершались / будут совершаться часто и / или регулярно, а также однократные поступки и события."),
+                Topic(id = 2, title = "Present Simple", description = "Настоящее время в этой категории образуется от инфинитива глагола без частицы to. При этом если подлежащее стоит в 3 лице (he/she/it), то к сказуемому прибавляется окончание –s. Вопросительная и отрицательная формы строятся при помощи вспомогательного глагола do (в 3 лице — does).\n" +
                         "\n" +
                         "Формула : I/We/You/They + глагол\n" +
                         "\n" +
@@ -82,21 +82,21 @@ abstract class EnglishDatabase : RoomDatabase() {
                         "Формула : He/She/It + глагол + -s (-es)\n" +
                         "\n" +
                         "Примеры: He goes. — Он ходит. She speaks. — Она разговаривает. A boy jumps. — Мальчик прыгает."),
-                Topic(title = "Past Simple", description = "В прошедшем используется вторая форма глагола с окончанием -ed (если глагол правильный), для вопросов и отрицаний добавляют did, а глагол оставляют в первой форме.\n" +
+                Topic(id = 3, title = "Past Simple", description = "В прошедшем используется вторая форма глагола с окончанием -ed (если глагол правильный), для вопросов и отрицаний добавляют did, а глагол оставляют в первой форме.\n" +
                         "\n" +
                         "Формула : I/He/She/It/We/You/They + 2-я форма глагола\n" +
                         "\n" +
                         "Примеры: I played. — Я играл. He told. — Он говорил. She stopped. — Она остановилась. It worked. — Оно работало. We discussed. — Мы обсудили. You did. — Вы сделали. They forgot. — Они забыли."),
-                Topic(title = "Future Simple", description = "Для будущего времени также характерен глагол в инфинитиве, только перед ним добавляют вспомогательное слово will. С его же помощью образуют вопросы и отрицания.\n" +
+                Topic(id = 4, title = "Future Simple", description = "Для будущего времени также характерен глагол в инфинитиве, только перед ним добавляют вспомогательное слово will. С его же помощью образуют вопросы и отрицания.\n" +
                         "\n" +
                         "Формула : I/He/She/It/We/You/They + will + глагол\n" +
                         "\n" +
                         "Примеры: I will come. — Я приду. He will win. — Он выиграет. She will understand. — Она поймет. It will break. — Оно сломается. We will find. — Мы найдем. You will see. — Вы увидите. They will agree. — Они согласятся."),
-                Topic(
+                Topic(id = 5,
                     title = "Категория Continuous",
                     description = "Времена глагола в английском языке, представляющие группу Continuous, относятся к продолженным. Времена этой группы отмечают длительность происходящего процесса, совершение действий в конкретный момент времени. Акцент выставлен не на факт выполнения чего-то, а на время, в которое эти действия выполняются/выполнялись/будут выполняться."
                 ),
-                Topic(
+                Topic(id = 6,
                     title = "Present Continuous",
                     description = "Для продолженного настоящего времени в английском языке характерно использование конструкции to be + глагол с окончанием -ing. Создание вопросительных и отрицательных предложений не требует вспомогательного do, поскольку для этого используется сказуемое to be.\n" +
                             "\n" +
@@ -112,7 +112,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: We are listening. — Мы слушаем. You are dancing. — Вы танцуете. They are swimming. — Они плавают."
                 ),
-                Topic(title = "Past Continuous", description = "По той же схеме строится и прошедшее время, но to be используется в прошедшей форме — was/were.\n" +
+                Topic(id = 7, title = "Past Continuous", description = "По той же схеме строится и прошедшее время, но to be используется в прошедшей форме — was/were.\n" +
                         "\n" +
                         "Формула : I/He/She/It + was + глагол-ing\n" +
                         "\n" +
@@ -121,7 +121,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                         "Формула : We/You/They + were + глагол-ing\n" +
                         "\n" +
                         "Примеры: We were reading. — Мы читали. You were talking. — Вы разговаривали. They were running. — Они бежали."),
-                Topic(
+                Topic(id = 8,
                     title = "Future Continuous",
                     description = "Для будущего времени потребуется глагол will с частицей be.\n" +
                             "\n" +
@@ -129,11 +129,11 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: I will be speaking. — Я буду говорить. He will be building. — Он будет строить. She will be eating. — Она будет есть. It will be operating. — Оно будет работать. We will be drawing. — Мы будем рисовать. You will be thinking. — Вы будете думать. They will be walking. — Они будут гулять."
                 ),
-                Topic(
+                Topic(id = 9,
                     title = "Категория Perfect",
                     description = "Времена глагола в английском языке, относящиеся к группе Perfect, выражают завершенные действия, результат которых непосредственно связан с данным моментом времени. В таких выражениях не может быть использовано простое прошедшее время, поскольку контекст предполагает подчеркивание временного промежутка. Данное действие либо завершили только что, либо к наступлению определенного момента."
                 ),
-                Topic(
+                Topic(id = 10,
                     title = "Present Perfect",
                     description = "Конструкция настоящего времени содержит глагол have/has и 3-ю форму глагола.\n" +
                             "\n" +
@@ -145,7 +145,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: He has decided. — Он решил. She has done. — Она сделала. It has turned off. — Оно выключилось."
                 ),
-                Topic(
+                Topic(id = 11,
                     title = "Past Perfect",
                     description = "Та же схема характерна и для прошедшего времени, но have используется в прошедшей форме - had.\n" +
                             "\n" +
@@ -153,7 +153,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: I had done. — Я сделал. He had seen. — Он увидел. She had found. — Она нашла. It had fallen. — Оно упало. We had learned. — Мы выучили. You had decided. — Вы решили. They had gone. — Они ушли."
                 ),
-                Topic(
+                Topic(id = 12,
                     title = "Future Perfect",
                     description = "Конструкция будущего времени дополняется глаголом will.\n" +
                             "\n" +
@@ -161,11 +161,11 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: I will have finished. — Я закончу. He will have decided. — Он решит. She will have painted. — Она нарисует. It will have produced. — Оно произведет. We will have arrived. — Мы прибудем. You will have confirmed. — Вы подтвердите. They will have received. — Они получат."
                 ),
-                Topic(
+                Topic(id = 13,
                     title = "Категория Perfect Continuous",
                     description = "Все времена глаголов в английском языке, входящие в группу Perfect Continuous, относятся к совершенно-продолженным. Основное их назначение - подчеркнуть, что действие/событие все еще будет продолжаться, когда наступит указанный момент времени, или уже начнется/совершится еще одно действие. Иными словами, действие находится в процессе уже какое-то время, и все еще будет продолжаться."
                 ),
-                Topic(
+                Topic(id = 14,
                     title = "Present Perfect Continuous",
                     description = "Конструкция настоящего времени включает глагол have been и глагол с окончанием -ing.\n" +
                             "\n" +
@@ -177,7 +177,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: He has been running. — Он бегает. She has been laughing. — Она смеется. It has been working. — Оно работает."
                 ),
-                Topic(
+                Topic(id = 15,
                     title = "Past Perfect Continuous",
                     description = "При формировании предложения в прошедшем времени have been превращается в had been.\n" +
                             "\n" +
@@ -185,7 +185,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: I had been waiting. — Я ждал. He had been singing. — Он пел. She had been walking. — Она гуляла. It had been ringing. — Оно звенело. We had been learning. — Мы учили. You had been building. — Вы строили. They had been swimming. — Они плавали."
                 ),
-                Topic(
+                Topic(id = 16,
                     title = "Future Perfect Continuous",
                     description = "Для формулы будущего времени используется will.\n" +
                             "\n" +
@@ -193,7 +193,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Примеры: I will have been playing. — Я буду играть. He will have been reading. — Он будет читать. She will have been solving. — Она будет решать. It will have been showing. — Оно будет показывать. We will have been waiting. — Мы будем ждать. You will have been translating. — Вы будете переводить. They will have been calculating. — Они будут считать."
                 ),
-                Topic(
+                Topic(id = 17,
                     title = "Future in the Past",
                     description = "Существует еще одна категория времен английского глагола - будущее в прошедшем. Предложения с данными конструкциями отсылают к будущему с точки зрения некоего момента в прошлом.\n" +
                             "\n" +
@@ -218,7 +218,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Пример: We hoped we would have finished our homework by midday. — Мы надеялись, что сделаем домашнее задание к полудню."
                 ),
-                Topic(
+                Topic(id = 18,
                     title = "Perfect Continuous Future in the Past",
                     description = "Perfect Continuous Future in the Past — чрезвычайно редкое даже в письменной речи время, которое обозначает процесс, который начнется и будет продолжаться до определенного момента в будущем, воспринимаемом из прошлого.\n" +
                             "\n" +
@@ -453,6 +453,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                 )
             )
             testDao.insertAll(pastContinuousTests)
+
             // Тесты для Future Continuous (topicId = 8)
             val futureContinuousTests = listOf(
                 Test(
@@ -498,10 +499,55 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(futureContinuousTests)
 
-            // Тесты для Past Perfect (topicId = 10)
-            val pastPerfectTests = listOf(
+            // Тесты для Present Perfect (topicId = 10)
+            val presentPerfectTests = listOf(
                 Test(
                     topicId = 10,
+                    question = "Выберите правильный вариант:",
+                    option1 = "I have finished work",
+                    option2 = "I has finished work",
+                    option3 = "I finished work",
+                    correctAnswer = "I have finished work"
+                ),
+                Test(
+                    topicId = 10,
+                    question = "Отрицание для 'She has seen the movie'",
+                    option1 = "She hasn't seen the movie",
+                    option2 = "She haven't seen the movie",
+                    option3 = "She didn't see the movie",
+                    correctAnswer = "She hasn't seen the movie"
+                ),
+                Test(
+                    topicId = 10,
+                    question = "Выберите правильный вопрос:",
+                    option1 = "Have you ever been to Paris?",
+                    option2 = "Has you ever been to Paris?",
+                    option3 = "Did you ever be to Paris?",
+                    correctAnswer = "Have you ever been to Paris?"
+                ),
+                Test(
+                    topicId = 10,
+                    question = "Present Perfect используется для:",
+                    option1 = "Действий с результатом в настоящем",
+                    option2 = "Действий в определенное время в прошлом",
+                    option3 = "Будущих планов",
+                    correctAnswer = "Действий с результатом в настоящем"
+                ),
+                Test(
+                    topicId = 10,
+                    question = "Переведите: 'Я потерял ключи'",
+                    option1 = "I have lost my keys",
+                    option2 = "I lost my keys",
+                    option3 = "I lose my keys",
+                    correctAnswer = "I have lost my keys"
+                )
+            )
+            testDao.insertAll(presentPerfectTests)
+
+            // Тесты для Past Perfect (topicId = 11)
+            val pastPerfectTests = listOf(
+                Test(
+                    topicId = 11,
                     question = "Выберите правильный пример:",
                     option1 = "I had finished work",
                     option2 = "I have finished work",
@@ -509,7 +555,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "I had finished work"
                 ),
                 Test(
-                    topicId = 10,
+                    topicId = 11,
                     question = "Отрицание для 'She had left'",
                     option1 = "She hadn't left",
                     option2 = "She didn't left",
@@ -517,7 +563,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "She hadn't left"
                 ),
                 Test(
-                    topicId = 10,
+                    topicId = 11,
                     question = "Выберите правильный перевод: 'Когда я пришел, они уже ушли'",
                     option1 = "When I came, they had already left",
                     option2 = "When I come, they left",
@@ -525,7 +571,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "When I came, they had already left"
                 ),
                 Test(
-                    topicId = 10,
+                    topicId = 11,
                     question = "Для чего используется Past Perfect?",
                     option1 = "Действие до другого в прошлом",
                     option2 = "Текущие действия",
@@ -533,7 +579,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "Действие до другого в прошлом"
                 ),
                 Test(
-                    topicId = 10,
+                    topicId = 11,
                     question = "Какая структура верна?",
                     option1 = "had + причастие",
                     option2 = "have + причастие",
@@ -543,10 +589,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(pastPerfectTests)
 
-            // Тесты для Future Perfect (topicId = 11)
+            // Тесты для Future Perfect (topicId = 12)
             val futurePerfectTests = listOf(
                 Test(
-                    topicId = 11,
+                    topicId = 12,
                     question = "Выберите правильный вариант:",
                     option1 = "By 5 PM I will have finished",
                     option2 = "By 5 PM I will finish",
@@ -554,7 +600,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "By 5 PM I will have finished"
                 ),
                 Test(
-                    topicId = 11,
+                    topicId = 12,
                     question = "Отрицание для 'They will have arrived'",
                     option1 = "They won't have arrived",
                     option2 = "They don't have arrived",
@@ -562,7 +608,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "They won't have arrived"
                 ),
                 Test(
-                    topicId = 11,
+                    topicId = 12,
                     question = "Выберите правильный перевод: 'К завтрашнему дню я закончу проект'",
                     option1 = "By tomorrow I will have finished the project",
                     option2 = "Tomorrow I will finish the project",
@@ -570,7 +616,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "By tomorrow I will have finished the project"
                 ),
                 Test(
-                    topicId = 11,
+                    topicId = 12,
                     question = "Future Perfect описывает:",
                     option1 = "Действие к определенному моменту",
                     option2 = "Длительный процесс",
@@ -578,7 +624,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "Действие к определенному моменту"
                 ),
                 Test(
-                    topicId = 11,
+                    topicId = 12,
                     question = "Какая структура верна?",
                     option1 = "will have + причастие",
                     option2 = "will be + причастие",
@@ -588,10 +634,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(futurePerfectTests)
 
-            // Тесты для Present Perfect Continuous (topicId = 13)
+            // Тесты для Present Perfect Continuous (topicId = 14)
             val presentPerfectContinuousTests = listOf(
                 Test(
-                    topicId = 13,
+                    topicId = 14,
                     question = "Выберите правильный вариант:",
                     option1 = "I have been working",
                     option2 = "I has been working",
@@ -599,7 +645,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "I have been working"
                 ),
                 Test(
-                    topicId = 13,
+                    topicId = 14,
                     question = "Отрицание для 'He has been waiting'",
                     option1 = "He hasn't been waiting",
                     option2 = "He haven't been waiting",
@@ -607,7 +653,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "He hasn't been waiting"
                 ),
                 Test(
-                    topicId = 13,
+                    topicId = 14,
                     question = "Выберите правильный перевод: 'Я учу английский 3 года'",
                     option1 = "I have been learning English for 3 years",
                     option2 = "I learn English for 3 years",
@@ -615,7 +661,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "I have been learning English for 3 years"
                 ),
                 Test(
-                    topicId = 13,
+                    topicId = 14,
                     question = "Какой временной указатель используется?",
                     option1 = "For 2 hours",
                     option2 = "Yesterday",
@@ -623,7 +669,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "For 2 hours"
                 ),
                 Test(
-                    topicId = 13,
+                    topicId = 14,
                     question = "Какая структура верна?",
                     option1 = "have/has been + глагол-ing",
                     option2 = "had been + глагол-ing",
@@ -633,10 +679,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(presentPerfectContinuousTests)
 
-            // Тесты для Past Perfect Continuous (topicId = 14)
+            // Тесты для Past Perfect Continuous (topicId = 15)
             val pastPerfectContinuousTests = listOf(
                 Test(
-                    topicId = 14,
+                    topicId = 15,
                     question = "Выберите правильный пример:",
                     option1 = "I had been studying",
                     option2 = "I have been studying",
@@ -644,7 +690,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "I had been studying"
                 ),
                 Test(
-                    topicId = 14,
+                    topicId = 15,
                     question = "Отрицание для 'They had been working'",
                     option1 = "They hadn't been working",
                     option2 = "They haven't been working",
@@ -652,7 +698,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "They hadn't been working"
                 ),
                 Test(
-                    topicId = 14,
+                    topicId = 15,
                     question = "Выберите правильный перевод: 'Она готовила ужин 2 часа, когда я пришел'",
                     option1 = "She had been cooking dinner for 2 hours when I came",
                     option2 = "She was cooking dinner for 2 hours when I came",
@@ -660,7 +706,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "She had been cooking dinner for 2 hours when I came"
                 ),
                 Test(
-                    topicId = 14,
+                    topicId = 15,
                     question = "Past Perfect Continuous подчеркивает:",
                     option1 = "Длительность до другого действия",
                     option2 = "Результат к моменту",
@@ -668,7 +714,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "Длительность до другого действия"
                 ),
                 Test(
-                    topicId = 14,
+                    topicId = 15,
                     question = "Какая структура верна?",
                     option1 = "had been + глагол-ing",
                     option2 = "have been + глагол-ing",
@@ -678,10 +724,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(pastPerfectContinuousTests)
 
-            // Тесты для Future Perfect Continuous (topicId = 15)
+            // Тесты для Future Perfect Continuous (topicId = 16)
             val futurePerfectContinuousTests = listOf(
                 Test(
-                    topicId = 15,
+                    topicId = 16,
                     question = "Выберите правильный вариант:",
                     option1 = "By 2025 I will have been working here 10 years",
                     option2 = "By 2025 I will work here 10 years",
@@ -689,7 +735,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "By 2025 I will have been working here 10 years"
                 ),
                 Test(
-                    topicId = 15,
+                    topicId = 16,
                     question = "Отрицание для 'He will have been studying'",
                     option1 = "He won't have been studying",
                     option2 = "He don't have been studying",
@@ -697,7 +743,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "He won't have been studying"
                 ),
                 Test(
-                    topicId = 15,
+                    topicId = 16,
                     question = "Выберите правильный перевод: 'К июню мы будем жить здесь 5 лет'",
                     option1 = "By June we will have been living here for 5 years",
                     option2 = "In June we will live here for 5 years",
@@ -705,7 +751,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "By June we will have been living here for 5 years"
                 ),
                 Test(
-                    topicId = 15,
+                    topicId = 16,
                     question = "Future Perfect Continuous описывает:",
                     option1 = "Длительность к моменту в будущем",
                     option2 = "Результат в прошлом",
@@ -713,7 +759,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "Длительность к моменту в будущем"
                 ),
                 Test(
-                    topicId = 15,
+                    topicId = 16,
                     question = "Какая структура верна?",
                     option1 = "will have been + глагол-ing",
                     option2 = "would have been + глагол-ing",
@@ -723,10 +769,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(futurePerfectContinuousTests)
 
-            // Тесты для Future in the Past (topicId = 16)
+            // Тесты для Future in the Past (topicId = 17)
             val futureInThePastTests = listOf(
                 Test(
-                    topicId = 16,
+                    topicId = 17,
                     question = "Выберите правильный пример:",
                     option1 = "He said he would come",
                     option2 = "He said he will come",
@@ -734,7 +780,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "He said he would come"
                 ),
                 Test(
-                    topicId = 16,
+                    topicId = 17,
                     question = "Отрицание для 'They would be working'",
                     option1 = "They wouldn't be working",
                     option2 = "They didn't be working",
@@ -742,7 +788,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "They wouldn't be working"
                 ),
                 Test(
-                    topicId = 16,
+                    topicId = 17,
                     question = "Выберите правильный перевод: 'Он думал, что будет спать'",
                     option1 = "He thought he would be sleeping",
                     option2 = "He thinks he will sleep",
@@ -750,7 +796,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "He thought he would be sleeping"
                 ),
                 Test(
-                    topicId = 16,
+                    topicId = 17,
                     question = "Future in the Past используется:",
                     option1 = "В косвенной речи о будущем",
                     option2 = "Для текущих действий",
@@ -758,7 +804,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "В косвенной речи о будущем"
                 ),
                 Test(
-                    topicId = 16,
+                    topicId = 17,
                     question = "Какая структура верна?",
                     option1 = "would + глагол",
                     option2 = "will + глагол",
@@ -768,10 +814,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             )
             testDao.insertAll(futureInThePastTests)
 
-            // Тесты для Perfect Continuous Future in the Past (topicId = 17)
+            // Тесты для Perfect Continuous Future in the Past (topicId = 18)
             val perfectContinuousFutureInPastTests = listOf(
                 Test(
-                    topicId = 17,
+                    topicId = 18,
                     question = "Выберите правильный пример:",
                     option1 = "He said he would have been working",
                     option2 = "He says he will have been working",
@@ -779,7 +825,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "He said he would have been working"
                 ),
                 Test(
-                    topicId = 17,
+                    topicId = 18,
                     question = "Отрицание для 'She would have been studying'",
                     option1 = "She wouldn't have been studying",
                     option2 = "She didn't have been studying",
@@ -787,7 +833,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "She wouldn't have been studying"
                 ),
                 Test(
-                    topicId = 17,
+                    topicId = 18,
                     question = "Выберите правильный перевод: 'Они думали, что будут ждать 3 часа'",
                     option1 = "They thought they would have been waiting for 3 hours",
                     option2 = "They think they will wait 3 hours",
@@ -795,7 +841,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "They thought they would have been waiting for 3 hours"
                 ),
                 Test(
-                    topicId = 17,
+                    topicId = 18,
                     question = "Это время используется для:",
                     option1 = "Длительных действий в прошлом",
                     option2 = "Будущих действий с точки зрения прошлого",
@@ -803,7 +849,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     correctAnswer = "Будущих действий с точки зрения прошлого"
                 ),
                 Test(
-                    topicId = 17,
+                    topicId = 18,
                     question = "Какая структура верна?",
                     option1 = "would have been + глагол-ing",
                     option2 = "will have been + глагол-ing",

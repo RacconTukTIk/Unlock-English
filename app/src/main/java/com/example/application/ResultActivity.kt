@@ -47,6 +47,8 @@ class ResultActivity : AppCompatActivity() {
             params.matchConstraintPercentWidth = 0.9f // Занимает 90% ширины
 
             btnFinish.layoutParams = params
+            markTestAsCompleted(currentTopicId)
+
         } else {
             imageResult.setImageResource(R.drawable.sad_cat)
             tvMessage.text = "Попробуй еще раз!\n Ты почти у цели!"
@@ -97,6 +99,19 @@ class ResultActivity : AppCompatActivity() {
             topic?.let { currentTopic ->
                 currentTopic.isCompleted = true
                 db.topicDao().update(currentTopic)
+            }
+        }
+    }
+
+    private fun markTestAsCompleted(topicId: Int) {
+        if (topicId == -1) return
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val db = EnglishDatabase.getDatabase(this@ResultActivity)
+            val topic = db.topicDao().getTopicById(topicId)
+            topic?.let {
+                it.isTestCompleted = true
+                db.topicDao().update(it)
             }
         }
     }

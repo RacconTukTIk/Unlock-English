@@ -22,7 +22,7 @@ interface TopicDao {
     @Query("SELECT COUNT(*) FROM topics WHERE isCompleted = 1")
     fun getCompletedTopicsCount(): Flow<Int>
 
-    @Query("SELECT * FROM topics WHERE id NOT IN (1,5,8,12)") // Исключаем категории
+    @Query("SELECT * FROM topics WHERE id NOT IN (1,5,9,13)") // Исключаем категории
     fun getTopicsWithTests(): Flow<List<Topic>>
 
     @Query("SELECT * FROM topics WHERE id = :topicId")
@@ -30,6 +30,9 @@ interface TopicDao {
 
     @Query("SELECT title FROM topics WHERE id = :topicId")
     suspend fun getTopicTitle(topicId: Int): String
+
+    @Query("SELECT COUNT(*) FROM topics WHERE isTestCompleted = 1")
+    fun getCompletedTestsCount(): Flow<Int>
 
 }
 

@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
 
+    private lateinit var tvTestProgress: TextView
     private lateinit var tvTopicsProgress: TextView
     private lateinit var englishDatabase: EnglishDatabase
     private lateinit var topicDao: TopicDao
@@ -35,9 +36,11 @@ class MenuFragment : Fragment() {
 
         // Находим TextView для отображения прогресса
         tvTopicsProgress = view.findViewById(R.id.tvTopicsProgress)
+        tvTestProgress = view.findViewById(R.id.tvTestProgress)
 
-        // Загружаем количество пройденных тем
+        // Загружаем количество пройденных тем и тестов
         loadCompletedTopicsCount()
+        loadCompletedTestCount()
 
         val buttonThemes: Button = view.findViewById(R.id.button_themes)
         buttonThemes.setOnClickListener {
@@ -71,7 +74,15 @@ class MenuFragment : Fragment() {
             }
         }
     }
-    
+
+    private fun loadCompletedTestCount() {
+        lifecycleScope.launch {
+            topicDao.getCompletedTestsCount().collect { count ->
+                tvTestProgress.text = "$count/14"
+            }
+        }
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = MenuFragment()

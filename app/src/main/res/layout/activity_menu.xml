@@ -152,7 +152,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="176dp"
         android:gravity="center"
-        android:text="0/12"
+        android:text="0/14"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/rectangle"
