@@ -9,15 +9,15 @@
 
     <ImageView
         android:id="@+id/exitMistakes"
-        android:layout_width="19dp"
-        android:layout_height="17dp"
+        android:layout_width="24dp"
+        android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/icon_right_arrow" />
+        app:layout_constraintVertical_bias="0.045"
+        app:srcCompat="@drawable/icon_right_arrow"/>
 
     <ImageView
         android:id="@+id/UnlockEnglishMistakes"

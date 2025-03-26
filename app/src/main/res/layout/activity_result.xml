@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/white">
 
     <!-- Логотип и заголовок -->
     <ImageView
@@ -84,13 +85,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.45" />
+        app:layout_constraintWidth_percent="0.45"
+        app:strokeColor="@color/black"/>
 
     <Button
         android:id="@+id/btnFinish"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="163dp"
+        android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:text="Завершить"
         android:textAllCaps="false"
@@ -100,5 +102,6 @@
         app:layout_constraintStart_toEndOf="@id/btnRetry"
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.45" />
+        app:layout_constraintWidth_percent="0.45"
+        app:strokeColor="@color/black" />
 </androidx.constraintlayout.widget.ConstraintLayout>

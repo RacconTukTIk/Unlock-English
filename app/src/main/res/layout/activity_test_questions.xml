@@ -36,23 +36,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Кнопка выхода -->
-    <ImageView
-        android:id="@+id/exitTests"
-        android:layout_width="24dp"
-        android:layout_height="23dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/icon_right_arrow"  />
 
     <!-- Заголовок темы -->
 
     <!-- Прогресс-бар -->
 
     <!-- Список элементов -->
+
+    <ImageView
+        android:id="@+id/exitTests"
+        android:layout_width="24dp"
+        android:layout_height="23dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047"
+        app:srcCompat="@drawable/icon_right_arrow" />
 
     <TextView
         android:id="@+id/tvTopicTitle"
@@ -104,6 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

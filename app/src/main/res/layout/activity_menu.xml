@@ -136,11 +136,25 @@
         android:layout_width="64dp"
         android:layout_height="18dp"
         android:layout_marginTop="212dp"
-        android:text="Вопросы"
+        android:text="Тетсты"
+        android:gravity="center"
         android:textColor="@color/black"
         android:translationY="-60dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle"
         app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="@+id/rectangle"
+        app:layout_constraintTop_toTopOf="@+id/rectangle" />
+
+    <TextView
+        android:id="@+id/tvTestProgress"
+        android:layout_width="62dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="176dp"
+        android:gravity="center"
+        android:text="0/12"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/rectangle"
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 
