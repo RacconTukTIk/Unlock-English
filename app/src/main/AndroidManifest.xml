@@ -16,14 +16,23 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
+            android:name=".MarathonResultActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MarathonActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ExamResultActivity"
+            android:exported="true" />
+        <activity
             android:name=".ResultActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".TestQuestionsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".TestActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

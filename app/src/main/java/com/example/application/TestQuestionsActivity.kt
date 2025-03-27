@@ -114,7 +114,8 @@ class TestQuestionsActivity : AppCompatActivity() {
             val radioButtons = listOf<RadioButton>(
                 itemView.findViewById(R.id.rbOption1),
                 itemView.findViewById(R.id.rbOption2),
-                itemView.findViewById(R.id.rbOption3)
+                itemView.findViewById(R.id.rbOption3),
+                itemView.findViewById(R.id.rbOption4)
             )
 
             fun bind(question: Test) {
@@ -141,6 +142,7 @@ class TestQuestionsActivity : AppCompatActivity() {
                     R.id.rbOption1 -> 0
                     R.id.rbOption2 -> 1
                     R.id.rbOption3 -> 2
+                    R.id.rbOption4 -> 3
                     else -> -1
                 }
 
@@ -157,6 +159,7 @@ class TestQuestionsActivity : AppCompatActivity() {
                 0 -> option1
                 1 -> option2
                 2 -> option3
+                3 -> option4
                 else -> ""
             }
         }

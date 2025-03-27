@@ -65,6 +65,12 @@ class MenuFragment : Fragment() {
             val intent = Intent(requireActivity(),TestActivity::class.java)
             startActivity(intent)
         }
+
+        val buttonMarathon: Button = view.findViewById(R.id.button_marathon)
+        buttonMarathon.setOnClickListener {
+            val intent = Intent(requireActivity(),MarathonActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
     private fun loadCompletedTopicsCount() {

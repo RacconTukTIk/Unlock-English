@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ExamActivity">
+    tools:context=".MarathonActivity">
 
     <TextView
-        android:id="@+id/ExamText"
+        android:id="@+id/marathonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Экзамен"
+        android:text="Марафон"
         android:textSize="40sp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -23,21 +24,21 @@
         app:layout_constraintVertical_bias="0.145" />
 
     <TextView
-        android:id="@+id/UnlockEnglishText"
+        android:id="@+id/unlockEnglishText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Unlock English"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/ExamText"
+        app:layout_constraintBottom_toTopOf="@+id/marathonText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.788" />
     <ImageView
-        android:id="@+id/UnlockEnglishExam"
+        android:id="@+id/UnlockEnglishMarathon"
         android:layout_width="36dp"
         android:layout_height="42dp"
         android:layout_marginStart="116dp"
@@ -50,7 +51,7 @@
         app:srcCompat="@drawable/unlockenglish" />
 
     <ImageView
-        android:id="@+id/exitExam"
+        android:id="@+id/exitMarathon"
         android:layout_width="24dp"
         android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,19 +63,19 @@
         app:srcCompat="@drawable/icon_right_arrow" />
 
     <TextView
-        android:id="@+id/timerText"
+        android:id="@+id/progressText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:text="0/0"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExamText" />
+        app:layout_constraintTop_toBottomOf="@+id/marathonText" />
 
     <TextView
-        android:id="@+id/ExamQuestion"
+        android:id="@+id/marathonQuestion"
         android:layout_width="312dp"
         android:layout_height="212dp"
         android:layout_gravity="center"
@@ -92,7 +93,7 @@
         app:layout_constraintVertical_bias="0.369" />
 
     <Button
-        android:id="@+id/btnAnswer1"
+        android:id="@+id/btnOption1"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#EBE9E9"
@@ -102,12 +103,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExamQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/marathonQuestion"
         app:layout_constraintVertical_bias="0.037"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnAnswer2"
+        android:id="@+id/btnOption2"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#EBE9E9"
@@ -117,12 +118,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAnswer1"
+        app:layout_constraintTop_toBottomOf="@+id/btnOption1"
         app:layout_constraintVertical_bias="0.042"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnAnswer3"
+        android:id="@+id/btnOption3"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#EBE9E9"
@@ -132,12 +133,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAnswer2"
+        app:layout_constraintTop_toBottomOf="@+id/btnOption2"
         app:layout_constraintVertical_bias="0.06"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnAnswer4"
+        android:id="@+id/btnOption4"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#EBE9E9"
@@ -147,7 +148,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAnswer3"
+        app:layout_constraintTop_toBottomOf="@+id/btnOption3"
         app:layout_constraintVertical_bias="0.081"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
