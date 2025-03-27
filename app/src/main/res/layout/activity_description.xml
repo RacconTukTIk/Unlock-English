@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".Description.DescriptionActivity">
+    tools:context=".DescriptionActivity">
 
     <!-- Логотип и заголовок -->
     <ImageView

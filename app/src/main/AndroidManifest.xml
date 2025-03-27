@@ -16,16 +16,13 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
-            android:name=".Exam.ExamResultActivity"
+            android:name=".ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Test.ResultActivity"
+            android:name=".TestQuestionsActivity"
             android:exported="false" />
         <activity
-            android:name=".Test.TestQuestionsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Test.TestActivity"
+            android:name=".TestActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -38,13 +35,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Description.DescriptionActivity"
+            android:name=".DescriptionActivity"
             android:exported="true" />
         <activity
-            android:name=".Exam.ExamActivity"
+            android:name=".ExamActivity"
             android:exported="true" />
         <activity
-            android:name=".Topic.ThemesActivity"
+            android:name=".ThemesActivity"
             android:exported="true" />
         <activity
             android:name=".BottomNavigationActivity"
@@ -67,19 +64,19 @@
             android:exported="true"
             android:label="MenuActivity" />
         <activity
-            android:name=".Dict.DictTechActivity"
+            android:name="com.example.dicti.DictTechActivity"
             android:exported="true"
             android:label="dict_tech" />
         <activity
-            android:name=".Dict.DictMainActivity"
+            android:name="com.example.dicti.DictMainActivity"
             android:exported="true"
             android:label="dict_main" />
         <activity
-            android:name=".Dict.DictChildActivity"
+            android:name=".DictChildActivity"
             android:exported="true"
             android:label="dict_child" />
         <activity
-            android:name=".Dict.DictMusicActivity"
+            android:name=".DictMusicActivity"
             android:exported="true"
             android:label="dict_music" />
         <activity
@@ -87,7 +84,7 @@
             android:exported="true"
             android:label="acc_page" />
         <activity
-            android:name=".Error.MistakesActivity"
+            android:name=".MistakesActivity"
             android:exported="true"
             android:label="mistakes" />
 

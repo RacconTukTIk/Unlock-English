@@ -1,17 +1,18 @@
-package com.example.application.Dict
+package com.example.application
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.application.R
 
 
-class DictAdapterTech(
+class DictAdapterChild(
     private val entries: List<DataDict>,
     private val listener: OnItemClickListener
-) : RecyclerView.Adapter<DictAdapterTech.ViewHolder>() {
+) : RecyclerView.Adapter<DictAdapterChild.ViewHolder>() {
 
     interface OnItemClickListener {
         fun onSoundButtonClick(word: String)
@@ -34,6 +35,7 @@ class DictAdapterTech(
         holder.wordTextView.text = entry.word
         holder.transcriptionTextView.text = entry.transcription
         holder.translationTextView.text = entry.translation
+
 
         holder.soundButton.setOnClickListener {
             listener.onSoundButtonClick(entry.word)

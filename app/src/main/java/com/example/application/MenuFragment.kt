@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
-import com.example.application.DataBase.EnglishDatabase
-import com.example.application.DataBase.TopicDao
-import com.example.application.Error.MistakesActivity
-import com.example.application.Exam.ExamActivity
-import com.example.application.Test.TestActivity
-import com.example.application.Topic.ThemesActivity
+import com.example.application.R
+import com.example.application.MistakesActivity
+import com.example.dicti.DictTechActivity
 import kotlinx.coroutines.launch
 
 
@@ -64,7 +62,7 @@ class MenuFragment : Fragment() {
 
         val buttonTest: Button = view.findViewById(R.id.button_test)
         buttonTest.setOnClickListener {
-            val intent = Intent(requireActivity(), TestActivity::class.java)
+            val intent = Intent(requireActivity(),TestActivity::class.java)
             startActivity(intent)
         }
         return view

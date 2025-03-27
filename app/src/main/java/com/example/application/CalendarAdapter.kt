@@ -1,11 +1,10 @@
-package com.example.application.Calendar
+package com.example.application
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.application.R
 
 class CalendarAdapter(
     private val days: List<String>,

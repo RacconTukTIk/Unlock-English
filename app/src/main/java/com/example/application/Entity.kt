@@ -1,4 +1,4 @@
-package com.example.application.DataBase
+package com.example.application
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -19,6 +19,5 @@ data class Test(
     val option1: String,
     val option2: String,
     val option3: String,
-    val option4: String,
     val correctAnswer: String
 )

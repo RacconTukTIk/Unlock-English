@@ -1,17 +1,23 @@
-package com.example.application.Dict
+package com.example.application
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Intents.Insert
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.application.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.application.BottomNavigationActivity
+import com.example.application.DataDict
 import android.speech.tts.TextToSpeech
 import java.util.Locale
 import android.util.Log
-import com.example.application.R
+import com.example.application.DictAdapterChild
 
 class DictChildActivity : AppCompatActivity(), DictAdapterChild.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView

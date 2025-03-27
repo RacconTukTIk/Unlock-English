@@ -1,16 +1,15 @@
-package com.example.application.Test
+package com.example.application
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.application.DataBase.EnglishDatabase
-import com.example.application.DataBase.Topic
-import com.example.application.DataBase.TopicDao
-import com.example.application.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
