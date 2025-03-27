@@ -1,4 +1,4 @@
-package com.example.application
+package com.example.application.Test
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.application.DataBase.EnglishDatabase
+import com.example.application.DataBase.Test
+import com.example.application.DataBase.TestDao
+import com.example.application.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -114,7 +118,8 @@ class TestQuestionsActivity : AppCompatActivity() {
             val radioButtons = listOf<RadioButton>(
                 itemView.findViewById(R.id.rbOption1),
                 itemView.findViewById(R.id.rbOption2),
-                itemView.findViewById(R.id.rbOption3)
+                itemView.findViewById(R.id.rbOption3),
+                itemView.findViewById(R.id.rbOption4)
             )
 
             fun bind(question: Test) {
@@ -141,6 +146,7 @@ class TestQuestionsActivity : AppCompatActivity() {
                     R.id.rbOption1 -> 0
                     R.id.rbOption2 -> 1
                     R.id.rbOption3 -> 2
+                    R.id.rbOption4 -> 3
                     else -> -1
                 }
 
@@ -157,6 +163,7 @@ class TestQuestionsActivity : AppCompatActivity() {
                 0 -> option1
                 1 -> option2
                 2 -> option3
+                3 -> option4
                 else -> ""
             }
         }

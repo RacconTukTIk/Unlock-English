@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".TestQuestionsActivity">
+    tools:context=".Test.TestQuestionsActivity">
 
     <!-- Логотип и заголовок -->
     <ImageView
@@ -59,7 +59,7 @@
         android:id="@+id/tvTopicTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
         android:text="Название темы"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -74,7 +74,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="8dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="124dp"
         android:progressTint="@color/blue_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

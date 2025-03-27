@@ -1,4 +1,4 @@
-package com.example.application
+package com.example.application.DataBase
 
 import androidx.room.Database
 import androidx.room.Room
@@ -237,6 +237,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She writes a letter every day",
                     option2 = "She write a letter every day",
                     option3 = "She is writing a letter every day",
+                    option4 = "She has written a letter every day",
                     correctAnswer = "She writes a letter every day"
                 ),
                 Test(
@@ -245,6 +246,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He doesn't plays",
                     option2 = "He don't play",
                     option3 = "He doesn't play",
+                    option4 = "He not play",
                     correctAnswer = "He doesn't play"
                 ),
                 Test(
@@ -253,6 +255,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Does she likes coffee?",
                     option2 = "Do she like coffee?",
                     option3 = "Does she like coffee?",
+                    option4 = "Is she like coffee?",
                     correctAnswer = "Does she like coffee?"
                 ),
                 Test(
@@ -261,6 +264,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Present Continuous",
                     option2 = "Present Simple",
                     option3 = "Past Simple",
+                    option4 = "Future Perfect",
                     correctAnswer = "Present Simple"
                 ),
                 Test(
@@ -269,6 +273,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They are working here",
                     option2 = "They work here",
                     option3 = "They worked here",
+                    option4 = "They has worked here",
                     correctAnswer = "They work here"
                 )
             )
@@ -282,6 +287,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "goed",
                     option2 = "went",
                     option3 = "gone",
+                    option4 = "goes",
                     correctAnswer = "went"
                 ),
                 Test(
@@ -290,6 +296,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I did went to school",
                     option2 = "I went to school",
                     option3 = "I was go to school",
+                    option4 = "I were go to school",
                     correctAnswer = "I went to school"
                 ),
                 Test(
@@ -298,6 +305,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They didn't saw",
                     option2 = "They didn't see",
                     option3 = "They don't see",
+                    option4 = "They not saw",
                     correctAnswer = "They didn't see"
                 ),
                 Test(
@@ -306,6 +314,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Present Perfect",
                     option2 = "Past Continuous",
                     option3 = "Past Simple",
+                    option4 = "Future in the Past",
                     correctAnswer = "Past Simple"
                 ),
                 Test(
@@ -314,6 +323,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I buy a car",
                     option2 = "I bought a car",
                     option3 = "I have bought a car",
+                    option4 = "I buys a car",
                     correctAnswer = "I bought a car"
                 )
             )
@@ -327,6 +337,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I will going",
                     option2 = "I will go",
                     option3 = "I will went",
+                    option4 = "I going to go",
                     correctAnswer = "I will go"
                 ),
                 Test(
@@ -335,6 +346,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "You won't see",
                     option2 = "You don't see",
                     option3 = "You didn't see",
+                    option4 = "You not will see",
                     correctAnswer = "You won't see"
                 ),
                 Test(
@@ -343,6 +355,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Will she comes?",
                     option2 = "Will she come?",
                     option3 = "Does she will come?",
+                    option4 = "Is she will come?",
                     correctAnswer = "Will she come?"
                 ),
                 Test(
@@ -351,6 +364,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Present Simple",
                     option2 = "Future Simple",
                     option3 = "Past Simple",
+                    option4 = "Present Continuous",
                     correctAnswer = "Future Simple"
                 ),
                 Test(
@@ -359,6 +373,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They won't agree",
                     option2 = "They don't agree",
                     option3 = "They didn't agree",
+                    option4 = "They not agree",
                     correctAnswer = "They won't agree"
                 )
             )
@@ -372,6 +387,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I am read a book",
                     option2 = "I am reading a book",
                     option3 = "I reading a book",
+                    option4 = "I reads a book",
                     correctAnswer = "I am reading a book"
                 ),
                 Test(
@@ -380,6 +396,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He isn't sleeping",
                     option2 = "He don't sleeping",
                     option3 = "He doesn't sleeping",
+                    option4 = "He not sleeping",
                     correctAnswer = "He isn't sleeping"
                 ),
                 Test(
@@ -388,6 +405,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "We work now",
                     option2 = "We are working now",
                     option3 = "We worked now",
+                    option4 = "We works now",
                     correctAnswer = "We are working now"
                 ),
                 Test(
@@ -396,6 +414,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Present Simple",
                     option2 = "Present Continuous",
                     option3 = "Past Continuous",
+                    option4 = "Future Continuous",
                     correctAnswer = "Present Continuous"
                 ),
                 Test(
@@ -404,6 +423,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Действие сейчас",
                     option2 = "Постоянные привычки",
                     option3 = "Временные ситуации",
+                    option4 = "Планы на будущее",
                     correctAnswer = "Постоянные привычки"
                 )
             )
@@ -417,6 +437,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I was watching TV",
                     option2 = "I were watching TV",
                     option3 = "I watched TV",
+                    option4 = "I watching TV",
                     correctAnswer = "I was watching TV"
                 ),
                 Test(
@@ -425,6 +446,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They weren't playing",
                     option2 = "They didn't playing",
                     option3 = "They don't playing",
+                    option4 = "They wasn't playing",
                     correctAnswer = "They weren't playing"
                 ),
                 Test(
@@ -433,6 +455,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She was cooking dinner at 6 o'clock",
                     option2 = "She cooked dinner at 6 o'clock",
                     option3 = "She is cooking dinner at 6 o'clock",
+                    option4 = "She had cooked dinner at 6 o'clock",
                     correctAnswer = "She was cooking dinner at 6 o'clock"
                 ),
                 Test(
@@ -441,6 +464,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Past Simple",
                     option2 = "Present Perfect",
                     option3 = "Future Simple",
+                    option4 = "Present Continuous",
                     correctAnswer = "Past Simple"
                 ),
                 Test(
@@ -449,6 +473,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "was",
                     option2 = "were",
                     option3 = "are",
+                    option4 = "is",
                     correctAnswer = "were"
                 )
             )
@@ -462,6 +487,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I will be working tomorrow",
                     option2 = "I will working tomorrow",
                     option3 = "I will work tomorrow",
+                    option4 = "I be working tomorrow",
                     correctAnswer = "I will be working tomorrow"
                 ),
                 Test(
@@ -470,6 +496,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They won't be sleeping",
                     option2 = "They don't be sleeping",
                     option3 = "They aren't sleeping",
+                    option4 = "They willn't be sleeping",
                     correctAnswer = "They won't be sleeping"
                 ),
                 Test(
@@ -478,6 +505,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "We will have lunch at this time",
                     option2 = "We will be having lunch at this time",
                     option3 = "We are having lunch at this time",
+                    option4 = "We have lunch at this time",
                     correctAnswer = "We will be having lunch at this time"
                 ),
                 Test(
@@ -486,6 +514,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Конкретный момент в будущем",
                     option2 = "Прошлый опыт",
                     option3 = "Завершенные действия",
+                    option4 = "Неопределенное будущее",
                     correctAnswer = "Конкретный момент в будущем"
                 ),
                 Test(
@@ -494,6 +523,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "will + be + глагол-ing",
                     option2 = "will + have + глагол-ing",
                     option3 = "would + be + глагол",
+                    option4 = "will + глагол-ing",
                     correctAnswer = "will + be + глагол-ing"
                 )
             )
@@ -507,6 +537,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I have finished work",
                     option2 = "I has finished work",
                     option3 = "I finished work",
+                    option4 = "I finishing work",
                     correctAnswer = "I have finished work"
                 ),
                 Test(
@@ -515,6 +546,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She hasn't seen the movie",
                     option2 = "She haven't seen the movie",
                     option3 = "She didn't see the movie",
+                    option4 = "She hadn't seen the movie",
                     correctAnswer = "She hasn't seen the movie"
                 ),
                 Test(
@@ -523,6 +555,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Have you ever been to Paris?",
                     option2 = "Has you ever been to Paris?",
                     option3 = "Did you ever be to Paris?",
+                    option4 = "Do you ever been to Paris?",
                     correctAnswer = "Have you ever been to Paris?"
                 ),
                 Test(
@@ -531,6 +564,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Действий с результатом в настоящем",
                     option2 = "Действий в определенное время в прошлом",
                     option3 = "Будущих планов",
+                    option4 = "Регулярных действий",
                     correctAnswer = "Действий с результатом в настоящем"
                 ),
                 Test(
@@ -539,6 +573,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I have lost my keys",
                     option2 = "I lost my keys",
                     option3 = "I lose my keys",
+                    option4 = "I losing my keys",
                     correctAnswer = "I have lost my keys"
                 )
             )
@@ -552,6 +587,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I had finished work",
                     option2 = "I have finished work",
                     option3 = "I finished work",
+                    option4 = "I has finished work",
                     correctAnswer = "I had finished work"
                 ),
                 Test(
@@ -560,6 +596,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She hadn't left",
                     option2 = "She didn't left",
                     option3 = "She hasn't left",
+                    option4 = "She don't left",
                     correctAnswer = "She hadn't left"
                 ),
                 Test(
@@ -568,6 +605,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "When I came, they had already left",
                     option2 = "When I come, they left",
                     option3 = "When I had come, they left",
+                    option4 = "When I come, they had left",
                     correctAnswer = "When I came, they had already left"
                 ),
                 Test(
@@ -576,6 +614,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Действие до другого в прошлом",
                     option2 = "Текущие действия",
                     option3 = "Будущие планы",
+                    option4 = "Одновременные действия",
                     correctAnswer = "Действие до другого в прошлом"
                 ),
                 Test(
@@ -584,6 +623,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "had + причастие",
                     option2 = "have + причастие",
                     option3 = "did + глагол",
+                    option4 = "has + причастие",
                     correctAnswer = "had + причастие"
                 )
             )
@@ -597,6 +637,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "By 5 PM I will have finished",
                     option2 = "By 5 PM I will finish",
                     option3 = "By 5 PM I finished",
+                    option4 = "By 5 PM I have finish",
                     correctAnswer = "By 5 PM I will have finished"
                 ),
                 Test(
@@ -605,6 +646,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They won't have arrived",
                     option2 = "They don't have arrived",
                     option3 = "They didn't have arrived",
+                    option4 = "They will not have arrived",
                     correctAnswer = "They won't have arrived"
                 ),
                 Test(
@@ -613,6 +655,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "By tomorrow I will have finished the project",
                     option2 = "Tomorrow I will finish the project",
                     option3 = "I have finished the project tomorrow",
+                    option4 = "Tomorrow I have finish the project",
                     correctAnswer = "By tomorrow I will have finished the project"
                 ),
                 Test(
@@ -621,6 +664,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Действие к определенному моменту",
                     option2 = "Длительный процесс",
                     option3 = "Регулярные действия",
+                    option4 = "Будующие действия",
                     correctAnswer = "Действие к определенному моменту"
                 ),
                 Test(
@@ -629,6 +673,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "will have + причастие",
                     option2 = "will be + причастие",
                     option3 = "would have + причастие",
+                    option4 = "would + причастие",
                     correctAnswer = "will have + причастие"
                 )
             )
@@ -642,6 +687,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I have been working",
                     option2 = "I has been working",
                     option3 = "I had been working",
+                    option4 = "I have being working",
                     correctAnswer = "I have been working"
                 ),
                 Test(
@@ -650,6 +696,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He hasn't been waiting",
                     option2 = "He haven't been waiting",
                     option3 = "He hadn't been waiting",
+                    option4 = "He don't been waiting",
                     correctAnswer = "He hasn't been waiting"
                 ),
                 Test(
@@ -658,6 +705,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I have been learning English for 3 years",
                     option2 = "I learn English for 3 years",
                     option3 = "I learned English for 3 years",
+                    option4 = "I learning English for 3 years",
                     correctAnswer = "I have been learning English for 3 years"
                 ),
                 Test(
@@ -666,6 +714,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "For 2 hours",
                     option2 = "Yesterday",
                     option3 = "Last week",
+                    option4 = "Tomorrow",
                     correctAnswer = "For 2 hours"
                 ),
                 Test(
@@ -674,6 +723,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "have/has been + глагол-ing",
                     option2 = "had been + глагол-ing",
                     option3 = "will have been + глагол-ing",
+                    option4 = "have/has + глагол-ing",
                     correctAnswer = "have/has been + глагол-ing"
                 )
             )
@@ -687,6 +737,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "I had been studying",
                     option2 = "I have been studying",
                     option3 = "I was studying",
+                    option4 = "I did been studying",
                     correctAnswer = "I had been studying"
                 ),
                 Test(
@@ -695,6 +746,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They hadn't been working",
                     option2 = "They haven't been working",
                     option3 = "They didn't been working",
+                    option4 = "They wasn't working",
                     correctAnswer = "They hadn't been working"
                 ),
                 Test(
@@ -703,6 +755,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She had been cooking dinner for 2 hours when I came",
                     option2 = "She was cooking dinner for 2 hours when I came",
                     option3 = "She cooked dinner for 2 hours when I came",
+                    option4 = "She has been cooking dinner for 2 hours when I came",
                     correctAnswer = "She had been cooking dinner for 2 hours when I came"
                 ),
                 Test(
@@ -711,6 +764,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Длительность до другого действия",
                     option2 = "Результат к моменту",
                     option3 = "Будущие планы",
+                    option4 = "Прошлое",
                     correctAnswer = "Длительность до другого действия"
                 ),
                 Test(
@@ -719,6 +773,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "had been + глагол-ing",
                     option2 = "have been + глагол-ing",
                     option3 = "has been + глагол-ing",
+                    option4 = "had been + глагол",
                     correctAnswer = "had been + глагол-ing"
                 )
             )
@@ -732,6 +787,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "By 2025 I will have been working here 10 years",
                     option2 = "By 2025 I will work here 10 years",
                     option3 = "By 2025 I have worked here 10 years",
+                    option4 = "By 2025 I would have been working here 10 years",
                     correctAnswer = "By 2025 I will have been working here 10 years"
                 ),
                 Test(
@@ -740,6 +796,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He won't have been studying",
                     option2 = "He don't have been studying",
                     option3 = "He didn't have been studying",
+                    option4 = "He hasn't been studying",
                     correctAnswer = "He won't have been studying"
                 ),
                 Test(
@@ -748,6 +805,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "By June we will have been living here for 5 years",
                     option2 = "In June we will live here for 5 years",
                     option3 = "We have lived here for 5 years in June",
+                    option4 = "We will live here 5 years by June",
                     correctAnswer = "By June we will have been living here for 5 years"
                 ),
                 Test(
@@ -756,6 +814,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Длительность к моменту в будущем",
                     option2 = "Результат в прошлом",
                     option3 = "Текущие действия",
+                    option4 = "Длительность к моменту в настоящем",
                     correctAnswer = "Длительность к моменту в будущем"
                 ),
                 Test(
@@ -764,6 +823,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "will have been + глагол-ing",
                     option2 = "would have been + глагол-ing",
                     option3 = "will be + глагол-ing",
+                    option4 = "will be + глагол",
                     correctAnswer = "will have been + глагол-ing"
                 )
             )
@@ -777,6 +837,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He said he would come",
                     option2 = "He said he will come",
                     option3 = "He says he would come",
+                    option4 = "He says he will came",
                     correctAnswer = "He said he would come"
                 ),
                 Test(
@@ -785,6 +846,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They wouldn't be working",
                     option2 = "They didn't be working",
                     option3 = "They won't be working",
+                    option4 = "They not would be working",
                     correctAnswer = "They wouldn't be working"
                 ),
                 Test(
@@ -793,6 +855,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He thought he would be sleeping",
                     option2 = "He thinks he will sleep",
                     option3 = "He thought he will be sleeping",
+                    option4 = "He think he would sleep",
                     correctAnswer = "He thought he would be sleeping"
                 ),
                 Test(
@@ -801,6 +864,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "В косвенной речи о будущем",
                     option2 = "Для текущих действий",
                     option3 = "В вопросах",
+                    option4 = "В утверждениях о прошлом",
                     correctAnswer = "В косвенной речи о будущем"
                 ),
                 Test(
@@ -809,6 +873,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "would + глагол",
                     option2 = "will + глагол",
                     option3 = "had + глагол",
+                    option4 = "was going to + глагол",
                     correctAnswer = "would + глагол"
                 )
             )
@@ -822,6 +887,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "He said he would have been working",
                     option2 = "He says he will have been working",
                     option3 = "He said he will work",
+                    option4 = "He says he would work",
                     correctAnswer = "He said he would have been working"
                 ),
                 Test(
@@ -830,6 +896,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "She wouldn't have been studying",
                     option2 = "She didn't have been studying",
                     option3 = "She won't have been studying",
+                    option4 = "She would't have studying",
                     correctAnswer = "She wouldn't have been studying"
                 ),
                 Test(
@@ -838,6 +905,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "They thought they would have been waiting for 3 hours",
                     option2 = "They think they will wait 3 hours",
                     option3 = "They thought they will have waited 3 hours",
+                    option4 = "They think they won't wait 3 hours",
                     correctAnswer = "They thought they would have been waiting for 3 hours"
                 ),
                 Test(
@@ -846,6 +914,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "Длительных действий в прошлом",
                     option2 = "Будущих действий с точки зрения прошлого",
                     option3 = "Текущих планов",
+                    option4 = "Будующих действий",
                     correctAnswer = "Будущих действий с точки зрения прошлого"
                 ),
                 Test(
@@ -854,6 +923,7 @@ abstract class EnglishDatabase : RoomDatabase() {
                     option1 = "would have been + глагол-ing",
                     option2 = "will have been + глагол-ing",
                     option3 = "had been + глагол-ing",
+                    option4 = "have been + глагол-ing",
                     correctAnswer = "would have been + глагол-ing"
                 )
             )

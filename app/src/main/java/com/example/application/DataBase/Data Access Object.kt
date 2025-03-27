@@ -1,4 +1,4 @@
-package com.example.application
+package com.example.application.DataBase
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -50,4 +50,6 @@ interface TestDao {
     @Query("SELECT COUNT(*) FROM tests WHERE topicId = :topicId")
     suspend fun getTestCount(topicId: Int): Int
 
+    @Query("SELECT * FROM tests")
+    suspend fun getAllTests(): List<Test>
 }

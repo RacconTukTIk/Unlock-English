@@ -1,4 +1,4 @@
-package com.example.application
+package com.example.application.Topic
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.application.DataBase.Topic
+import com.example.application.R
 
 class TopicsAdapter(
     private val topics: List<Topic>,

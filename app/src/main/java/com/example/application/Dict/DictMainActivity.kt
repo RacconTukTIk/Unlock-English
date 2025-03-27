@@ -1,4 +1,4 @@
-package com.example.dicti
+package com.example.application.Dict
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.application.DictChildActivity
-import com.example.application.DictMusicActivity
 import com.example.application.R
 
 class DictMainActivity : AppCompatActivity() {
@@ -24,7 +22,7 @@ class DictMainActivity : AppCompatActivity() {
         }
         var buttonChild = findViewById<Button>(R.id.ChildButton)
         buttonChild.setOnClickListener {
-            startActivity(Intent(this,DictChildActivity::class.java))
+            startActivity(Intent(this, DictChildActivity::class.java))
         }
         var buttonTech = findViewById<Button>(R.id.TechButton)
         buttonTech.setOnClickListener {

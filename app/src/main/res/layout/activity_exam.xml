@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ExamActivity"
+    tools:context=".Exam.ExamActivity"
     >
 
     <TextView
     android:id="@+id/ExamText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Exam"
+    android:text="Экзамен"
     android:textSize="40sp"
     android:textColor="@color/black"
     android:textStyle="bold"
@@ -51,7 +51,7 @@
     app:srcCompat="@drawable/unlockenglish" />
 
     <ImageView
-    android:id="@+id/exitExam"
+        android:id="@+id/exitExam"
         android:layout_width="24dp"
         android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,25 +60,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045"
-        app:srcCompat="@drawable/icon_right_arrow"/>
+        app:srcCompat="@drawable/icon_right_arrow" />
 
     <TextView
-    android:id="@+id/ExamQuestion"
-    android:layout_width="312dp"
-    android:layout_height="212dp"
-    android:layout_gravity="center"
-    android:background="#D9D9D9"
-    android:gravity="center"
-    android:padding="16dp"
-    android:text="Вопрос..."
-    android:textColor="#000000"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.494"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.335" />
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ExamText" />
+
+    <TextView
+        android:id="@+id/ExamQuestion"
+        android:layout_width="312dp"
+        android:layout_height="212dp"
+        android:layout_gravity="center"
+        android:background="#D9D9D9"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Вопрос..."
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
 
     <Button
         android:id="@+id/btnAnswer1"
