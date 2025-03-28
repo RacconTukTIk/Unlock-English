@@ -28,6 +28,7 @@ class TestQuestionsActivity : AppCompatActivity() {
     private var currentTopicId = -1
     private var correctAnswersCount = 0
     private var totalQuestions = 0
+    private val answeredQuestions = mutableListOf<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +68,7 @@ class TestQuestionsActivity : AppCompatActivity() {
                 updateProgressBar()
             }
         })
+        findViewById<Button>(R.id.btnSubmit).isEnabled = false
     }
 
     private fun loadQuestions() {
@@ -74,14 +76,25 @@ class TestQuestionsActivity : AppCompatActivity() {
             val tests = testDao.getTestsByTopicId(currentTopicId).first()
             totalQuestions = tests.size
 
+            answeredQuestions.clear()
+            answeredQuestions.addAll(List(totalQuestions) {false})
+
             withContext(Dispatchers.Main) {
-                questionAdapter = QuestionAdapter(tests) { isCorrect ->
+                questionAdapter = QuestionAdapter(tests) { position, isCorrect ->
                     if (isCorrect) correctAnswersCount++
+                    answeredQuestions[position] = true
+                    checkAllAnswerSelected()
                 }
                 recyclerView.adapter = questionAdapter
                 updateProgressBar()
             }
         }
+    }
+
+    private fun checkAllAnswerSelected() {
+        val allAnswered = answeredQuestions.all { it }
+        findViewById<Button>(R.id.btnSubmit).isEnabled = allAnswered
+
     }
 
     private fun updateProgressBar() {
@@ -103,7 +116,7 @@ class TestQuestionsActivity : AppCompatActivity() {
 
     inner class QuestionAdapter(
         private var questions: List<Test>,
-        private val onAnswerSelected: (Boolean) -> Unit
+        private val onAnswerSelected: (Int, Boolean) -> Unit
     ) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
 
         var currentPosition = 0
@@ -147,7 +160,8 @@ class TestQuestionsActivity : AppCompatActivity() {
                 }
 
                 if (selectedIndex != -1) {
-                    onAnswerSelected(question.correctAnswer == question.getOptionByIndex(selectedIndex))
+                    val isCorrect = question.correctAnswer == question.getOptionByIndex(selectedIndex)
+                    onAnswerSelected(holder.adapterPosition,isCorrect)
                 }
             }
         }
