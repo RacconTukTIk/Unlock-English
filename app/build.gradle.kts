@@ -7,6 +7,7 @@ plugins {
 
 }
 
+
 android {
     namespace = "com.example.application"
     compileSdk = 35
@@ -87,6 +88,9 @@ dependencies {
         // ViewModel и LiveData
         implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
         implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-compiler:2.44")
 
 
 }

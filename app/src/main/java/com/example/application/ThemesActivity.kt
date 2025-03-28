@@ -20,45 +20,6 @@ class ThemesActivity : AppCompatActivity() {
     private lateinit var englishDatabase: EnglishDatabase
     private lateinit var topicDao: TopicDao
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_themes)
 
-        recyclerView = findViewById(R.id.recyclerViewThemes)
-        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Инициализация базы данных и DAO
-        englishDatabase = EnglishDatabase.getDatabase(this)
-        topicDao = englishDatabase.topicDao()
-
-        // Загрузка данных из базы данных
-        loadTopics()
-
-        val buttonExit: ImageView = findViewById(R.id.exitTheme)
-        buttonExit.setOnClickListener {
-            finish()
-        }
-    }
-
-    private fun loadTopics() {
-        lifecycleScope.launch {
-            topicDao.getAllTopics().collect { topics ->
-                // Логируем данные
-                Log.d("ThemesActivity", "Loaded topics: ${topics.size}")
-                topics.forEach { topic ->
-                    Log.d("ThemesActivity", "Topic: ${topic.id}, ${topic.title}")
-                }
-
-                // Обновляем адаптер
-                adapter = TopicsAdapter(topics) { topic ->
-                    Toast.makeText(this@ThemesActivity, "Выбрана тема: ${topic.title}", Toast.LENGTH_SHORT).show()
-                }
-                recyclerView.adapter = adapter
-            }
-        }
-    }
-
-    override fun onBackPressed() {
-
-    }
 }

@@ -6,26 +6,26 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [WordToLearn::class, LearnedWord::class],
+    entities = [Word::class],
     version = 1,
     exportSchema = false
 )
-abstract class VocabularyDatabase : RoomDatabase() {
-
-    abstract fun wordToLearnDao(): WordToLearnDao
-    abstract fun learnedWordDao(): LearnedWordDao
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun wordDao(): WordDao
 
     companion object {
         @Volatile
-        private var INSTANCE: VocabularyDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): VocabularyDatabase {
+        fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    VocabularyDatabase::class.java,
-                    "vocabulary_database"
-                ).build()
+                    AppDatabase::class.java,
+                    "word_database"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
