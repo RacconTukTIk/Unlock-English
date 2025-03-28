@@ -34,6 +34,18 @@ interface TopicDao {
     @Query("SELECT COUNT(*) FROM topics WHERE isTestCompleted = 1")
     fun getCompletedTestsCount(): Flow<Int>
 
+    @Query("UPDATE topics SET errorCount = errorCount + :count WHERE id = :topicId")
+    suspend fun addErrors(topicId: Int, count: Int)
+
+    @Query("UPDATE topics SET errorCount = 0 WHERE id = :topicId")
+    suspend fun resetErrors(topicId: Int)
+
+    @Query("UPDATE topics SET lastAttemptErrors = :errors WHERE id = :topicId")
+    suspend fun updateLastAttemptErrors(topicId: Int, errors: Int)
+
+    @Query("SELECT * FROM topics WHERE lastAttemptErrors > 0")
+    fun getTopicsWithErrors(): Flow<List<Topic>>
+
 }
 
 @Dao

@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Topic::class, Test::class], version = 4, exportSchema = false)
+@Database(entities = [Topic::class, Test::class], version = 7, exportSchema = false)
 abstract class EnglishDatabase : RoomDatabase() {
 
     abstract fun topicDao(): TopicDao
@@ -72,7 +72,10 @@ abstract class EnglishDatabase : RoomDatabase() {
             val topicDao = database.topicDao()
             val testDao = database.testDao()
             val topics = listOf(
-                Topic(id = 1, title = "Категория Simple", description = "Это группа простых времен. К ней относятся действия, которые совершаются / совершались / будут совершаться часто и / или регулярно, а также однократные поступки и события."),
+                Topic(id = 1, title = "Категория Simple", description = "Это группа простых времен. К ней относятся действия, которые совершаются / совершались / будут совершаться часто и / или регулярно, а также однократные поступки и события.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
                 Topic(id = 2, title = "Present Simple", description = "Настоящее время в этой категории образуется от инфинитива глагола без частицы to. При этом если подлежащее стоит в 3 лице (he/she/it), то к сказуемому прибавляется окончание –s. Вопросительная и отрицательная формы строятся при помощи вспомогательного глагола do (в 3 лице — does).\n" +
                         "\n" +
                         "Формула : I/We/You/They + глагол\n" +
@@ -81,20 +84,31 @@ abstract class EnglishDatabase : RoomDatabase() {
                         "\n" +
                         "Формула : He/She/It + глагол + -s (-es)\n" +
                         "\n" +
-                        "Примеры: He goes. — Он ходит. She speaks. — Она разговаривает. A boy jumps. — Мальчик прыгает."),
+                        "Примеры: He goes. — Он ходит. She speaks. — Она разговаривает. A boy jumps. — Мальчик прыгает.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
                 Topic(id = 3, title = "Past Simple", description = "В прошедшем используется вторая форма глагола с окончанием -ed (если глагол правильный), для вопросов и отрицаний добавляют did, а глагол оставляют в первой форме.\n" +
                         "\n" +
                         "Формула : I/He/She/It/We/You/They + 2-я форма глагола\n" +
                         "\n" +
-                        "Примеры: I played. — Я играл. He told. — Он говорил. She stopped. — Она остановилась. It worked. — Оно работало. We discussed. — Мы обсудили. You did. — Вы сделали. They forgot. — Они забыли."),
+                        "Примеры: I played. — Я играл. He told. — Он говорил. She stopped. — Она остановилась. It worked. — Оно работало. We discussed. — Мы обсудили. You did. — Вы сделали. They forgot. — Они забыли.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
                 Topic(id = 4, title = "Future Simple", description = "Для будущего времени также характерен глагол в инфинитиве, только перед ним добавляют вспомогательное слово will. С его же помощью образуют вопросы и отрицания.\n" +
                         "\n" +
                         "Формула : I/He/She/It/We/You/They + will + глагол\n" +
                         "\n" +
-                        "Примеры: I will come. — Я приду. He will win. — Он выиграет. She will understand. — Она поймет. It will break. — Оно сломается. We will find. — Мы найдем. You will see. — Вы увидите. They will agree. — Они согласятся."),
+                        "Примеры: I will come. — Я приду. He will win. — Он выиграет. She will understand. — Она поймет. It will break. — Оно сломается. We will find. — Мы найдем. You will see. — Вы увидите. They will agree. — Они согласятся.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
                 Topic(id = 5,
                     title = "Категория Continuous",
-                    description = "Времена глагола в английском языке, представляющие группу Continuous, относятся к продолженным. Времена этой группы отмечают длительность происходящего процесса, совершение действий в конкретный момент времени. Акцент выставлен не на факт выполнения чего-то, а на время, в которое эти действия выполняются/выполнялись/будут выполняться."
+                    description = "Времена глагола в английском языке, представляющие группу Continuous, относятся к продолженным. Времена этой группы отмечают длительность происходящего процесса, совершение действий в конкретный момент времени. Акцент выставлен не на факт выполнения чего-то, а на время, в которое эти действия выполняются/выполнялись/будут выполняться.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 6,
                     title = "Present Continuous",
@@ -110,7 +124,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : We/You/They are + глагол-ing\n" +
                             "\n" +
-                            "Примеры: We are listening. — Мы слушаем. You are dancing. — Вы танцуете. They are swimming. — Они плавают."
+                            "Примеры: We are listening. — Мы слушаем. You are dancing. — Вы танцуете. They are swimming. — Они плавают.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 7, title = "Past Continuous", description = "По той же схеме строится и прошедшее время, но to be используется в прошедшей форме — was/were.\n" +
                         "\n" +
@@ -120,18 +136,25 @@ abstract class EnglishDatabase : RoomDatabase() {
                         "\n" +
                         "Формула : We/You/They + were + глагол-ing\n" +
                         "\n" +
-                        "Примеры: We were reading. — Мы читали. You were talking. — Вы разговаривали. They were running. — Они бежали."),
+                        "Примеры: We were reading. — Мы читали. You were talking. — Вы разговаривали. They were running. — Они бежали.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
                 Topic(id = 8,
                     title = "Future Continuous",
                     description = "Для будущего времени потребуется глагол will с частицей be.\n" +
                             "\n" +
                             "Формула : I/He/She/It/We/You/They + will be + глагол-ing\n" +
                             "\n" +
-                            "Примеры: I will be speaking. — Я буду говорить. He will be building. — Он будет строить. She will be eating. — Она будет есть. It will be operating. — Оно будет работать. We will be drawing. — Мы будем рисовать. You will be thinking. — Вы будете думать. They will be walking. — Они будут гулять."
+                            "Примеры: I will be speaking. — Я буду говорить. He will be building. — Он будет строить. She will be eating. — Она будет есть. It will be operating. — Оно будет работать. We will be drawing. — Мы будем рисовать. You will be thinking. — Вы будете думать. They will be walking. — Они будут гулять.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 9,
                     title = "Категория Perfect",
-                    description = "Времена глагола в английском языке, относящиеся к группе Perfect, выражают завершенные действия, результат которых непосредственно связан с данным моментом времени. В таких выражениях не может быть использовано простое прошедшее время, поскольку контекст предполагает подчеркивание временного промежутка. Данное действие либо завершили только что, либо к наступлению определенного момента."
+                    description = "Времена глагола в английском языке, относящиеся к группе Perfect, выражают завершенные действия, результат которых непосредственно связан с данным моментом времени. В таких выражениях не может быть использовано простое прошедшее время, поскольку контекст предполагает подчеркивание временного промежутка. Данное действие либо завершили только что, либо к наступлению определенного момента.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 10,
                     title = "Present Perfect",
@@ -143,7 +166,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : He/She/It + has + 3-я форма глагола\n" +
                             "\n" +
-                            "Примеры: He has decided. — Он решил. She has done. — Она сделала. It has turned off. — Оно выключилось."
+                            "Примеры: He has decided. — Он решил. She has done. — Она сделала. It has turned off. — Оно выключилось.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 11,
                     title = "Past Perfect",
@@ -151,7 +176,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : I/He/She/It/We/You/They + had + 3-я форма глагола\n" +
                             "\n" +
-                            "Примеры: I had done. — Я сделал. He had seen. — Он увидел. She had found. — Она нашла. It had fallen. — Оно упало. We had learned. — Мы выучили. You had decided. — Вы решили. They had gone. — Они ушли."
+                            "Примеры: I had done. — Я сделал. He had seen. — Он увидел. She had found. — Она нашла. It had fallen. — Оно упало. We had learned. — Мы выучили. You had decided. — Вы решили. They had gone. — Они ушли.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 12,
                     title = "Future Perfect",
@@ -159,11 +186,15 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : I/He/She/It/We/You/They + will have + 3-я форма глагола\n" +
                             "\n" +
-                            "Примеры: I will have finished. — Я закончу. He will have decided. — Он решит. She will have painted. — Она нарисует. It will have produced. — Оно произведет. We will have arrived. — Мы прибудем. You will have confirmed. — Вы подтвердите. They will have received. — Они получат."
+                            "Примеры: I will have finished. — Я закончу. He will have decided. — Он решит. She will have painted. — Она нарисует. It will have produced. — Оно произведет. We will have arrived. — Мы прибудем. You will have confirmed. — Вы подтвердите. They will have received. — Они получат.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 13,
                     title = "Категория Perfect Continuous",
-                    description = "Все времена глаголов в английском языке, входящие в группу Perfect Continuous, относятся к совершенно-продолженным. Основное их назначение - подчеркнуть, что действие/событие все еще будет продолжаться, когда наступит указанный момент времени, или уже начнется/совершится еще одно действие. Иными словами, действие находится в процессе уже какое-то время, и все еще будет продолжаться."
+                    description = "Все времена глаголов в английском языке, входящие в группу Perfect Continuous, относятся к совершенно-продолженным. Основное их назначение - подчеркнуть, что действие/событие все еще будет продолжаться, когда наступит указанный момент времени, или уже начнется/совершится еще одно действие. Иными словами, действие находится в процессе уже какое-то время, и все еще будет продолжаться.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 14,
                     title = "Present Perfect Continuous",
@@ -175,7 +206,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : He/She/It + has been + глагол-ing\n" +
                             "\n" +
-                            "Примеры: He has been running. — Он бегает. She has been laughing. — Она смеется. It has been working. — Оно работает."
+                            "Примеры: He has been running. — Он бегает. She has been laughing. — Она смеется. It has been working. — Оно работает.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 15,
                     title = "Past Perfect Continuous",
@@ -183,7 +216,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : I/He/She/It/We/You/They + had been + глагол-ing\n" +
                             "\n" +
-                            "Примеры: I had been waiting. — Я ждал. He had been singing. — Он пел. She had been walking. — Она гуляла. It had been ringing. — Оно звенело. We had been learning. — Мы учили. You had been building. — Вы строили. They had been swimming. — Они плавали."
+                            "Примеры: I had been waiting. — Я ждал. He had been singing. — Он пел. She had been walking. — Она гуляла. It had been ringing. — Оно звенело. We had been learning. — Мы учили. You had been building. — Вы строили. They had been swimming. — Они плавали.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 16,
                     title = "Future Perfect Continuous",
@@ -191,7 +226,9 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Формула : I/He/She/It/We/You/They + will have been + глагол-ing\n" +
                             "\n" +
-                            "Примеры: I will have been playing. — Я буду играть. He will have been reading. — Он будет читать. She will have been solving. — Она будет решать. It will have been showing. — Оно будет показывать. We will have been waiting. — Мы будем ждать. You will have been translating. — Вы будете переводить. They will have been calculating. — Они будут считать."
+                            "Примеры: I will have been playing. — Я буду играть. He will have been reading. — Он будет читать. She will have been solving. — Она будет решать. It will have been showing. — Оно будет показывать. We will have been waiting. — Мы будем ждать. You will have been translating. — Вы будете переводить. They will have been calculating. — Они будут считать.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 17,
                     title = "Future in the Past",
@@ -216,13 +253,17 @@ abstract class EnglishDatabase : RoomDatabase() {
                             "\n" +
                             "Perfect Future in the Past выражает действие, которое будет закончено к определенному моменту будущего, воспринимаемого из прошлого\n" +
                             "\n" +
-                            "Пример: We hoped we would have finished our homework by midday. — Мы надеялись, что сделаем домашнее задание к полудню."
+                            "Пример: We hoped we would have finished our homework by midday. — Мы надеялись, что сделаем домашнее задание к полудню.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 ),
                 Topic(id = 18,
                     title = "Perfect Continuous Future in the Past",
                     description = "Perfect Continuous Future in the Past — чрезвычайно редкое даже в письменной речи время, которое обозначает процесс, который начнется и будет продолжаться до определенного момента в будущем, воспринимаемом из прошлого.\n" +
                             "\n" +
-                            "Пример: He told us he would have been working at the plant for 30 years next December. — Он рассказал нам, что в декабре исполнится 30 лет, как он работает на этом заводе."
+                            "Пример: He told us he would have been working at the plant for 30 years next December. — Он рассказал нам, что в декабре исполнится 30 лет, как он работает на этом заводе.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
                 )
             )
             topics.forEach { topic ->

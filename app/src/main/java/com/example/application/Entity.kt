@@ -8,7 +8,9 @@ data class Topic(
     val title: String,
     val description: String,
     var isCompleted: Boolean = false,
-    var isTestCompleted: Boolean = false
+    var isTestCompleted: Boolean = false,
+    var errorCount: Int = 0,
+    var lastAttemptErrors: Int = 0
 )
 
 @Entity(tableName = "tests")

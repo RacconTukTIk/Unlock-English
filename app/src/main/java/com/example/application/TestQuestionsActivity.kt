@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,12 @@ class TestQuestionsActivity : AppCompatActivity() {
         testDao = db.testDao()
         currentTopicId = intent.getIntExtra("TOPIC_ID", -1)
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            db.topicDao().run {
+                updateLastAttemptErrors(currentTopicId, 0)
+                resetErrors(currentTopicId)
+            }
+        }
 
         setupUI()
         loadQuestions()
@@ -76,8 +83,20 @@ class TestQuestionsActivity : AppCompatActivity() {
             val tests = testDao.getTestsByTopicId(currentTopicId).first()
             totalQuestions = tests.size
 
+            if (totalQuestions == 0) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@TestQuestionsActivity,
+                        "Для этой темы нет вопросов",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    finish()
+                }
+                return@launch
+            }
+
             answeredQuestions.clear()
-            answeredQuestions.addAll(List(totalQuestions) {false})
+            answeredQuestions.addAll(List(totalQuestions) { false })
 
             withContext(Dispatchers.Main) {
                 questionAdapter = QuestionAdapter(tests) { position, isCorrect ->

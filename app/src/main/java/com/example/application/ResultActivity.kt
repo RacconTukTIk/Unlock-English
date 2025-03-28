@@ -1,6 +1,8 @@
 package com.example.application
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -14,15 +16,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import java.lang.reflect.Array.getInt
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var sharedPref: SharedPreferences
+    private var currentTopicId = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        sharedPref = getSharedPreferences("app_stats", Context.MODE_PRIVATE)
+        currentTopicId = intent.getIntExtra("TOPIC_ID", -1)
+
         val correct = intent.getIntExtra("CORRECT_ANSWERS", 0)
         val total = intent.getIntExtra("TOTAL_QUESTIONS", 0)
-        val currentTopicId = intent.getIntExtra("TOPIC_ID", -1)
+
 
         val tvResult = findViewById<TextView>(R.id.tvResult)
         val imageResult = findViewById<ImageView>(R.id.imageResult)
@@ -33,7 +42,7 @@ class ResultActivity : AppCompatActivity() {
         tvResult.text = "Правильных ответов: $correct из $total"
 
         if (correct == total) {
-            imageResult.setImageResource(R.drawable.funny_cat)
+            imageResult.setImageResource(R.drawable.kitty)
             tvMessage.text = "Молодец, так держать!"
             tvMessage.setTextColor(ContextCompat.getColor(this, R.color.green))
             btnRetry.visibility = View.GONE
@@ -65,6 +74,8 @@ class ResultActivity : AppCompatActivity() {
             btnFinish.layoutParams = params
         }
 
+        saveStatistics(correct, total)
+
         btnRetry.setOnClickListener {
             val intent = Intent(this, TestQuestionsActivity::class.java).apply {
                 putExtra("TOPIC_ID", currentTopicId)
@@ -76,6 +87,30 @@ class ResultActivity : AppCompatActivity() {
 
         btnFinish.setOnClickListener {
             finish()
+        }
+
+
+    }
+
+    private fun saveStatistics(correct: Int, total: Int) {
+        val errors = total - correct
+        val currentErrors = sharedPref.getInt("total_errors", 0)
+        val currentCorrect = sharedPref.getInt("total_correct", 0)
+
+        sharedPref.edit().apply {
+            putInt("total_errors", currentErrors + errors)
+            putInt("total_correct", currentCorrect + correct)
+            apply()
+        }
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val db = EnglishDatabase.getDatabase(this@ResultActivity)
+            db.topicDao().updateLastAttemptErrors(currentTopicId, errors)
+            if (errors > 0) {
+                db.topicDao().addErrors(currentTopicId, errors)
+            } else {
+                db.topicDao().resetErrors(currentTopicId)
+            }
         }
     }
 

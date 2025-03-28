@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
+            android:name=".StatisticsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MarathonResultActivity"
             android:exported="true" />
         <activity
