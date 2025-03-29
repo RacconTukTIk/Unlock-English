@@ -3,6 +3,7 @@ package com.example.application.Calendar
 import CalendarAdapter
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,28 +101,34 @@ class CalendarFragment : Fragment() {
     private fun fetchLoginData() {
         val user = auth.currentUser ?: return
 
-        database.getReference("users/${user.uid}/logins").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val sessions = mutableListOf<Session>()
-                for (sessionSnapshot in snapshot.children) {
-                    val start = sessionSnapshot.child("start").getValue(Long::class.java)
-                    val end = sessionSnapshot.child("end").getValue(Long::class.java)
-                    if (start != null && end != null) {
-                        sessions.add(Session(start, end))
+        database.getReference("Users/${user.uid}/logins")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (!snapshot.exists()) {
+                        Log.d("Calendar", "No sessions found")
+                        return
+                    }
+
+                    val sessions = mutableListOf<Session>()
+                    for (sessionSnapshot in snapshot.children) {
+                        val start = sessionSnapshot.child("start").getValue(Long::class.java)
+                        val end = sessionSnapshot.child("end").getValue(Long::class.java)
+                        if (start != null && end != null) {
+                            sessions.add(Session(start, end))
+                        }
+                    }
+
+                    updateCalendar(sessions)
+                    updateStreak(sessions)
+                    updateTodayTime(sessions)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    if (isAdded) {
+                        Toast.makeText(requireContext(), "Ошибка: ${error.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-                updateCalendar(sessions)
-                updateStreak(sessions)
-                updateTodayTime(sessions)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                if (isAdded) {
-                    Toast.makeText(requireContext(), "Ошибка: ${error.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
+            })
     }
 
 
@@ -132,7 +139,14 @@ class CalendarFragment : Fragment() {
 
     // Подсчет серии дней
     private fun updateStreak(sessions: List<Session>) {
-        val dates = sessions.map { Instant.ofEpochMilli(it.start).atZone(ZoneId.systemDefault()).toLocalDate() }
+        if (sessions.isEmpty()) {
+            Log.d("Streak", "No sessions to calculate streak")
+            return
+        }
+
+        val dates = sessions.map {
+            Instant.ofEpochMilli(it.start).atZone(ZoneId.systemDefault()).toLocalDate()
+        }
         val sortedDates = dates.sorted()
 
         var currentStreak = 0
@@ -149,6 +163,7 @@ class CalendarFragment : Fragment() {
             prevDate = date
         }
 
+        Log.d("Streak", "Max streak: $maxStreak")
         tvStreak.text = "Серия: $maxStreak дней"
     }
 
@@ -159,7 +174,7 @@ class CalendarFragment : Fragment() {
                 val startDate = Instant.ofEpochMilli(session.start)
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate()
-                startDate == today && session.end > session.start // Исключаем сессии с end = 0
+                startDate == today && session.end > session.start // Исключаем незавершенные сессии
             }
             .sumOf { it.end - it.start }
 

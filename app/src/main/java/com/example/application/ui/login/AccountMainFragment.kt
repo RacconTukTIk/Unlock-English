@@ -135,7 +135,7 @@ class AccountMainFragment : Fragment() {
         if (user != null && sessionKey != null) {
             val sessionRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference("Users/${user.uid}/logins/$sessionKey/end")
-            sessionRef.setValue(System.currentTimeMillis())
+            sessionRef.setValue(System.currentTimeMillis()).addOnSuccessListener { Log.d("Session", "Session $sessionKey ended") }
         }
     }
 

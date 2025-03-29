@@ -10,6 +10,7 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -30,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private var currentSessionKey:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,6 +40,12 @@ class MainActivity : AppCompatActivity() {
 
         setupLoginLink()
         setupRegistrationButton()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        updateSessionEnd()
+
     }
     private fun setupLoginLink() {
         val text = "Уже есть аккаунт? Войти"
@@ -135,6 +143,18 @@ class MainActivity : AppCompatActivity() {
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+
+    private fun updateSessionEnd() {
+        val user = FirebaseAuth.getInstance().currentUser?:return
+        val sessionKey = currentSessionKey?:return
+        if (user != null && sessionKey != null) {
+            val sessionRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("Users/${user.uid}/logins/$sessionKey/end")
+            sessionRef.setValue(System.currentTimeMillis()).addOnSuccessListener { Log.d("Session", "Session $sessionKey ended") }
+        }
+    }
+
 
     override fun onBackPressed() {
         finish()
