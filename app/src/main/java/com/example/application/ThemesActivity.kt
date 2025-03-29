@@ -21,12 +21,8 @@ class ThemesActivity : AppCompatActivity() {
     private lateinit var englishDatabase: EnglishDatabase
     private lateinit var topicDao: TopicDao
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_themes)
 
-        recyclerView = findViewById(R.id.recyclerViewThemes)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+
 
         // Инициализация базы данных и DAO
         englishDatabase = EnglishDatabase.getDatabase(this)

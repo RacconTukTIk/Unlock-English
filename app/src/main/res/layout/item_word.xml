@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp"> <!-- Общий отступ -->
+
+    <TextView
+        android:id="@+id/wordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"  
+    android:textStyle="bold"
+    android:paddingBottom="1dp"/> <!-- Минимальный отступ снизу -->
+
+    <!-- Транскрипция (можно скрыть, если не нужна) -->
+    <TextView
+        android:id="@+id/transcriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"/> <!-- Скрыто по умолчанию -->
+
+    <!-- Перевод (можно скрыть, если не нужен) -->
+    <TextView
+        android:id="@+id/translationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:visibility="gone"/> <!-- Скрыто по умолчанию -->
+</LinearLayout>

@@ -45,8 +45,13 @@
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
         app:layout_constraintVertical_bias="0.045"
         app:srcCompat="@drawable/icon_right_arrow"/>
+
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/icon_right_arrow"  />
+
 
     <!-- Заголовок темы -->
     <TextView
@@ -88,7 +93,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"
+
         app:strokeColor="@color/black"
+
         style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
