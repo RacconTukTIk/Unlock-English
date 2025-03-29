@@ -23,7 +23,6 @@ class SplashActivity : AppCompatActivity() {
 
             sessionManager = SessionManager(applicationContext)
 
-
             // Проверяем пользователя без задержки
             checkAuthState()
         }

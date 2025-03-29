@@ -123,9 +123,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     private fun navigateToMainApp() {
-        val intent = Intent(this, BottomNavigationActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
+        val intent = Intent(this, BottomNavigationActivity::class.java)
         startActivity(intent)
         finish()
     }
