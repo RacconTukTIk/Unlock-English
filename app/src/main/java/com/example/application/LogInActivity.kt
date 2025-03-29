@@ -10,6 +10,7 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.View
 
 import android.widget.Button
@@ -18,17 +19,20 @@ import android.widget.TextView
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.app.MainActivity
 import com.example.application.databinding.LogInActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: LogInActivityBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LogInActivityBinding.inflate(layoutInflater)
@@ -89,8 +93,17 @@ class LogInActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.startNewSession(user.uid) }
-                    navigateToMainApp()
+                    FirebaseAuth.getInstance().currentUser?.let { user ->
+                        sessionManager.startNewSession(user.uid)
+                    }
+                    lifecycleScope.launch {
+                        // Сброс локального прогресса перед загрузкой новых данных
+                        EnglishDatabase.getDatabase(this@LogInActivity).topicDao().resetAllProgress()
+
+                        FirebaseService.loadUserErrors(this@LogInActivity)
+                        FirebaseService.loadUserProgress(this@LogInActivity)
+                        navigateToMainApp()
+                    }
                 } else {
                     handleLoginError(task.exception?.message)
                 }

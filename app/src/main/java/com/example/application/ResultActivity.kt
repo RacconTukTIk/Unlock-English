@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -14,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -87,31 +89,45 @@ class ResultActivity : AppCompatActivity() {
         }
 
         btnFinish.setOnClickListener {
-            setResult(Activity.RESULT_OK)
-            finish()
+            lifecycleScope.launch {
+                // Сохраняем данные в Firebase
+                FirebaseService.saveUserProgress(this@ResultActivity)
+
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
         }
 
 
     }
 
     private fun saveStatistics(correct: Int, total: Int) {
-        val errors = total - correct
-        val currentErrors = sharedPref.getInt("total_errors", 0)
-        val currentCorrect = sharedPref.getInt("total_correct", 0)
-
-        sharedPref.edit().apply {
-            putInt("total_errors", currentErrors + errors)
-            putInt("total_correct", currentCorrect + correct)
-            apply()
-        }
-
         lifecycleScope.launch(Dispatchers.IO) {
+            val errors = total - correct
             val db = EnglishDatabase.getDatabase(this@ResultActivity)
-            db.topicDao().updateLastAttemptErrors(currentTopicId, errors)
-            if (errors > 0) {
-                db.topicDao().addErrors(currentTopicId, errors)
-            } else {
-                db.topicDao().resetErrors(currentTopicId)
+
+            try {
+                // Обновляем локальную базу
+                db.topicDao().apply {
+                    addErrors(currentTopicId, errors)
+                    updateLastAttemptErrors(currentTopicId, errors)
+                }
+
+                // Синхронизируем с Firebase
+                FirebaseService.saveUserErrors(currentTopicId, errors)
+
+                // Обновляем общую статистику
+                withContext(Dispatchers.Main) {
+                    val currentErrors = sharedPref.getInt("total_errors", 0)
+                    val currentCorrect = sharedPref.getInt("total_correct", 0)
+
+                    sharedPref.edit()
+                        .putInt("total_errors", currentErrors + errors)
+                        .putInt("total_correct", currentCorrect + correct)
+                        .apply()
+                }
+            } catch (e: Exception) {
+                Log.e("ResultActivity", "Error saving stats: ${e.message}")
             }
         }
     }
@@ -149,6 +165,13 @@ class ResultActivity : AppCompatActivity() {
             topic?.let {
                 it.isTestCompleted = true
                 db.topicDao().update(it)
+
+                // Получаем все завершенные тесты
+                val currentCompleted = db.topicDao().getAllTopics().first()
+                    .filter { it.isTestCompleted }
+                    .map { it.id }
+
+                FirebaseService.saveCompletedTests(currentCompleted)
             }
         }
     }

@@ -2,6 +2,7 @@ package com.example.application
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.application.R
 import com.example.application.MistakesActivity
 import com.example.dicti.DictTechActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 
@@ -40,7 +42,7 @@ class MenuFragment : Fragment() {
 
         // Загружаем количество пройденных тем и тестов
         loadCompletedTopicsCount()
-        loadCompletedTestCount()
+        //loadCompletedTestCount()
 
         val buttonThemes: Button = view.findViewById(R.id.button_themes)
         buttonThemes.setOnClickListener {
@@ -73,6 +75,7 @@ class MenuFragment : Fragment() {
         }
         return view
     }
+
     private fun loadCompletedTopicsCount() {
         lifecycleScope.launch {
             topicDao.getCompletedTopicsCount().collect { count ->
@@ -88,6 +91,49 @@ class MenuFragment : Fragment() {
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (FirebaseService.getCurrentUserId() == null) {
+            startActivity(Intent(requireActivity(), LogInActivity::class.java))
+            requireActivity().finish()
+        } else {
+            lifecycleScope.launch {
+                try {
+                    FirebaseService.loadUserProgress(requireContext())
+                    FirebaseService.loadUserErrors(requireContext())
+                    updateProgressCounters()
+                } catch (e: Exception) {
+                    Log.e("MenuFragment", "Ошибка загрузки данных: ${e.message}")
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(Intent(requireActivity(), LogInActivity::class.java))
+            requireActivity().finish()
+        } else {
+            lifecycleScope.launch {
+                try {
+                    FirebaseService.loadUserProgress(requireContext())
+                    FirebaseService.loadUserErrors(requireContext())
+                    updateProgressCounters()
+                } catch (e: Exception) {
+                    Log.e("MenuFragment", "Ошибка обновления данных: ${e.message}")
+                }
+            }
+        }
+    }
+
+    private fun updateProgressCounters() {
+        loadCompletedTopicsCount()
+        loadCompletedTestCount()
+    }
+
 
     companion object {
         @JvmStatic

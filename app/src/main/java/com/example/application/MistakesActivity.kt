@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,35 +70,49 @@ class MistakesActivity : AppCompatActivity() {
         errorsRecycler.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            EnglishDatabase.getDatabase(this@MistakesActivity)
-                .topicDao()
-                .getTopicsWithErrors()
-                .collect { topics ->
-                    errorsRecycler.adapter = ErrorsAdapter(topics).apply {
-                        onRetryClick = { topic ->
-                            startActivity(
-                                Intent(this@MistakesActivity, TestQuestionsActivity::class.java).apply {
-                                    putExtra("TOPIC_ID", topic.id)
-                                    putExtra("TOPIC_TITLE", topic.title)
+            try {
+                // Принудительно загружаем данные из Firebase
+                FirebaseService.loadUserErrors(this@MistakesActivity)
+
+                EnglishDatabase.getDatabase(this@MistakesActivity)
+                    .topicDao()
+                    .getTopicsWithErrors()
+                    .collect { topics ->
+                        // Обновление UI
+                        runOnUiThread {
+                            errorsRecycler.adapter = ErrorsAdapter(topics).apply {
+                                onRetryClick = { topic ->
+                                    startActivity(
+                                        Intent(
+                                            this@MistakesActivity,
+                                            TestQuestionsActivity::class.java
+                                        ).apply {
+                                            putExtra("TOPIC_ID", topic.id)
+                                            putExtra("TOPIC_TITLE", topic.title)
+                                        }
+                                    )
                                 }
-                            )
+                            }
+
+                            if (topics.isEmpty()) {
+                                resultImageView.setImageResource(R.drawable.funny_cat)
+                                findViewById<TextView>(R.id.resultMessage).text =
+                                    "Все темы пройдены успешно!"
+                            } else {
+                                resultImageView.setImageResource(R.drawable.sad_cat)
+                                findViewById<TextView>(R.id.resultMessage).text =
+                                    "Есть ошибки для повторения"
+                            }
                         }
                     }
-
-                    // Перенесем проверку пустого списка сюда
-                    if (topics.isEmpty()) {
-                        resultImageView.setImageResource(R.drawable.funny_cat)
-                        findViewById<TextView>(R.id.resultMessage).text = "Все темы пройдены успешно!"
-                    } else {
-                        resultImageView.setImageResource(R.drawable.sad_cat)
-                        findViewById<TextView>(R.id.resultMessage).text = "Есть ошибки для повторения"
-                    }
-                }
+            } catch (e: Exception) {
+                Log.e("MistakesActivity", "Error loading errors: ${e.message}")
+            }
         }
     }
 }
 
-class ErrorsAdapter(private val items: List<Topic>) : RecyclerView.Adapter<ErrorsAdapter.ViewHolder>() {
+    class ErrorsAdapter(private val items: List<Topic>) : RecyclerView.Adapter<ErrorsAdapter.ViewHolder>() {
     var onRetryClick: (Topic) -> Unit = {}
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

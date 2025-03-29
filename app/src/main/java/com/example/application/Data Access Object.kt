@@ -25,6 +25,9 @@ interface TopicDao {
     @Query("SELECT * FROM topics WHERE id NOT IN (1,5,9,13)") // Исключаем категории
     fun getTopicsWithTests(): Flow<List<Topic>>
 
+    @Query("UPDATE topics SET errorCount = :count WHERE id = :topicId")
+    suspend fun updateErrorCount(topicId: Int, count: Int)
+
     @Query("SELECT * FROM topics WHERE id = :topicId")
     suspend fun getTopicById(topicId: Int): Topic?
 
@@ -45,6 +48,40 @@ interface TopicDao {
 
     @Query("SELECT * FROM topics WHERE lastAttemptErrors > 0")
     fun getTopicsWithErrors(): Flow<List<Topic>>
+
+    @Query("UPDATE topics SET isCompleted = 0, isTestCompleted = 0")
+    suspend fun resetAllProgress()
+
+    @Query("UPDATE topics SET isCompleted = 1 WHERE id IN (:ids)")
+    suspend fun setTopicsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET isTestCompleted = 1 WHERE id IN (:ids)")
+    suspend fun setTestsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET isTestCompleted = 0")
+    suspend fun resetTestProgress()
+
+    @Query("UPDATE topics SET errorCount = :count WHERE id = :topicId")
+    suspend fun setErrorCount(topicId: Int, count: Int)
+
+    @Query("UPDATE topics SET lastAttemptErrors = :lastAttempt WHERE id = :topicId")
+    suspend fun setLastAttemptErrors(topicId: Int, lastAttempt: Int)
+
+    @Query("UPDATE topics SET isCompleted = 0")
+    suspend fun resetCompletedTopics()
+
+    @Query("UPDATE topics SET isTestCompleted = 0")
+    suspend fun resetCompletedTests()
+
+    // Вместо старых методов setTopicsCompleted:
+    @Query("UPDATE topics SET isCompleted = CASE WHEN id IN (:ids) THEN 1 ELSE 0 END")
+    suspend fun syncTopicsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET isTestCompleted = CASE WHEN id IN (:ids) THEN 1 ELSE 0 END")
+    suspend fun syncTestsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET needsSync = 0")
+    suspend fun resetErrorsSyncFlag()
 
 }
 
