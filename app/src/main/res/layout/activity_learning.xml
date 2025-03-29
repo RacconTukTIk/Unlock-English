@@ -61,13 +61,12 @@
     <!-- Кнопки внизу -->
     <Button
         android:id="@+id/buttonCheck"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="Проверить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonNext"
-        android:layout_marginEnd="8dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonNext"

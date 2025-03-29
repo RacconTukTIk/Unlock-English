@@ -13,13 +13,13 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="Выученные слова"
-        android:textSize="30dp"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/emptyState"

@@ -3,14 +3,14 @@ package com.example.application
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.application.databinding.ActivityVocabularyBinding
+import com.example.application.databinding.FragmentVocabularyBinding
 
 class VocabularyActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityVocabularyBinding
+    private lateinit var binding: FragmentVocabularyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityVocabularyBinding.inflate(layoutInflater)
+        binding = FragmentVocabularyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Проверка биндинга
