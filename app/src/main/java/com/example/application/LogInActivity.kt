@@ -1,5 +1,6 @@
 package com.example.application
 
+import SessionManager
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -21,16 +22,19 @@ import com.example.app.MainActivity
 import com.example.application.databinding.LogInActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: LogInActivityBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+        sessionManager=SessionManager(applicationContext)
 
         setupRegistrationLink()
         setupLoginButton()
@@ -85,6 +89,7 @@ class LogInActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.startNewSession(user.uid) }
                     navigateToMainApp()
                 } else {
                     handleLoginError(task.exception?.message)
@@ -120,6 +125,7 @@ class LogInActivity : AppCompatActivity() {
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 
     override fun onBackPressed() {
 

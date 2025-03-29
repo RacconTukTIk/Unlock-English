@@ -1,5 +1,6 @@
 package com.example.app
 
+import SessionManager
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -10,6 +11,7 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -30,14 +32,22 @@ import com.google.firebase.database.FirebaseDatabase
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+        sessionManager=SessionManager(applicationContext)
 
         setupLoginLink()
         setupRegistrationButton()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.endSession(user.uid) }
+
     }
     private fun setupLoginLink() {
         val text = "Уже есть аккаунт? Войти"
@@ -135,6 +145,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 
     override fun onBackPressed() {
         finish()

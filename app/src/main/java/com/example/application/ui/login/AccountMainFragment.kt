@@ -1,7 +1,9 @@
 package com.example.application
 
+import SessionManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -35,6 +37,7 @@ class AccountMainFragment : Fragment() {
     private lateinit var textViewUsername: TextView
     private lateinit var editNotes: EditText
     private lateinit var currentUser: FirebaseUser
+    private lateinit var sessionManager: SessionManager
     private val database = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
     override fun onCreateView(
@@ -43,12 +46,24 @@ class AccountMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_account, container, false)
+        sessionManager=SessionManager(requireContext())
         initViews(view)
         setupFirebase()
         setupUI()
         setupListeners()
         return view
     }
+
+    override fun onStop()
+    {
+        super.onStop()
+        logoutFromSession()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        logoutFromSession() // Дополнительная проверка
+    }
+
 
     private fun initViews(view: View) {
         textViewEmail = view.findViewById(R.id.textViewEmail)
@@ -96,6 +111,7 @@ class AccountMainFragment : Fragment() {
         })
 
         buttonLogout.setOnClickListener {
+            logoutFromSession()
             FirebaseAuth.getInstance().signOut()
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {
@@ -119,6 +135,13 @@ class AccountMainFragment : Fragment() {
     private fun redirectToLogin() {
         startActivity(Intent(requireContext(), LogInActivity::class.java))
         requireActivity().finish()
+    }
+
+    private fun logoutFromSession() {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            sessionManager.endSession(user.uid)
+        }
+
     }
 
     override fun onPause()
