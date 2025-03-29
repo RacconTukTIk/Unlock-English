@@ -1,6 +1,6 @@
 package com.example.application
 
-import CalendarAdapter
+import com.example.application.CalendarAdapter
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log

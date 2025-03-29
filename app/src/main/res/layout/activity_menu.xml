@@ -165,7 +165,7 @@
         android:layout_width="64dp"
         android:layout_height="18dp"
         android:layout_marginTop="212dp"
-        android:text="Тетсты"
+        android:text="Тесты"
         android:gravity="center"
         android:textColor="@color/black"
         android:translationY="-60dp"

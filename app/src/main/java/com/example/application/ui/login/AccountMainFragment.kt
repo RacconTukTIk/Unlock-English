@@ -113,6 +113,7 @@ class AccountMainFragment : Fragment() {
         buttonLogout.setOnClickListener {
             logoutFromSession()
             FirebaseAuth.getInstance().signOut()
+
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

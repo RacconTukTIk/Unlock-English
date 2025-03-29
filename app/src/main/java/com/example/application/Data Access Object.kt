@@ -46,6 +46,18 @@ interface TopicDao {
     @Query("SELECT * FROM topics WHERE lastAttemptErrors > 0")
     fun getTopicsWithErrors(): Flow<List<Topic>>
 
+    @Query("UPDATE topics SET isCompleted = 0, isTestCompleted = 0, errorCount = 0, lastAttemptErrors = 0")
+    suspend fun resetAllProgress()
+
+    @Query("UPDATE topics SET isCompleted = 1 WHERE id IN (:ids)")
+    suspend fun setTopicsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET isTestCompleted = 1 WHERE id IN (:ids)")
+    suspend fun setTestsCompleted(ids: List<Int>)
+
+    @Query("UPDATE topics SET isTestCompleted = 0")
+    suspend fun resetTestProgress()
+
 }
 
 @Dao

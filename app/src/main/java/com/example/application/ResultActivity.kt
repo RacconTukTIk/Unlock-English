@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -149,6 +150,13 @@ class ResultActivity : AppCompatActivity() {
             topic?.let {
                 it.isTestCompleted = true
                 db.topicDao().update(it)
+
+                // Сохраняем в Firebase
+                val currentCompleted = db.topicDao().getAllTopics().first()
+                    .filter { it.isTestCompleted }
+                    .map { it.id }
+
+                FirebaseService.saveCompletedTests(currentCompleted)
             }
         }
     }

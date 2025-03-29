@@ -35,18 +35,23 @@ class DescriptionActivity : AppCompatActivity() {
         // Обработка кнопки "Тема пройдена"
         binding.actionButton.setOnClickListener {
             lifecycleScope.launch {
-                // Получаем тему по ID
-                val topic = topicDao.getAllTopics().first().find { it.id == topicId }
-                topic?.let {
-                    // Обновляем статус темы
-                    it.isCompleted = true
-                    topicDao.update(it)
+                val userId = FirebaseService.getCurrentUserId()
+                if (userId != null) {
+                    val topic = topicDao.getTopicById(topicId)
+                    topic?.let {
+                        it.isCompleted = true
+                        topicDao.update(it)
 
-                    // Обновляем счетчик на главном экране
-                    updateCompletedTopicsCount()
+                        // Сохраняем только ID текущей темы
+                        val currentCompleted = topicDao.getAllTopics().first()
+                            .filter { it.isCompleted }
+                            .map { it.id }
 
-                    finish()
+                        FirebaseService.saveCompletedTopics(currentCompleted)
+                    }
                 }
+                updateCompletedTopicsCount()
+                finish()
             }
         }
 
@@ -59,6 +64,22 @@ class DescriptionActivity : AppCompatActivity() {
     private fun updateCompletedTopicsCount() {
         // Отправляем результат в MenuFragment
         setResult(RESULT_OK)
+    }
+
+    private suspend fun updateTopicCompletion() {
+        val db = EnglishDatabase.getDatabase(this)
+        val topic = db.topicDao().getTopicById(topicId)
+        topic?.let {
+            it.isCompleted = true
+            db.topicDao().update(it)
+
+            // Получаем актуальный список завершённых тем
+            val completedTopics = db.topicDao().getAllTopics().first()
+                .filter { it.isCompleted }
+                .map { it.id }
+
+            FirebaseService.saveCompletedTopics(completedTopics)
+        }
     }
 
     override fun onBackPressed() {

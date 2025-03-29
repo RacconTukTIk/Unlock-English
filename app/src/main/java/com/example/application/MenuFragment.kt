@@ -40,7 +40,7 @@ class MenuFragment : Fragment() {
 
         // Загружаем количество пройденных тем и тестов
         loadCompletedTopicsCount()
-        loadCompletedTestCount()
+        //loadCompletedTestCount()
 
         val buttonThemes: Button = view.findViewById(R.id.button_themes)
         buttonThemes.setOnClickListener {
@@ -73,6 +73,7 @@ class MenuFragment : Fragment() {
         }
         return view
     }
+
     private fun loadCompletedTopicsCount() {
         lifecycleScope.launch {
             topicDao.getCompletedTopicsCount().collect { count ->
@@ -85,6 +86,18 @@ class MenuFragment : Fragment() {
         lifecycleScope.launch {
             topicDao.getCompletedTestsCount().collect { count ->
                 tvTestProgress.text = "$count/14"
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            if (FirebaseService.getCurrentUserId() != null) {
+                FirebaseService.loadUserProgress(requireContext()).join()
+                loadCompletedTopicsCount()
+                loadCompletedTestCount()
             }
         }
     }
