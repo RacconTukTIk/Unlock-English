@@ -1,5 +1,6 @@
 package com.example.application
 
+import SessionManager
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,11 +12,12 @@ import com.google.firebase.database.FirebaseDatabase
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private var currentSessionKey:String?=null
+    private lateinit var sessionManager:SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        sessionManager=SessionManager(applicationContext)
 
         // Проверяем пользователя без задержки
         checkAuthState()
@@ -26,9 +28,10 @@ class SplashActivity : AppCompatActivity() {
         Log.d("AUTH_DEBUG", "Current user: ${currentUser?.uid ?: "null"}")
 
         if (currentUser != null) {
+            FirebaseAuth.getInstance().currentUser?.let{user->sessionManager.startNewSession(user.uid)}
             // Переход сразу, без проверки токена
             navigateToMainApp()
-            startNewSession()
+
         } else {
             navigateToLogin()
         }
@@ -44,22 +47,6 @@ class SplashActivity : AppCompatActivity() {
         Log.d("AUTH_DEBUG", "No user session")
         startActivity(Intent(this, LogInActivity::class.java))
         finish()
-    }
-
-    private fun startNewSession() {
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            val userId = it.uid
-            val loginRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference("Users/$userId/logins")
-                .push()
-
-            currentSessionKey = loginRef.key // Сохраняем ключ сессии
-            val sessionStart = HashMap<String, Any>()
-            sessionStart["start"] = System.currentTimeMillis()
-            sessionStart["end"] = 0 // Пока не завершена
-            loginRef.setValue(sessionStart)
-        }
     }
 
 }

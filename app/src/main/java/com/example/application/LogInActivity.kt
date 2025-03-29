@@ -1,5 +1,6 @@
 package com.example.application
 
+import SessionManager
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -27,12 +28,13 @@ import com.google.firebase.ktx.Firebase
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: LogInActivityBinding
     private lateinit var auth: FirebaseAuth
-    private var currentSessionKey:String?=null
+    private lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+        sessionManager=SessionManager(applicationContext)
 
         setupRegistrationLink()
         setupLoginButton()
@@ -87,7 +89,7 @@ class LogInActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startNewSession()
+                    FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.startNewSession(user.uid) }
                     navigateToMainApp()
                 } else {
                     handleLoginError(task.exception?.message)
@@ -124,31 +126,6 @@ class LogInActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-
-    private fun startNewSession() {
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            val userId = it.uid
-            val loginRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference("Users/$userId/logins")
-                .push()
-
-            currentSessionKey = loginRef.key // Сохраняем ключ сессии
-            val sessionStart = HashMap<String, Any>()
-            sessionStart["start"] = System.currentTimeMillis()
-            sessionStart["end"] = 0 // Пока не завершена
-            loginRef.setValue(sessionStart)
-        }
-    }
-
-    private fun updateSessionEnd(sessionKey: String) {
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let { userId ->
-            val sessionRef = FirebaseDatabase.getInstance()
-                .getReference("users/${userId.uid}/logins/$sessionKey/end")
-            sessionRef.setValue(System.currentTimeMillis())
-        }
-    }
 
     override fun onBackPressed() {
 

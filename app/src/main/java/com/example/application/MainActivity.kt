@@ -1,5 +1,6 @@
 package com.example.app
 
+import SessionManager
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -31,12 +32,13 @@ import com.google.firebase.database.FirebaseDatabase
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
-    private var currentSessionKey:String?=null
+    private lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+        sessionManager=SessionManager(applicationContext)
 
         setupLoginLink()
         setupRegistrationButton()
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        updateSessionEnd()
+        FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.endSession(user.uid) }
 
     }
     private fun setupLoginLink() {
@@ -142,17 +144,6 @@ class MainActivity : AppCompatActivity() {
     }
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-
-    private fun updateSessionEnd() {
-        val user = FirebaseAuth.getInstance().currentUser?:return
-        val sessionKey = currentSessionKey?:return
-        if (user != null && sessionKey != null) {
-            val sessionRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference("Users/${user.uid}/logins/$sessionKey/end")
-            sessionRef.setValue(System.currentTimeMillis()).addOnSuccessListener { Log.d("Session", "Session $sessionKey ended") }
-        }
     }
 
 

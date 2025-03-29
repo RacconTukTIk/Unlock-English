@@ -1,7 +1,9 @@
 package com.example.application
 
+import SessionManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -35,7 +37,7 @@ class AccountMainFragment : Fragment() {
     private lateinit var textViewUsername: TextView
     private lateinit var editNotes: EditText
     private lateinit var currentUser: FirebaseUser
-    private var currentSessionKey:String?=null
+    private lateinit var sessionManager: SessionManager
     private val database = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
     override fun onCreateView(
@@ -44,6 +46,7 @@ class AccountMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_account, container, false)
+        sessionManager=SessionManager(requireContext())
         initViews(view)
         setupFirebase()
         setupUI()
@@ -54,11 +57,11 @@ class AccountMainFragment : Fragment() {
     override fun onStop()
     {
         super.onStop()
-        updateSessionEnd()
+        logoutFromSession()
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        updateSessionEnd() // Дополнительная проверка
+        logoutFromSession() // Дополнительная проверка
     }
 
 
@@ -108,7 +111,7 @@ class AccountMainFragment : Fragment() {
         })
 
         buttonLogout.setOnClickListener {
-            updateSessionEnd()
+            logoutFromSession()
             FirebaseAuth.getInstance().signOut()
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {
@@ -129,19 +132,16 @@ class AccountMainFragment : Fragment() {
             }
     }
 
-    private fun updateSessionEnd() {
-        val user = FirebaseAuth.getInstance().currentUser?:return
-        val sessionKey = currentSessionKey?:return
-        if (user != null && sessionKey != null) {
-            val sessionRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference("Users/${user.uid}/logins/$sessionKey/end")
-            sessionRef.setValue(System.currentTimeMillis()).addOnSuccessListener { Log.d("Session", "Session $sessionKey ended") }
-        }
-    }
-
     private fun redirectToLogin() {
         startActivity(Intent(requireContext(), LogInActivity::class.java))
         requireActivity().finish()
+    }
+
+    private fun logoutFromSession() {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            sessionManager.endSession(user.uid)
+        }
+
     }
 
     override fun onPause()
