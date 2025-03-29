@@ -35,6 +35,7 @@ class AccountMainFragment : Fragment() {
     private lateinit var textViewUsername: TextView
     private lateinit var editNotes: EditText
     private lateinit var currentUser: FirebaseUser
+    private var currentSessionKey:String?=null
     private val database = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
     override fun onCreateView(
@@ -49,6 +50,17 @@ class AccountMainFragment : Fragment() {
         setupListeners()
         return view
     }
+
+    override fun onStop()
+    {
+        super.onStop()
+        updateSessionEnd()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        updateSessionEnd() // Дополнительная проверка
+    }
+
 
     private fun initViews(view: View) {
         textViewEmail = view.findViewById(R.id.textViewEmail)
@@ -96,6 +108,7 @@ class AccountMainFragment : Fragment() {
         })
 
         buttonLogout.setOnClickListener {
+            updateSessionEnd()
             FirebaseAuth.getInstance().signOut()
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {
@@ -114,6 +127,16 @@ class AccountMainFragment : Fragment() {
                 Log.e("SAVE_DATA", "Ошибка сохранения: ${e.message}")
                 Toast.makeText(requireContext(), "Ошибка сохранения", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun updateSessionEnd() {
+        val user = FirebaseAuth.getInstance().currentUser?:return
+        val sessionKey = currentSessionKey?:return
+        if (user != null && sessionKey != null) {
+            val sessionRef = FirebaseDatabase.getInstance("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("Users/${user.uid}/logins/$sessionKey/end")
+            sessionRef.setValue(System.currentTimeMillis())
+        }
     }
 
     private fun redirectToLogin() {

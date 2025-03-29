@@ -69,4 +69,6 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0") // Для работы с датами
+    implementation("com.google.android.material:material:1.11.0")  // Для корректного отображения
 }
