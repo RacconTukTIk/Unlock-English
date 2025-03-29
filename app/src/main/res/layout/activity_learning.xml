@@ -9,17 +9,21 @@
     tools:context=".LearningActivity">
 
     <!-- Инструкция сверху -->
+
+    <!-- Русское слово -->
+
     <TextView
         android:id="@+id/textViewInstruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
         android:text="Переведите слово:"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Русское слово -->
     <TextView
         android:id="@+id/textViewRussianWord"
         android:layout_width="wrap_content"
@@ -31,17 +35,20 @@
         android:layout_marginTop="16dp"/>
 
     <!-- Поле ввода -->
+
+    <!-- Результат проверки -->
+
     <EditText
         android:id="@+id/editTextAnswer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:hint="Английский перевод"
-        app:layout_constraintTop_toBottomOf="@id/textViewRussianWord"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewRussianWord" />
 
-    <!-- Результат проверки -->
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="wrap_content"

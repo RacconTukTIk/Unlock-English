@@ -1,43 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/white"
     android:padding="16dp">
+
+    <!-- Иконка (можно свободно перемещать) -->
+
+    <!-- Текст (можно свободно перемещать) -->
+
+    <!-- Большая кнопка (можно свободно перемещать) -->
+
+    <!-- Горизонтальная группа кнопок -->
+
+    <ImageView
+        android:id="@+id/imageUnlockEnglish"
+        android:layout_width="36dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/unlockenglish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUnlockEnglish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock English"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077" />
 
     <Button
         android:id="@+id/button_learnWords"
         android:layout_width="320dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="156dp"
         android:backgroundTint="#50c878"
         android:text="Учить слова!"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textUnlockEnglish"
+        app:layout_constraintVertical_bias="0.087" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/button_learnWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp">
 
-        <Button
-            android:id="@+id/button_learned"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#A6C8EB"
-            android:text="Выученные"
-            android:textColor="#000000"/>
-
-        <Button
-            android:id="@+id/button_need_to_repeat"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:backgroundTint="#A6C8EB"
-            android:text="Нужно повторить"
-            android:textColor="#000000"/>
     </LinearLayout>
-</LinearLayout>
+
+    <Button
+        android:id="@+id/button_learned"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#9C27B0"
+        android:text="Выученные"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_learnWords"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <Button
+        android:id="@+id/button_need_to_repeat"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#9C27B0"
+        android:text="Нужно повторить"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_learnWords"
+        app:layout_constraintVertical_bias="0.04" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

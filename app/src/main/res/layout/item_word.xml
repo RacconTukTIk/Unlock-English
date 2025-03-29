@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"> <!-- Было 16dp -->
+    android:padding="4dp"> <!-- Было 16dp -->
 
     <TextView
         android:id="@+id/wordText"
@@ -18,12 +18,12 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="?android:attr/textColorSecondary"
-        android:layout_marginTop="2dp"/> <!-- Было 4dp -->
+        android:layout_marginTop="1dp"/> <!-- Было 4dp -->
 
     <TextView
         android:id="@+id/translationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginTop="4dp"/> <!-- Было 8dp -->
+        android:layout_marginTop="2dp"/> <!-- Было 8dp -->
 </LinearLayout>

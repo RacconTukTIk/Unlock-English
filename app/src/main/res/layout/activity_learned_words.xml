@@ -10,11 +10,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выученные слова"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:gravity="center"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:text="Выученные слова"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
