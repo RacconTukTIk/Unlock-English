@@ -76,7 +76,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="80dp"
-        android:text="Статистика"
+        android:text="Ошибки"
         android:textColor="@color/black"
         android:textSize="38sp"
         android:textStyle="bold"
@@ -88,39 +88,16 @@
         app:layout_constraintVertical_bias="0.094" />
 
     <TextView
-        android:id="@+id/correctAnswersText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:text="Правильные ответы:"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultImage" />
-
-    <TextView
-        android:id="@+id/correctAnswersCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/correctAnswersText"
-        app:layout_constraintStart_toEndOf="@id/correctAnswersText" />
-
-    <TextView
         android:id="@+id/successRateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="76dp"
         android:text="Процент успешности: 0%"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/correctAnswersText" />
+        app:layout_constraintTop_toBottomOf="@+id/resultImage" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/errorsRecycler"

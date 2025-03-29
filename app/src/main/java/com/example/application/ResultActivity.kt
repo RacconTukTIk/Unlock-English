@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -86,6 +87,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         btnFinish.setOnClickListener {
+            setResult(Activity.RESULT_OK)
             finish()
         }
 

@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -52,9 +53,15 @@ class MistakesActivity : AppCompatActivity() {
         val totalQuestions = totalErrors + totalCorrect
         val successRate = if (totalQuestions > 0) (totalCorrect * 100 / totalQuestions) else 0
 
-        findViewById<TextView>(R.id.correctAnswersCount).text = totalCorrect.toString()
         findViewById<TextView>(R.id.successRateText).text =
             "Процент успешности: $successRate%"
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            finish()
+        }
     }
 
     private fun setupRecyclerView() {
