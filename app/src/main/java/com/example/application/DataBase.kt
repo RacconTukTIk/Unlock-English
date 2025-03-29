@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Topic::class, Test::class], version = 8, exportSchema = false)
+@Database(entities = [Topic::class, Test::class], version = 10, exportSchema = false)
 abstract class EnglishDatabase : RoomDatabase() {
 
     abstract fun topicDao(): TopicDao

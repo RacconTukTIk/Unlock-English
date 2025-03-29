@@ -33,27 +33,6 @@ object FirebaseService {
     }
     // endregion
 
-    // region Error Handling
-    suspend fun saveUserErrors(topicId: Int, errors: Int) {
-        val userId = getCurrentUserId() ?: return
-
-        try {
-            val updates = hashMapOf<String, Any>(
-                "errorCount" to errors,
-                "lastAttemptErrors" to errors
-            )
-
-            dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(USER_ERRORS)
-                .child(topicId.toString())
-                .updateChildren(updates)
-                .await()
-        } catch (e: Exception) {
-            Log.e("FirebaseService", "Error saving errors: ${e.message}")
-        }
-    }
-
     suspend fun resetErrorsForTopic(topicId: Int) {
         val userId = getCurrentUserId() ?: return
 
@@ -89,20 +68,51 @@ object FirebaseService {
             .await()
     }
 
+    suspend fun saveUserErrors(topicId: Int, errors: Int) {
+        val userId = getCurrentUserId() ?: return
+
+        try {
+            // Получаем текущие значения из Firebase
+            val currentData = dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(USER_ERRORS)
+                .child(topicId.toString())
+                .get()
+                .await()
+
+            val currentErrors = currentData.child("errorCount").getValue(Int::class.java) ?: 0
+
+            // Обновляем значения с накоплением
+            val updates = hashMapOf<String, Any>(
+                "errorCount" to (currentErrors + errors),
+                "lastAttemptErrors" to errors
+            )
+
+            dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(USER_ERRORS)
+                .child(topicId.toString())
+                .setValue(updates)
+                .await()
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Error saving errors: ${e.message}")
+        }
+    }
+
     suspend fun saveUserProgress(context: Context) {
         val userId = getCurrentUserId() ?: return
         val db = EnglishDatabase.getDatabase(context)
 
         try {
-            val topics = db.topicDao().getAllTopics().first() // Добавляем .first() для Flow<List<Topic>>
+            val topics = db.topicDao().getAllTopics().first()
 
             val completedTopics = topics
-                .filter { topic -> topic.isCompleted }
-                .map { topic -> topic.id }
+                .filter { it.isCompleted }
+                .map { it.id }
 
             val completedTests = topics
-                .filter { topic -> topic.isTestCompleted }
-                .map { topic -> topic.id }
+                .filter { it.isTestCompleted }
+                .map { it.id }
 
             saveCompletedTopics(completedTopics)
             saveCompletedTests(completedTests)
@@ -162,24 +172,29 @@ object FirebaseService {
         val db = EnglishDatabase.getDatabase(context)
 
         try {
-            val snapshot = dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(USER_ERRORS)
-                .get()
-                .await()
+            // Получаем все темы с ошибками из локальной базы
+            val topicsWithErrors = db.topicDao().getTopicsWithErrors().first()
 
-            snapshot.children.forEach { topicSnapshot ->
-                val topicId = topicSnapshot.key?.toIntOrNull() ?: return@forEach
-                val errorCount = topicSnapshot.child("errorCount").getValue(Int::class.java) ?: 0
-                val lastAttempt = topicSnapshot.child("lastAttemptErrors").getValue(Int::class.java) ?: 0
+            // Синхронизируем каждую тему с Firebase
+            topicsWithErrors.forEach { topic ->
+                val updates = hashMapOf<String, Any>(
+                    "errorCount" to topic.errorCount,
+                    "lastAttemptErrors" to topic.lastAttemptErrors
+                )
 
-                db.topicDao().apply {
-                    updateErrorCount(topicId, errorCount)
-                    updateLastAttemptErrors(topicId, lastAttempt)
-                }
+                dbRef.child(USERS_PATH)
+                    .child(userId)
+                    .child(USER_ERRORS)
+                    .child(topic.id.toString())
+                    .setValue(updates)
+                    .await()
             }
+
+            // Помечаем ошибки как синхронизированные
+            db.topicDao().resetErrorsSyncFlag()
+
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Error loading errors: ${e.message}")
+            Log.e("FirebaseService", "Sync errors failed: ${e.message}")
         }
     }
     // endregion

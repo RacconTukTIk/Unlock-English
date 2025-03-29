@@ -80,6 +80,9 @@ interface TopicDao {
     @Query("UPDATE topics SET isTestCompleted = CASE WHEN id IN (:ids) THEN 1 ELSE 0 END")
     suspend fun syncTestsCompleted(ids: List<Int>)
 
+    @Query("UPDATE topics SET needsSync = 0")
+    suspend fun resetErrorsSyncFlag()
+
 }
 
 @Dao

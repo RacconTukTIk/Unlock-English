@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.application.R
 import com.example.application.MistakesActivity
 import com.example.dicti.DictTechActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 
@@ -112,13 +113,18 @@ class MenuFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        lifecycleScope.launch {
-            try {
-                FirebaseService.loadUserProgress(requireContext())
-                FirebaseService.loadUserErrors(requireContext())
-                updateProgressCounters()
-            } catch (e: Exception) {
-                Log.e("MenuFragment", "Ошибка обновления данных: ${e.message}")
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(Intent(requireActivity(), LogInActivity::class.java))
+            requireActivity().finish()
+        } else {
+            lifecycleScope.launch {
+                try {
+                    FirebaseService.loadUserProgress(requireContext())
+                    FirebaseService.loadUserErrors(requireContext())
+                    updateProgressCounters()
+                } catch (e: Exception) {
+                    Log.e("MenuFragment", "Ошибка обновления данных: ${e.message}")
+                }
             }
         }
     }

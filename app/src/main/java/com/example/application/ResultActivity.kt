@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -101,26 +102,32 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun saveStatistics(correct: Int, total: Int) {
-        val errors = total - correct
-        val currentErrors = sharedPref.getInt("total_errors", 0)
-        val currentCorrect = sharedPref.getInt("total_correct", 0)
-
-        sharedPref.edit().apply {
-            putInt("total_errors", currentErrors + errors)
-            putInt("total_correct", currentCorrect + correct)
-            apply()
-        }
-
         lifecycleScope.launch(Dispatchers.IO) {
+            val errors = total - correct
             val db = EnglishDatabase.getDatabase(this@ResultActivity)
-            db.topicDao().updateLastAttemptErrors(currentTopicId, errors)
 
-            if (errors > 0) {
-                db.topicDao().addErrors(currentTopicId, errors)
-                FirebaseService.saveUserErrors(currentTopicId, errors) // Исправленное имя метода
-            } else {
-                db.topicDao().resetErrors(currentTopicId)
-                FirebaseService.resetErrorsForTopic(currentTopicId)
+            try {
+                // Обновляем локальную базу
+                db.topicDao().apply {
+                    addErrors(currentTopicId, errors)
+                    updateLastAttemptErrors(currentTopicId, errors)
+                }
+
+                // Синхронизируем с Firebase
+                FirebaseService.saveUserErrors(currentTopicId, errors)
+
+                // Обновляем общую статистику
+                withContext(Dispatchers.Main) {
+                    val currentErrors = sharedPref.getInt("total_errors", 0)
+                    val currentCorrect = sharedPref.getInt("total_correct", 0)
+
+                    sharedPref.edit()
+                        .putInt("total_errors", currentErrors + errors)
+                        .putInt("total_correct", currentCorrect + correct)
+                        .apply()
+                }
+            } catch (e: Exception) {
+                Log.e("ResultActivity", "Error saving stats: ${e.message}")
             }
         }
     }

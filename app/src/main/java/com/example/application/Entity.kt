@@ -10,7 +10,8 @@ data class Topic(
     var isCompleted: Boolean = false,
     var isTestCompleted: Boolean = false,
     var errorCount: Int = 0,
-    var lastAttemptErrors: Int = 0
+    var lastAttemptErrors: Int = 0,
+    var needsSync: Boolean = false
 )
 
 @Entity(tableName = "tests")
