@@ -20,21 +20,10 @@
         android:id="@+id/imageUnlockEnglish"
         android:layout_width="36dp"
         android:layout_height="42dp"
-        android:layout_marginTop="44dp"
-        android:src="@drawable/unlockenglish"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageUnlockEnglish"
-        android:layout_width="36dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -44,41 +33,16 @@
         android:id="@+id/textUnlockEnglish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="124dp"
         android:gravity="center"
         android:text="Unlock English"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageUnlockEnglish"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.861" />
-
-    <TextView
-        android:id="@+id/textUnlockEnglish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="144dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="Словарный запас"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/rectangle"
-
-        android:text="Unlock English"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
 
     <Button
         android:id="@+id/button_learnWords"
@@ -86,10 +50,8 @@
         android:layout_height="130dp"
 
         android:layout_gravity="center"
-        android:layout_marginTop="396dp"
-        android:layout_marginBottom="216dp"
+        android:layout_marginBottom="304dp"
 
-        android:layout_marginTop="156dp"
 
         android:backgroundTint="#50c878"
         android:text="Учить слова!"
@@ -98,9 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textUnlockEnglish"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:layout_width="wrap_content"

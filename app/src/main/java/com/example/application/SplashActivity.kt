@@ -2,7 +2,6 @@ package com.example.application
 
 
 import SessionManager
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -16,9 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var sessionManager: SessionManager
-
-    class SplashActivity : AppCompatActivity() {
-        private lateinit var auth: FirebaseAuth
 
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +62,6 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, LogInActivity::class.java))
             finish()
         }
-    }
+
 }
 

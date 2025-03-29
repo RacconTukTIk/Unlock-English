@@ -1,5 +1,6 @@
 package com.example.application
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +24,13 @@ class ThemesActivity : AppCompatActivity() {
 
 
 
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_themes)
 
+        recyclerView = findViewById(R.id.recyclerViewThemes)
+        recyclerView.layoutManager = LinearLayoutManager(this)
         // Инициализация базы данных и DAO
         englishDatabase = EnglishDatabase.getDatabase(this)
         topicDao = englishDatabase.topicDao()
