@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.application.MenuFragment
 import com.example.application.R
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +27,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.Date
@@ -111,6 +115,11 @@ class AccountMainFragment : Fragment() {
         })
 
         buttonLogout.setOnClickListener {
+            lifecycleScope.launch {
+                withContext(Dispatchers.IO) {
+                    EnglishDatabase.getDatabase(requireContext()).topicDao().resetAllProgress()
+                }
+            }
             logoutFromSession()
             FirebaseAuth.getInstance().signOut()
 

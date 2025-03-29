@@ -88,8 +88,13 @@ class ResultActivity : AppCompatActivity() {
         }
 
         btnFinish.setOnClickListener {
-            setResult(Activity.RESULT_OK)
-            finish()
+            lifecycleScope.launch {
+                // Сохраняем данные в Firebase
+                FirebaseService.saveUserProgress(this@ResultActivity)
+
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
         }
 
 
@@ -109,10 +114,13 @@ class ResultActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             val db = EnglishDatabase.getDatabase(this@ResultActivity)
             db.topicDao().updateLastAttemptErrors(currentTopicId, errors)
+
             if (errors > 0) {
                 db.topicDao().addErrors(currentTopicId, errors)
+                FirebaseService.saveUserErrors(currentTopicId, errors) // Исправленное имя метода
             } else {
                 db.topicDao().resetErrors(currentTopicId)
+                FirebaseService.resetErrorsForTopic(currentTopicId)
             }
         }
     }
@@ -151,7 +159,7 @@ class ResultActivity : AppCompatActivity() {
                 it.isTestCompleted = true
                 db.topicDao().update(it)
 
-                // Сохраняем в Firebase
+                // Получаем все завершенные тесты
                 val currentCompleted = db.topicDao().getAllTopics().first()
                     .filter { it.isTestCompleted }
                     .map { it.id }
