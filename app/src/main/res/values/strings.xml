@@ -52,4 +52,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="signup_text">Зарегистрироваться</string>
+    <string name="acc_exists_question">Уже есть аккаунт? Войти</string>
+    <string name="rewrite_password">Повторите пароль</string>
 </resources>
