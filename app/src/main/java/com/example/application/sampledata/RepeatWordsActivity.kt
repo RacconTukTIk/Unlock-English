@@ -1,10 +1,12 @@
-package com.example.application
+package com.example.application.sampledata
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application.databinding.ActivityRepeatWordsBinding
+import com.example.application.R
 
 class RepeatWordsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRepeatWordsBinding
@@ -15,6 +17,12 @@ class RepeatWordsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
+
+        var buttonExit: ImageView = findViewById(R.id.exitWordRepeat)
+        buttonExit.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun setupRecyclerView() {

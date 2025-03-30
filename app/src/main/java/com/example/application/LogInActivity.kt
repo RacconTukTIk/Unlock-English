@@ -139,6 +139,6 @@ class LogInActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-
+        finish()
     }
 }

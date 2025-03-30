@@ -1,10 +1,12 @@
-package com.example.application
+package com.example.application.sampledata
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.application.DataDict
+import com.example.application.R
 
 class WordAdapter(private val words: List<DataDict>) :
     RecyclerView.Adapter<WordAdapter.WordViewHolder>() {

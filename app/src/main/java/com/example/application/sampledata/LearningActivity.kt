@@ -1,15 +1,21 @@
-
-package com.example.application
+package com.example.application.sampledata
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.application.DataDict
+import com.example.application.DictChildActivity
+import com.example.application.DictMusicActivity
 import com.example.application.databinding.ActivityLearningBinding
 import com.example.dicti.DictTechActivity
+import com.example.application.R
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class LearningActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLearningBinding
@@ -64,6 +70,11 @@ class LearningActivity : AppCompatActivity() {
             }
         }
 
+        var buttonExit: ImageView = findViewById(R.id.exitWords)
+        buttonExit.setOnClickListener {
+            finish()
+        }
+
     }
 
 
@@ -75,7 +86,7 @@ class LearningActivity : AppCompatActivity() {
             return
         }
 
-        currentWord = allWords.removeFirst()
+        currentWord = allWords.removeAt(0)
         binding.textViewRussianWord.text = currentWord.translation
         binding.editTextAnswer.text?.clear()
         binding.textViewResult.text = ""

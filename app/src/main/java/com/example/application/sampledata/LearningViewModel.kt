@@ -1,9 +1,7 @@
-package com.example.application.ui
+package com.example.application.sampledata
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.application.data.Word
-import com.example.application.data.WordRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

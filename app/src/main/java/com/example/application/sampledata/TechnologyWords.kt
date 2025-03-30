@@ -1,4 +1,5 @@
-package com.example.application.data
+package com.example.application.sampledata
+
 
 object TechnologyWords {
     val words = listOf(

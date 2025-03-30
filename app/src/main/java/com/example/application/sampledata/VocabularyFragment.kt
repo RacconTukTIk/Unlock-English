@@ -1,4 +1,4 @@
-package com.example.application
+package com.example.application.sampledata
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.application.databinding.FragmentVocabularyBinding
+import com.example.application.sampledata.LearnedWordsActivity
 
 class VocabularyFragment : Fragment() {
     private var _binding: FragmentVocabularyBinding? = null

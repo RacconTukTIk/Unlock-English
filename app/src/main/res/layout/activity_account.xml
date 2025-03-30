@@ -10,11 +10,12 @@
     android:padding="16dp">
 
     <!-- Верхняя фиолетовая панель (relativeLayout2) -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout2"
+    <ImageView
+        android:id="@+id/headerImage"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:background="#917FC7"
+        android:scaleType="centerCrop"
+        android:src="@drawable/free_cat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -28,7 +29,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relativeLayout2"/>
+        app:layout_constraintTop_toBottomOf="@id/headerImage"/>
 
     <TextView
         android:id="@+id/textViewUsername"

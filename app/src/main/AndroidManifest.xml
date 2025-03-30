@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.application"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -95,12 +96,12 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <activity android:name=".VocabularyActivity"
+        <activity android:name="com.example.application.sampledata.VocabularyActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".LearningActivity" android:exported="false"/>
-        <activity android:name=".LearnedWordsActivity" android:exported="false"/>
-        <activity android:name=".RepeatWordsActivity" android:exported="false"/>
+        <activity android:name="com.example.application.sampledata.LearningActivity" android:exported="false"/>
+        <activity android:name="com.example.application.sampledata.LearnedWordsActivity" android:exported="false"/>
+        <activity android:name="com.example.application.sampledata.RepeatWordsActivity" android:exported="false"/>
 
     </application>
 

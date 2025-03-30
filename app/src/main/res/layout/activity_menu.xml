@@ -151,29 +151,29 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="215dp"
-        android:layout_height="120dp"
+        android:layout_width="311dp"
+        android:layout_height="211dp"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle"
         app:layout_constraintEnd_toEndOf="@+id/rectangle"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/rectangle"
         app:layout_constraintTop_toTopOf="@+id/rectangle"
-        app:layout_constraintVertical_bias="0.228"
-        app:srcCompat="@drawable/trollface" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/angry_cat" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="64dp"
         android:layout_height="18dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="152dp"
         android:backgroundTint="#EBE9E9"
-        android:textColor="@color/black"
-        android:text="Тесты"
         android:gravity="center"
+        android:text="Тесты"
+        android:textColor="@color/black"
         android:translationY="-60dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="@+id/rectangle"
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 
@@ -181,8 +181,7 @@
         android:id="@+id/tvTestProgress"
         android:layout_width="62dp"
         android:layout_height="18dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="108dp"
         android:gravity="center"
         android:text="0/14"
         android:textColor="@color/black"
@@ -194,27 +193,26 @@
         android:id="@+id/textView"
         android:layout_width="62dp"
         android:layout_height="17dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="92dp"
         android:backgroundTint="#EBE9E9"
+        android:gravity="center"
         android:text="Темы"
         android:textColor="@color/black"
-        android:gravity="center"
-        android:translationY="-87dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/rectangle"
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 
     <TextView
         android:id="@+id/tvTopicsProgress"
         android:layout_width="62dp"
         android:layout_height="18dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="108dp"
         android:backgroundTint="#EBE9E9"
+        android:gravity="center"
         android:text="0/18"
         android:textColor="@color/black"
-        android:gravity="center"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/rectangle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

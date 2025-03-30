@@ -1,9 +1,11 @@
-package com.example.application
+package com.example.application.sampledata
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.application.databinding.FragmentVocabularyBinding
+import com.example.application.sampledata.LearnedWordsActivity
+
 
 class VocabularyActivity : AppCompatActivity() {
     private lateinit var binding: FragmentVocabularyBinding

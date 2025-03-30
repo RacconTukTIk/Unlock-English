@@ -1,13 +1,11 @@
-package com.example.application.ui
+package com.example.application.sampledata
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.application.data.WordRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
-import kotlin.text.Typography.dagger
 
 @HiltViewModel
 class WordListViewModel @Inject constructor(

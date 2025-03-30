@@ -1,9 +1,12 @@
-package com.example.application
+package com.example.application.sampledata
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.application.R
+import com.example.application.sampledata.LearnedWordsActivity
 import com.example.application.databinding.ActivityLearnedWordsBinding
 
 class LearnedWordsActivity : AppCompatActivity() {
@@ -15,6 +18,11 @@ class LearnedWordsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
+
+        var buttonExit: ImageView = findViewById(R.id.exitWord)
+        buttonExit.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setupRecyclerView() {

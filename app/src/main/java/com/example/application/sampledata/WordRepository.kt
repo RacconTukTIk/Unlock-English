@@ -1,4 +1,4 @@
-package com.example.application.data
+package com.example.application.sampledata
 
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
