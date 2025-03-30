@@ -1,5 +1,6 @@
 import android.content.Context
 import android.util.Log
+import com.example.application.DataDict
 import com.example.application.EnglishDatabase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -16,6 +17,8 @@ object FirebaseService {
     private const val COMPLETED_TOPICS = "completedTopics"
     private const val COMPLETED_TESTS = "completedTests"
     private const val USER_ERRORS = "userErrors"
+    private const val LEARNED_WORDS = "learnedWords"
+    private const val WORDS_TO_REPEAT = "wordsToRepeat"
 
     private val database = Firebase.database("https://unlock-english-22c67-default-rtdb.europe-west1.firebasedatabase.app/")
     private val dbRef: DatabaseReference = database.reference
@@ -198,4 +201,77 @@ object FirebaseService {
         }
     }
     // endregion
+
+    suspend fun saveLearnedWord(word: DataDict) {
+        val userId = getCurrentUserId() ?: return
+        try {
+            // Создаем Map для сохранения
+            val wordMap = mapOf(
+                "word" to word.word,
+                "transcription" to word.transcription,
+                "translation" to word.translation
+            )
+
+            dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(LEARNED_WORDS)
+                .child(word.word.hashCode().toString())
+                .setValue(wordMap)
+                .await()
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Error saving learned word: ${e.message}")
+        }
+    }
+
+    suspend fun saveWordToRepeat(word: DataDict) {
+        val userId = getCurrentUserId() ?: return
+        try {
+            val wordMap = mapOf(
+                "word" to word.word,
+                "transcription" to word.transcription,
+                "translation" to word.translation
+            )
+
+            dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(WORDS_TO_REPEAT)
+                .child(word.word.hashCode().toString())
+                .setValue(wordMap)
+                .await()
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Error saving word to repeat: ${e.message}")
+        }
+    }
+
+    suspend fun loadLearnedWords(): List<DataDict> = withContext(Dispatchers.IO) {
+        val userId = getCurrentUserId() ?: return@withContext emptyList()
+        try {
+            val typeIndicator = object : GenericTypeIndicator<List<DataDict>>() {}
+            dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(LEARNED_WORDS)
+                .get()
+                .await()
+                .getValue(typeIndicator) ?: emptyList()
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Error loading learned words: ${e.message}")
+            emptyList()
+        }
+    }
+
+    suspend fun loadWordsToRepeat(): List<DataDict> = withContext(Dispatchers.IO) {
+        val userId = getCurrentUserId() ?: return@withContext emptyList()
+        try {
+            val typeIndicator = object : GenericTypeIndicator<List<DataDict>>() {}
+            dbRef.child(USERS_PATH)
+                .child(userId)
+                .child(WORDS_TO_REPEAT)
+                .get()
+                .await()
+                .getValue(typeIndicator) ?: emptyList()
+        } catch (e: Exception) {
+            Log.e("FirebaseService", "Error loading words to repeat: ${e.message}")
+            emptyList()
+        }
+    }
 }
