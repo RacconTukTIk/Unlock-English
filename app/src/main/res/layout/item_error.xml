@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/tvTotalErrors"
@@ -34,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@color/gray"/>
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnRetry"
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Повторить тест"
+            android:textColor="@color/black"
             android:backgroundTint="@color/black"/>
 
     </LinearLayout>
