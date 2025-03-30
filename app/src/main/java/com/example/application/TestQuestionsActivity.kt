@@ -62,10 +62,6 @@ class TestQuestionsActivity : AppCompatActivity() {
             showResults()
         }
 
-        val buttonExitTest: ImageView  = findViewById(R.id.exitTests)
-        buttonExitTest.setOnClickListener {
-            finish()
-        }
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -196,5 +192,9 @@ class TestQuestionsActivity : AppCompatActivity() {
                 else -> ""
             }
         }
+    }
+
+    override fun onBackPressed() {
+
     }
 }
