@@ -86,7 +86,7 @@ class ExamActivity : AppCompatActivity() {
                 currentQuestion.option1,
                 currentQuestion.option2,
                 currentQuestion.option3,
-                currentQuestion.correctAnswer
+                currentQuestion.option4
             ).shuffled()
 
             // Назначаем ответы на кнопки

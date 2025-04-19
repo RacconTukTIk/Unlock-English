@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/technology"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Technology"
         android:textSize="40sp"
@@ -76,7 +76,7 @@
         app:srcCompat="@drawable/icon_right_arrow"/>
 
     <LinearLayout
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="521dp"
         android:orientation="vertical"
         android:padding="16dp"
