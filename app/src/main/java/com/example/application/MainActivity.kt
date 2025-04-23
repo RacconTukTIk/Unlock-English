@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     saveUserData(username, email)
+                    FirebaseAuth.getInstance().currentUser?.let { user->sessionManager.endSession(user.uid) }
                     navigateToMainScreen()
                 } else {
                     showError("Ошибка регистрации: ${task.exception?.message}")
