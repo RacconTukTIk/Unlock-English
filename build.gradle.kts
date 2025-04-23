@@ -4,6 +4,7 @@ buildscript{
     dependencies{
         classpath("com.google.gms:google-services:4.4.2")
         classpath ("com.google.dagger:hilt-android-gradle-plugin:2.48")
+        classpath ("com.google.firebase:firebase-crashlytics-gradle:3.0.3")
     }
 
 }
@@ -13,6 +14,8 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     id("com.google.gms.google-services") version "4.4.2" apply false
+    id("com.google.firebase.crashlytics") version "3.0.3" apply false
+
 
 
 }
