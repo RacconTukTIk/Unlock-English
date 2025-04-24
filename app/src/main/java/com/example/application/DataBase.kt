@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Topic::class, Test::class], version = 11, exportSchema = false)
+@Database(entities = [Topic::class, Test::class], version = 12, exportSchema = false)
 abstract class EnglishDatabase : RoomDatabase() {
 
     abstract fun topicDao(): TopicDao
@@ -47,7 +47,7 @@ abstract class EnglishDatabase : RoomDatabase() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
-            checkAndFillData()
+            fillInitialData()
         }
 
         private fun fillInitialData() {
@@ -59,14 +59,6 @@ abstract class EnglishDatabase : RoomDatabase() {
             }
         }
 
-        private fun checkAndFillData() {
-            CoroutineScope(Dispatchers.IO).launch {
-                val db = getDatabase(context)
-                if (db.topicDao().getAllTopics().first().isEmpty()) {
-                    insertInitialData(db)
-                }
-            }
-        }
 
         private suspend fun insertInitialData(database: EnglishDatabase) {
             val topicDao = database.topicDao()
