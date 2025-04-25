@@ -18,22 +18,22 @@
         tools:targetApi="31">
         <activity
             android:name=".MarathonResultActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MarathonActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ExamResultActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ResultActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".TestQuestionsActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".TestActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -46,16 +46,16 @@
         </activity>
         <activity
             android:name=".DescriptionActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ExamActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ThemesActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".BottomNavigationActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name="com.example.app.MainActivity"
             android:exported="true"
@@ -67,37 +67,37 @@
             android:label="LogInActivity" />
         <activity
             android:name=".MenuActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="MenuActivity" />
         <activity
             android:name="com.example.dicti.DictTechActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="dict_tech" />
         <activity
             android:name="com.example.dicti.DictMainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="dict_main" />
         <activity
             android:name=".DictChildActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="dict_child" />
         <activity
             android:name=".DictMusicActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="dict_music" />
         <activity
             android:name=".AccountMainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="acc_page" />
         <activity
             android:name=".MistakesActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="mistakes" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <activity android:name="com.example.application.sampledata.VocabularyActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity android:name="com.example.application.sampledata.LearningActivity" android:exported="false"/>
         <activity android:name="com.example.application.sampledata.LearnedWordsActivity" android:exported="false"/>
