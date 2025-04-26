@@ -12,7 +12,7 @@
     <!-- Верхняя фиолетовая панель (relativeLayout2) -->
     <ImageView
         android:id="@+id/headerImage"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/free_cat"

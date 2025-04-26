@@ -10,32 +10,36 @@
     tools:context=".DescriptionActivity">
 
     <!-- Логотип и заголовок -->
+
+    <!-- Кнопка выхода -->
+
     <ImageView
         android:id="@+id/imageUnlockEnglish"
         android:layout_width="36dp"
         android:layout_height="42dp"
-        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
+        app:layout_constraintHorizontal_bias="0.297"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042"
         app:srcCompat="@drawable/unlockenglish" />
 
     <TextView
         android:id="@+id/textUnlockEnglish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:gravity="center"
         android:text="Unlock English"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/imageUnlockEnglish"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062" />
 
-    <!-- Кнопка выхода -->
     <ImageView
         android:id="@+id/exitTopics"
         android:layout_width="24dp"
@@ -46,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintVertical_bias="0.067"
         app:srcCompat="@drawable/icon_right_arrow"/>
 
         app:layout_constraintVertical_bias="0.022"
@@ -54,24 +58,27 @@
 
 
     <!-- Заголовок темы -->
+
+    <!-- Список элементов -->
+
     <TextView
         android:id="@+id/sectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
         android:text="Название темы"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
 
-    <!-- Список элементов -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:scrollbars="vertical"

@@ -46,7 +46,8 @@ abstract class EnglishDatabase : RoomDatabase() {
         }
 
         override fun onOpen(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
+            super.onOpen(db)
+            fillInitialData()
 
         }
 
