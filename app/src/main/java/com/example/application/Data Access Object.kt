@@ -88,7 +88,7 @@ interface TopicDao {
 
 @Dao
 interface TestDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(test: Test)
 
     @Insert
