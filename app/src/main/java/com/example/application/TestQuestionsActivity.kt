@@ -29,7 +29,7 @@ class TestQuestionsActivity : AppCompatActivity() {
     private var currentTopicId = -1
     private var correctAnswersCount = 0
     private var totalQuestions = 0
-    private val answeredQuestions = mutableListOf<Boolean>()
+    private val answeredQuestions = mutableListOf<Boolean?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,12 +92,18 @@ class TestQuestionsActivity : AppCompatActivity() {
             }
 
             answeredQuestions.clear()
-            answeredQuestions.addAll(List(totalQuestions) { false })
+            answeredQuestions.addAll(List(totalQuestions) { null })
 
             withContext(Dispatchers.Main) {
                 questionAdapter = QuestionAdapter(tests) { position, isCorrect ->
-                    if (isCorrect) correctAnswersCount++
-                    answeredQuestions[position] = true
+                    val previous = answeredQuestions[position]
+                    if (previous == true) {
+                        correctAnswersCount--
+                    }
+                    if (isCorrect) {
+                        correctAnswersCount++
+                    }
+                    answeredQuestions[position] = isCorrect
                     checkAllAnswerSelected()
                 }
                 recyclerView.adapter = questionAdapter
@@ -107,7 +113,7 @@ class TestQuestionsActivity : AppCompatActivity() {
     }
 
     private fun checkAllAnswerSelected() {
-        val allAnswered = answeredQuestions.all { it }
+        val allAnswered = answeredQuestions.all { it != null }
         findViewById<Button>(R.id.btnSubmit).isEnabled = allAnswered
 
     }
