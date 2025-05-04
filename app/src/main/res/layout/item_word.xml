@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="1dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingVertical="4dp"
+    android:gravity="center_vertical"
+    android:background="@color/white"
+    tools:context="com.example.application.sampledata.LearningActivity">
 
     <!-- Строка с словом и переводом -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="1dp">
 
         <TextView
             android:id="@+id/wordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:text="Пример слова"/>
 
         <TextView
             android:id="@+id/translationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginStart="8dp"
-            android:textColor="?android:attr/textColorSecondary"/>
+            android:text="- перевод"/>
 
     </LinearLayout>
 
-    <!-- Транскрипция -->
-    <TextView
-        android:id="@+id/transcriptionText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="?android:attr/textColorTertiary"
-        android:layout_marginTop="4dp"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

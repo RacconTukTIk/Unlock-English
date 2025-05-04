@@ -6,22 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:paddingVertical="1dp"
     tools:context=".LearnedWordsActivity">
 
-    <!-- Заголовок - теперь можно свободно перемещать -->
-
-    <!-- RecyclerView - можно регулировать положение -->
+    <!-- Кнопка выхода -->
 
     <ImageView
         android:id="@+id/exitWordRepeat"
         android:layout_width="24dp"
         android:layout_height="23dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
         app:srcCompat="@drawable/icon_right_arrow" />
 
     <ImageView
@@ -52,39 +49,38 @@
         app:layout_constraintVertical_bias="0.062" />
 
 
+    <!-- Заголовок экрана -->
+
+    <!-- Список слов -->
+
+    <!-- Пустое состояние -->
+
     <TextView
         android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:padding="16dp"
         android:text="Выученные слова"
+        android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/exitWordRepeat" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="403dp"
-            android:layout_height="570dp"
-            android:layout_margin="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.428" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/emptyState"
@@ -93,9 +89,9 @@
         android:text="Нет выученных слов"
         android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="@id/recyclerView"
+        app:layout_constraintTop_toTopOf="@id/recyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
