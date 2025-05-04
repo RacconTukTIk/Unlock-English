@@ -45,6 +45,10 @@ Unlock English - это приложение для людей, которые �
 </a>
 ---
 
+# 🗽 Знания Английского языка
+
+Темы и тесты для приложения сгенерировал ChatGPT и DeepSeek 🥳
+
 # 📫 Как с нами связаться
 2 курс:
 <a>[![Badge](https://img.shields.io/badge/Daniil-090909?style=for-the-badge&logo=vk&logoColor=Blue)](https://vk.com/zachemtbletochitaesh)
