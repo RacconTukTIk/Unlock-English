@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Topic::class, Test::class], version = 14, exportSchema = false)
+@Database(entities = [Topic::class, Test::class], version = 15, exportSchema = false)
 abstract class EnglishDatabase : RoomDatabase() {
 
     abstract fun topicDao(): TopicDao
@@ -256,6 +256,46 @@ abstract class EnglishDatabase : RoomDatabase() {
             topics.forEach { topic ->
                 topicDao.insert(topic)
             }
+
+            val newTopics = listOf(
+                Topic(
+                    id = 19,
+                    title = "First Conditional",
+                    description = "Первый условный тип используется для реальных или вероятных ситуаций в будущем.\n\nСтруктура: If + Present Simple, will + инфинитив.\n\nПример: If it rains, I will stay at home. — Если пойдет дождь, я останусь дома.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
+                Topic(
+                    id = 20,
+                    title = "Second Conditional",
+                    description = "Второй условный тип выражает маловероятные или гипотетические ситуации в настоящем или будущем.\n\nСтруктура: If + Past Simple, would + инфинитив.\n\nПример: If I won the lottery, I would travel the world. — Если бы я выиграл в лотерею, я бы путешествовал по миру.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
+                Topic(
+                    id = 21,
+                    title = "Third Conditional",
+                    description = "Третий условный тип относится к нереальным ситуациям в прошлом.\n\nСтруктура: If + Past Perfect, would have + причастие.\n\nПример: If I had studied harder, I would have passed the exam. — Если бы я учился усерднее, я бы сдал экзамен.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
+                Topic(
+                    id = 22,
+                    title = "Passive Voice (Present Simple)",
+                    description = "Пассивный залог в Present Simple:\n\nСтруктура: am/is/are + причастие прошедшего времени\n\nПример: The book is written by the author. — Книга написана автором.",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                ),
+                Topic(
+                    id = 23,
+                    title = "Modal Verbs (Can/Could)",
+                    description = "Модальные глаголы возможности:\n\nCan — настоящее время (I can swim)\nCould — прошлое/вежливое предложение (I could swim when I was 5 / Could you help me?)",
+                    errorCount = 0,
+                    lastAttemptErrors = 0
+                )
+            )
+
+            newTopics.forEach { topicDao.insert(it) }
 
             // Тесты для Present Simple (topicId = 2)
             val presentSimpleTests = listOf(
@@ -956,6 +996,256 @@ abstract class EnglishDatabase : RoomDatabase() {
                 )
             )
             testDao.insertAll(perfectContinuousFutureInPastTests)
+
+            // Тесты для First Conditional (topicId = 19)
+            val firstConditionalTests = listOf(
+                Test(
+                    topicId = 19,
+                    question = "Выберите правильное предложение First Conditional:",
+                    option1 = "If it rains, I stay home",
+                    option2 = "If it rains, I will stay home",
+                    option3 = "If it rained, I would stay home",
+                    option4 = "If it had rained, I would have stayed home",
+                    correctAnswer = "If it rains, I will stay home"
+                ),
+                Test(
+                    topicId = 19,
+                    question = "Как перевести: 'Если ты позвонишь, я отвечу'",
+                    option1 = "If you call, I answer",
+                    option2 = "If you called, I would answer",
+                    option3 = "If you call, I will answer",
+                    option4 = "If you had called, I would have answered",
+                    correctAnswer = "If you call, I will answer"
+                ),
+                Test(
+                    topicId = 19,
+                    question = "Отрицание для 'If he comes, we'll start'",
+                    option1 = "If he doesn't come, we won't start",
+                    option2 = "If he didn't come, we wouldn't start",
+                    option3 = "If he hadn't come, we wouldn't have started",
+                    option4 = "If he not come, we not start",
+                    correctAnswer = "If he doesn't come, we won't start"
+                ),
+                Test(
+                    topicId = 19,
+                    question = "Какой глагол используется в главной части?",
+                    option1 = "Present Simple",
+                    option2 = "Future Simple",
+                    option3 = "Past Simple",
+                    option4 = "Infinitive",
+                    correctAnswer = "Future Simple"
+                ),
+                Test(
+                    topicId = 19,
+                    question = "Выберите НЕправильный пример:",
+                    option1 = "If I see him, I'll tell him",
+                    option2 = "If you heat ice, it melts",
+                    option3 = "If we miss the bus, we'll walk",
+                    option4 = "If she studies, she passes",
+                    correctAnswer = "If you heat ice, it melts"
+                )
+            )
+            testDao.insertAll(firstConditionalTests)
+
+            // Тесты для Second Conditional (topicId = 20)
+            val secondConditionalTests = listOf(
+                Test(
+                    topicId = 20,
+                    question = "Выберите правильный пример Second Conditional:",
+                    option1 = "If I have time, I'll help",
+                    option2 = "If I had time, I would help",
+                    option3 = "If I had had time, I would have helped",
+                    option4 = "If I have time, I help",
+                    correctAnswer = "If I had time, I would help"
+                ),
+                Test(
+                    topicId = 20,
+                    question = "Как перевести: 'Если бы я был богат, я купил бы яхту'",
+                    option1 = "If I am rich, I will buy a yacht",
+                    option2 = "If I were rich, I would buy a yacht",
+                    option3 = "If I had been rich, I would have bought a yacht",
+                    option4 = "If I would be rich, I buy a yacht",
+                    correctAnswer = "If I were rich, I would buy a yacht"
+                ),
+                Test(
+                    topicId = 20,
+                    question = "Какая структура верна?",
+                    option1 = "If + Past Simple, would + infinitive",
+                    option2 = "If + Present Simple, will + infinitive",
+                    option3 = "If + Past Perfect, would have + participle",
+                    option4 = "If + Present Perfect, would + infinitive",
+                    correctAnswer = "If + Past Simple, would + infinitive"
+                ),
+                Test(
+                    topicId = 20,
+                    question = "Выберите НЕправильное использование:",
+                    option1 = "If I knew the answer, I'd tell you",
+                    option2 = "If we won, we'd celebrate",
+                    option3 = "If she would call, I'd be happy",
+                    option4 = "If they lived here, they'd go to this school",
+                    correctAnswer = "If she would call, I'd be happy"
+                ),
+                Test(
+                    topicId = 20,
+                    question = "Что выражает Second Conditional?",
+                    option1 = "Реальные будущие события",
+                    option2 = "Гипотетические ситуации",
+                    option3 = "Прошлые события",
+                    option4 = "Общие истины",
+                    correctAnswer = "Гипотетические ситуации"
+                )
+            )
+            testDao.insertAll(secondConditionalTests)
+
+            // Тесты для Third Conditional (topicId = 21)
+            val thirdConditionalTests = listOf(
+                Test(
+                    topicId = 21,
+                    question = "Выберите правильный пример Third Conditional:",
+                    option1 = "If I had seen him, I would tell him",
+                    option2 = "If I saw him, I would have told him",
+                    option3 = "If I had seen him, I would have told him",
+                    option4 = "If I see him, I'll tell him",
+                    correctAnswer = "If I had seen him, I would have told him"
+                ),
+                Test(
+                    topicId = 21,
+                    question = "Как перевести: 'Если бы ты предупредил, я бы остался'",
+                    option1 = "If you warned me, I would stay",
+                    option2 = "If you had warned me, I would have stayed",
+                    option3 = "If you warn me, I'll stay",
+                    option4 = "If you would warn me, I stayed",
+                    correctAnswer = "If you had warned me, I would have stayed"
+                ),
+                Test(
+                    topicId = 21,
+                    question = "Какая структура верна?",
+                    option1 = "If + Past Perfect, would have + participle",
+                    option2 = "If + Past Simple, would + infinitive",
+                    option3 = "If + Present Perfect, will + infinitive",
+                    option4 = "If + Past Perfect, would + infinitive",
+                    correctAnswer = "If + Past Perfect, would have + participle"
+                ),
+                Test(
+                    topicId = 21,
+                    question = "Third Conditional используется для:",
+                    option1 = "Нереальных прошлых ситуаций",
+                    option2 = "Реальных будущих событий",
+                    option3 = "Советов",
+                    option4 = "Фактов",
+                    correctAnswer = "Нереальных прошлых ситуаций"
+                ),
+                Test(
+                    topicId = 21,
+                    question = "Отрицание для 'If he had left, he would have missed'",
+                    option1 = "If he hadn't left, he wouldn't have missed",
+                    option2 = "If he didn't leave, he wouldn't miss",
+                    option3 = "If he doesn't leave, he won't miss",
+                    option4 = "If he hadn't left, he wouldn't miss",
+                    correctAnswer = "If he hadn't left, he wouldn't have missed"
+                )
+            )
+            testDao.insertAll(thirdConditionalTests)
+
+            // Тесты для Passive Voice (topicId = 22)
+            val passiveVoiceTests = listOf(
+                Test(
+                    topicId = 22,
+                    question = "Выберите правильный пассивный вариант:",
+                    option1 = "The letter is written by Mary",
+                    option2 = "The letter writes by Mary",
+                    option3 = "The letter wrote by Mary",
+                    option4 = "The letter is wrote by Mary",
+                    correctAnswer = "The letter is written by Mary"
+                ),
+                Test(
+                    topicId = 22,
+                    question = "Как образуется пассив для 'They build houses'?",
+                    option1 = "Houses are built",
+                    option2 = "Houses were built",
+                    option3 = "Houses are build",
+                    option4 = "Houses is built",
+                    correctAnswer = "Houses are built"
+                ),
+                Test(
+                    topicId = 22,
+                    question = "Выберите перевод: 'Книга была прочитана'",
+                    option1 = "The book is read",
+                    option2 = "The book was read",
+                    option3 = "The book has been read",
+                    option4 = "The book will be read",
+                    correctAnswer = "The book was read"
+                ),
+                Test(
+                    topicId = 22,
+                    question = "Пассивный залог акцентирует:",
+                    option1 = "Действие, а не исполнителя",
+                    option2 = "Лицо, выполняющее действие",
+                    option3 = "Время действия",
+                    option4 = "Модальность",
+                    correctAnswer = "Действие, а не исполнителя"
+                ),
+                Test(
+                    topicId = 22,
+                    question = "Отрицание для 'The cake is made'",
+                    option1 = "The cake isn't made",
+                    option2 = "The cake wasn't made",
+                    option3 = "The cake doesn't make",
+                    option4 = "The cake hasn't made",
+                    correctAnswer = "The cake isn't made"
+                )
+            )
+            testDao.insertAll(passiveVoiceTests)
+
+            // Тесты для Modal Verbs (Can/Could) (topicId = 23)
+            val modalVerbsTests = listOf(
+                Test(
+                    topicId = 23,
+                    question = "Выберите правильный вариант:",
+                    option1 = "I can swim when I was five",
+                    option2 = "I could swim when I was five",
+                    option3 = "I can to swim",
+                    option4 = "I could to swim",
+                    correctAnswer = "I could swim when I was five"
+                ),
+                Test(
+                    topicId = 23,
+                    question = "Как перевести: 'Не могли бы вы помочь?'",
+                    option1 = "Can you help?",
+                    option2 = "Could you help?",
+                    option3 = "Can I help?",
+                    option4 = "Could I help?",
+                    correctAnswer = "Could you help?"
+                ),
+                Test(
+                    topicId = 23,
+                    question = "Какое предложение выражает прошлую способность?",
+                    option1 = "I can speak French",
+                    option2 = "I could speak French as a child",
+                    option3 = "Can you open the window?",
+                    option4 = "Could you pass the salt?",
+                    correctAnswer = "I could speak French as a child"
+                ),
+                Test(
+                    topicId = 23,
+                    question = "Отрицание для 'She can drive'",
+                    option1 = "She can't drive",
+                    option2 = "She couldn't drive",
+                    option3 = "She doesn't can drive",
+                    option4 = "She not can drive",
+                    correctAnswer = "She can't drive"
+                ),
+                Test(
+                    topicId = 23,
+                    question = "Выберите НЕправильный вариант:",
+                    option1 = "We can leave now",
+                    option2 = "They could come later",
+                    option3 = "He cans swim",
+                    option4 = "Could I borrow your pen?",
+                    correctAnswer = "He cans swim"
+                )
+            )
+            testDao.insertAll(modalVerbsTests)
         }
 
     }
