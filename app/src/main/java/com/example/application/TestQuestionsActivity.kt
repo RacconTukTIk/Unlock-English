@@ -201,6 +201,11 @@ class TestQuestionsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        Toast.makeText(
+            this@TestQuestionsActivity,
+            "Чтобы выйти необходимо пройти тест",
+            Toast.LENGTH_LONG
+        ).show()
 
     }
 }
