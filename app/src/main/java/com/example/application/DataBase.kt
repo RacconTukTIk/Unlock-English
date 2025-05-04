@@ -58,6 +58,9 @@ abstract class EnglishDatabase : RoomDatabase() {
         private suspend fun insertInitialData(database: EnglishDatabase) {
             val topicDao = database.topicDao()
             val testDao = database.testDao()
+            if (topicDao.getAllTopic().count() > 0)
+                return
+
             val topics = listOf(
                 Topic(id = 1, title = "Категория Simple", description = "Это группа простых времен. К ней относятся действия, которые совершаются / совершались / будут совершаться часто и / или регулярно, а также однократные поступки и события.",
                     errorCount = 0,
