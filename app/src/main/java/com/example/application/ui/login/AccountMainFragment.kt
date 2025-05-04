@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.application.MenuFragment
 import com.example.application.R
+import com.example.application.sampledata.LearningActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -122,6 +123,7 @@ class AccountMainFragment : Fragment() {
             }
             logoutFromSession()
             FirebaseAuth.getInstance().signOut()
+            LearningActivity.clearData()
 
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {
@@ -151,7 +153,6 @@ class AccountMainFragment : Fragment() {
         FirebaseAuth.getInstance().currentUser?.let { user ->
             sessionManager.endSession(user.uid)
         }
-
     }
 
     override fun onPause()

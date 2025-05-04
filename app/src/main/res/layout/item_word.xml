@@ -3,30 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="2dp"> <!-- Общий отступ -->
+    android:padding="1dp">
 
-    <TextView
-        android:id="@+id/wordText"
+    <!-- Строка с словом и переводом -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"  
-    android:textStyle="bold"
-    android:paddingBottom="1dp"/> <!-- Минимальный отступ снизу -->
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <!-- Транскрипция (можно скрыть, если не нужна) -->
+        <TextView
+            android:id="@+id/wordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/translationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:textColor="?android:attr/textColorSecondary"/>
+
+    </LinearLayout>
+
+    <!-- Транскрипция -->
     <TextView
         android:id="@+id/transcriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="?android:attr/textColorSecondary"
-        android:visibility="gone"/> <!-- Скрыто по умолчанию -->
-
-    <!-- Перевод (можно скрыть, если не нужен) -->
-    <TextView
-        android:id="@+id/translationText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:visibility="gone"/> <!-- Скрыто по умолчанию -->
+        android:textColor="?android:attr/textColorTertiary"
+        android:layout_marginTop="4dp"/>
+
 </LinearLayout>

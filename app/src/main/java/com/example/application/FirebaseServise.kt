@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.collections.emptyList as emptyList1
 
 object FirebaseService {
     private const val USERS_PATH = "Users"
@@ -136,14 +137,14 @@ object FirebaseService {
                 .child(COMPLETED_TOPICS)
                 .get()
                 .await()
-                .getValue(typeIndicator) ?: emptyList()
+                .getValue(typeIndicator) ?: emptyList1()
 
             val completedTests = dbRef.child(USERS_PATH)
                 .child(userId)
                 .child(COMPLETED_TESTS)
                 .get()
                 .await()
-                .getValue(typeIndicator) ?: emptyList()
+                .getValue(typeIndicator) ?: emptyList1()
 
             db.topicDao().apply {
                 completedTopics.forEach { topicId ->
@@ -202,76 +203,64 @@ object FirebaseService {
     }
     // endregion
 
-    suspend fun saveLearnedWord(word: DataDict) {
-        val userId = getCurrentUserId() ?: return
+    suspend fun saveLearnedWord(word: DataDict) = withContext(Dispatchers.IO) {
+        val userId = getCurrentUserId() ?: return@withContext
         try {
-            // Создаем Map для сохранения
-            val wordMap = mapOf(
-                "word" to word.word,
-                "transcription" to word.transcription,
-                "translation" to word.translation
-            )
-
-            dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(LEARNED_WORDS)
+            database.getReference("$USERS_PATH/$userId/learnedWords")
                 .child(word.word.hashCode().toString())
-                .setValue(wordMap)
+                .setValue(word)
                 .await()
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Error saving learned word: ${e.message}")
+            Log.e("FirebaseService", "Save learned word error: ${e.message}")
         }
     }
 
-    suspend fun saveWordToRepeat(word: DataDict) {
-        val userId = getCurrentUserId() ?: return
+    // Сохранение слова для повторения
+    suspend fun saveWordToRepeat(word: DataDict) = withContext(Dispatchers.IO) {
+        val userId = getCurrentUserId() ?: return@withContext
         try {
-            val wordMap = mapOf(
-                "word" to word.word,
-                "transcription" to word.transcription,
-                "translation" to word.translation
-            )
-
-            dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(WORDS_TO_REPEAT)
+            database.getReference("$USERS_PATH/$userId/wordsToRepeat")
                 .child(word.word.hashCode().toString())
-                .setValue(wordMap)
+                .setValue(word)
                 .await()
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Error saving word to repeat: ${e.message}")
+            Log.e("FirebaseService", "Save word to repeat error: ${e.message}")
         }
     }
 
+    // Загрузка выученных слов
     suspend fun loadLearnedWords(): List<DataDict> = withContext(Dispatchers.IO) {
-        val userId = getCurrentUserId() ?: return@withContext emptyList()
+        val userId = getCurrentUserId() ?: return@withContext emptyList1()
         try {
-            val typeIndicator = object : GenericTypeIndicator<List<DataDict>>() {}
-            dbRef.child(USERS_PATH)
+            val snapshot = dbRef.child(USERS_PATH)
                 .child(userId)
                 .child(LEARNED_WORDS)
                 .get()
                 .await()
-                .getValue(typeIndicator) ?: emptyList()
+
+            return@withContext snapshot.children.mapNotNull {
+                it.getValue(DataDict::class.java)
+            }
         } catch (e: Exception) {
             Log.e("FirebaseService", "Error loading learned words: ${e.message}")
-            emptyList()
+            return@withContext emptyList1()
         }
     }
 
+    // Загрузка слов для повторения
     suspend fun loadWordsToRepeat(): List<DataDict> = withContext(Dispatchers.IO) {
-        val userId = getCurrentUserId() ?: return@withContext emptyList()
+        val userId = getCurrentUserId() ?: return@withContext emptyList1()
         try {
-            val typeIndicator = object : GenericTypeIndicator<List<DataDict>>() {}
-            dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(WORDS_TO_REPEAT)
+            database.getReference("$USERS_PATH/$userId/wordsToRepeat")
                 .get()
                 .await()
-                .getValue(typeIndicator) ?: emptyList()
+                .children
+                .mapNotNull { it.getValue(DataDict::class.java) }
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Error loading words to repeat: ${e.message}")
-            emptyList()
+            Log.e("FirebaseService", "Load words to repeat error: ${e.message}")
+            emptyList1()
         }
     }
 }
+
+

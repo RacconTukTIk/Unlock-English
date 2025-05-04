@@ -2,7 +2,9 @@ package com.example.application.sampledata
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.application.DataDict
@@ -11,6 +13,7 @@ import com.example.application.DictMusicActivity
 import com.example.application.databinding.ActivityLearningBinding
 import com.example.dicti.DictTechActivity
 import com.example.application.R
+import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,10 +26,59 @@ class LearningActivity : AppCompatActivity() {
     private lateinit var currentWord: DataDict
 
     companion object {
-        val learnedWords = mutableListOf<DataDict>()
-        val wordsToRepeat = mutableListOf<DataDict>()
+        var learnedWords: MutableList<DataDict> = mutableListOf()
+        var wordsToRepeat: MutableList<DataDict> = mutableListOf()
+
+        fun clearData() {
+            learnedWords.clear()
+            wordsToRepeat.clear()
+        }
     }
 
+
+
+    private fun initializeData() {
+        lifecycleScope.launch {
+            try {
+                Log.d("App", "Starting data loading...")
+
+                // Проверка аутентификации
+                val user = FirebaseAuth.getInstance().currentUser
+                Log.d("App", "Current user: ${user?.uid}")
+
+                val loadedLearned = FirebaseService.loadLearnedWords().also {
+                    Log.d("App", "Loaded learned: ${it.size} items")
+                }
+
+                val loadedToRepeat = FirebaseService.loadWordsToRepeat().also {
+                    Log.d("App", "Loaded to repeat: ${it.size} items")
+                }
+
+                learnedWords.clear()
+                learnedWords.addAll(loadedLearned)
+
+                wordsToRepeat.clear()
+                wordsToRepeat.addAll(loadedToRepeat)
+
+                Log.d("App", "Data initialized successfully")
+
+                // Обновление UI
+                withContext(Dispatchers.Main) {
+                    showNextWord()
+                }
+
+            } catch (e: Exception) {
+                Log.e("App", "Data loading failed", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@LearningActivity,
+                        "Ошибка загрузки данных: ${e.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLearningBinding.inflate(layoutInflater)
@@ -74,6 +126,7 @@ class LearningActivity : AppCompatActivity() {
         buttonExit.setOnClickListener {
             finish()
         }
+        initializeData()
 
     }
 

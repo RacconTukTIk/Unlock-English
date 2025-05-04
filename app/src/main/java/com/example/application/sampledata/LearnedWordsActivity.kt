@@ -19,7 +19,7 @@ class LearnedWordsActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        var buttonExit: ImageView = findViewById(R.id.exitWord)
+        var buttonExit: ImageView = findViewById(R.id.exitWordRepeat)
         buttonExit.setOnClickListener {
             finish()
         }
