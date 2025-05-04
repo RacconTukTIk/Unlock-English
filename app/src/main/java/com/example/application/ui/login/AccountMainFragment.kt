@@ -123,7 +123,6 @@ class AccountMainFragment : Fragment() {
             }
             logoutFromSession()
             FirebaseAuth.getInstance().signOut()
-            LearningActivity.clearData()
 
             database.keepSynced(false)
             startActivity(Intent(requireContext(), SplashActivity::class.java).apply {

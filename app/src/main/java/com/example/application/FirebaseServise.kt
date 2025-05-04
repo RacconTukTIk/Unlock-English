@@ -232,32 +232,43 @@ object FirebaseService {
     suspend fun loadLearnedWords(): List<DataDict> = withContext(Dispatchers.IO) {
         val userId = getCurrentUserId() ?: return@withContext emptyList1()
         try {
-            val snapshot = dbRef.child(USERS_PATH)
-                .child(userId)
-                .child(LEARNED_WORDS)
-                .get()
-                .await()
+            val reference = database.getReference("$USERS_PATH/$userId/$LEARNED_WORDS")
+            val snapshot = reference.get().await()
 
             return@withContext snapshot.children.mapNotNull {
-                it.getValue(DataDict::class.java)
+                try {
+                    it.getValue(DataDict::class.java)?.apply {
+                        Log.d("FirebaseLoad", "Loaded learned: $this")
+                    }
+                } catch (e: Exception) {
+                    Log.e("FirebaseError", "Parse error: ${it.value}", e)
+                    null
+                }
             }
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Error loading learned words: ${e.message}")
-            return@withContext emptyList1()
+            Log.e("Firebase", "Load learned error", e)
+            emptyList1()
         }
     }
 
-    // Загрузка слов для повторения
     suspend fun loadWordsToRepeat(): List<DataDict> = withContext(Dispatchers.IO) {
         val userId = getCurrentUserId() ?: return@withContext emptyList1()
         try {
-            database.getReference("$USERS_PATH/$userId/wordsToRepeat")
-                .get()
-                .await()
-                .children
-                .mapNotNull { it.getValue(DataDict::class.java) }
+            val reference = database.getReference("$USERS_PATH/$userId/$WORDS_TO_REPEAT")
+            val snapshot = reference.get().await()
+
+            return@withContext snapshot.children.mapNotNull {
+                try {
+                    it.getValue(DataDict::class.java)?.apply {
+                        Log.d("FirebaseLoad", "Loaded to repeat: $this")
+                    }
+                } catch (e: Exception) {
+                    Log.e("FirebaseError", "Parse error: ${it.value}", e)
+                    null
+                }
+            }
         } catch (e: Exception) {
-            Log.e("FirebaseService", "Load words to repeat error: ${e.message}")
+            Log.e("Firebase", "Load repeat error", e)
             emptyList1()
         }
     }

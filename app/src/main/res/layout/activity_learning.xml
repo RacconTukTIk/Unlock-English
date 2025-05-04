@@ -102,28 +102,31 @@
         android:layout_marginTop="16dp"/>
 
     <!-- Кнопки внизу -->
+
     <Button
         android:id="@+id/buttonCheck"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
         android:backgroundTint="#EBE9E9"
-        android:textColor="@color/black"
         android:text="Проверить"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonNext"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="64dp"
         android:backgroundTint="#EBE9E9"
-        android:textColor="@color/black"
         android:text="Далее"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonCheck"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"/>
+        app:layout_constraintStart_toEndOf="@id/buttonCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

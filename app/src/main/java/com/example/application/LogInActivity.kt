@@ -1,5 +1,6 @@
 package com.example.application
 
+import FirebaseService
 import SessionManager
 import android.content.Intent
 import android.graphics.Color
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.app.MainActivity
 import com.example.application.databinding.LogInActivityBinding
+import com.example.application.sampledata.LearningActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
@@ -100,8 +102,15 @@ class LogInActivity : AppCompatActivity() {
                         // Сброс локального прогресса перед загрузкой новых данных
                         EnglishDatabase.getDatabase(this@LogInActivity).topicDao().resetAllProgress()
 
+
                         FirebaseService.loadUserErrors(this@LogInActivity)
                         FirebaseService.loadUserProgress(this@LogInActivity)
+
+                        LearningActivity.learnedWords.clear()
+                        LearningActivity.learnedWords.addAll(FirebaseService.loadLearnedWords())
+
+                        LearningActivity.wordsToRepeat.clear()
+                        LearningActivity.wordsToRepeat.addAll(FirebaseService.loadWordsToRepeat())
                         navigateToMainApp()
                     }
                 } else {

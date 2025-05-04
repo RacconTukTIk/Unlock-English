@@ -26,13 +26,9 @@ class LearningActivity : AppCompatActivity() {
     private lateinit var currentWord: DataDict
 
     companion object {
-        var learnedWords: MutableList<DataDict> = mutableListOf()
-        var wordsToRepeat: MutableList<DataDict> = mutableListOf()
+        val learnedWords = mutableListOf<DataDict>()
+        val wordsToRepeat = mutableListOf<DataDict>()
 
-        fun clearData() {
-            learnedWords.clear()
-            wordsToRepeat.clear()
-        }
     }
 
 
@@ -53,10 +49,8 @@ class LearningActivity : AppCompatActivity() {
                 val loadedToRepeat = FirebaseService.loadWordsToRepeat().also {
                     Log.d("App", "Loaded to repeat: ${it.size} items")
                 }
-
                 learnedWords.clear()
                 learnedWords.addAll(loadedLearned)
-
                 wordsToRepeat.clear()
                 wordsToRepeat.addAll(loadedToRepeat)
 
